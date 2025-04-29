@@ -1,40 +1,40 @@
-import { images } from '../assets';
+import { images } from '../assets'
 
 export const storeInfo = [
     {
         text: '55 Dân Chủ, Bình Thọ, Tp. Thủ Đức',
         url: '/contact',
-        icon: 'fi fi-rr-marker',
+        icon: 'fi fi-rr-marker'
     },
     {
         text: 'Hotline: 1900 1919',
         url: 'tel:19001919',
-        icon: 'fi fi-rr-chat-bubble-call',
+        icon: 'fi fi-rr-chat-bubble-call'
     },
     {
         text: 'Mở cửa từ: 08:00 → 20:00',
         icon: 'fi fi-rr-clock-five',
-        url: '',
-    },
-];
+        url: ''
+    }
+]
 
 export const socials = [
     {
         text: 'Facebook',
         url: 'https://www.facebook.com/',
-        icon: 'fi fi-brands-facebook',
+        icon: 'fi fi-brands-facebook'
     },
     {
         text: 'TikTok',
         url: 'https://www.tiktok.com/',
-        icon: 'fi fi-brands-tik-tok',
+        icon: 'fi fi-brands-tik-tok'
     },
     {
         text: 'YouTube',
         url: 'https://www.youtube.com/',
-        icon: 'fi fi-brands-youtube',
-    },
-];
+        icon: 'fi fi-brands-youtube'
+    }
+]
 
 export const products = [
     {
@@ -42,30 +42,30 @@ export const products = [
         name: 'Hạt mèo cho mọi lứa tuổi catsrang',
         normalPrice: 92000,
         discountPrice: 59000,
-        image: images.product_1,
+        image: images.product_1
     },
     {
         url: '/product/2',
         name: 'Thức ăn cho mèo Royal Canin',
         normalPrice: 292000,
         discountPrice: 239000,
-        image: images.product_2,
+        image: images.product_2
     },
     {
         url: '/product/3',
         name: 'Cát vệ sinh thú cưng',
         normalPrice: 108000,
         discountPrice: 72000,
-        image: images.product_3,
+        image: images.product_3
     },
     {
         url: '/product/4',
         name: 'Pate mèo vị hải sản (dành cho mèo từ 6 tháng tuổi)',
         normalPrice: 82000,
         discountPrice: 67000,
-        image: images.product_4,
-    },
-];
+        image: images.product_4
+    }
+]
 
 export const searchData = {
     text: 'Giảm giá 20% Royal Canin ...',
@@ -77,44 +77,44 @@ export const searchData = {
         'Cát vệ sinh mèo',
         'Vòng cổ cho chó',
         'Bảng tên mèo',
-        'Dây xích thú cưng',
+        'Dây xích thú cưng'
     ],
-    products,
-};
+    products
+}
 
 export const categories = [
     { icon: 'fi fi-rr-fish', text: 'Thức ăn', url: '/category/cat-food' },
     {
         icon: 'fi fi-rr-sleeping-cat',
         text: 'Giường ngủ',
-        url: '/category/dog-food',
+        url: '/category/dog-food'
     },
     {
         icon: 'fi fi-rr-cat-head',
         text: 'Dụng cụ vệ sinh',
-        url: '/category/cleaning',
+        url: '/category/cleaning'
     },
-    { icon: 'fi fi-rr-cat-space', text: 'Phụ kiện', url: '/category/toys' },
-];
+    { icon: 'fi fi-rr-cat-space', text: 'Phụ kiện', url: '/category/toys' }
+]
 
 export const helps = [
     {
         text: 'Hỗ trợ',
-        url: 'tel: 19008198',
+        url: 'tel: 19008198'
     },
     {
         text: 'Điều khoản',
-        url: '/terms',
+        url: '/terms'
     },
     {
         text: 'Chính sách',
-        url: '/policy',
+        url: '/policy'
     },
     {
         text: 'Tuyển dụng',
-        url: '/career',
-    },
-];
+        url: '/career'
+    }
+]
 
 export const services = [
     { icon: 'fi fi-rr-dorm-room', text: 'Khách sạn', url: '/services/hotel' },
@@ -123,14 +123,14 @@ export const services = [
     {
         icon: 'fi fi-rr-venus-mars',
         text: 'Triệt sản',
-        url: '/services/sterilization',
+        url: '/services/sterilization'
     },
     {
         icon: 'fi fi-rr-paw-heart',
         text: 'Chăm sóc tại nhà',
-        url: '/services/home-care',
-    },
-];
+        url: '/services/home-care'
+    }
+]
 
 export const posts = [
     {
@@ -138,16 +138,16 @@ export const posts = [
         url: '/post_1',
         image: images.post_1,
         time: '28 Tháng 3, 2025',
-        desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nihil recusandae ratione ...',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nihil recusandae ratione ...'
     },
     {
         title: 'Dấu hiệu nhận biết mèo tích nhiều búi lông trong bụng?',
         url: '/post_2',
         image: images.post_2,
         time: '26 Tháng 3, 2025',
-        desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nihil recusandae ratione ...',
-    },
-];
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nihil recusandae ratione ...'
+    }
+]
 
 export const notifications = [
     {
@@ -161,7 +161,7 @@ export const notifications = [
         icon: 'fi fi-rr-box-circle-check',
         image: '',
         alt: '',
-        isRead: false,
+        isRead: false
     },
     {
         id: 'notif-2', // Thêm id cho mỗi thông báo
@@ -174,7 +174,7 @@ export const notifications = [
         icon: 'fi fi-rr-calendar',
         image: '',
         alt: '',
-        isRead: false,
+        isRead: false
     },
     {
         id: 'notif-3', // Thêm id cho mỗi thông báo
@@ -187,9 +187,9 @@ export const notifications = [
         icon: 'fi fi-rr-ticket',
         image: '',
         alt: '',
-        isRead: false,
-    },
-];
+        isRead: false
+    }
+]
 
 export const userMenu = [
     {
@@ -198,14 +198,14 @@ export const userMenu = [
             {
                 url: '/account/profile',
                 text: 'Thông tin tài khoản',
-                icon: 'fi fi-rr-user',
+                icon: 'fi fi-rr-user'
             },
             {
                 url: '/account/pets',
                 text: 'Thú cưng của tôi',
-                icon: 'fi fi-rr-paw',
-            },
-        ],
+                icon: 'fi fi-rr-paw'
+            }
+        ]
     },
     {
         title: 'Mua sắm',
@@ -213,19 +213,19 @@ export const userMenu = [
             {
                 url: '/account/orders',
                 text: 'Đơn hàng của tôi',
-                icon: 'fi fi-rr-shopping-bag',
+                icon: 'fi fi-rr-shopping-bag'
             },
             {
                 url: '/account/favorites',
                 text: 'Sản phẩm yêu thích',
-                icon: 'fi fi-rr-heart',
+                icon: 'fi fi-rr-heart'
             },
             {
                 url: '/account/address',
                 text: 'Địa chỉ giao hàng',
-                icon: 'fi fi-rr-marker',
-            },
-        ],
+                icon: 'fi fi-rr-marker'
+            }
+        ]
     },
     {
         title: '',
@@ -233,58 +233,58 @@ export const userMenu = [
             {
                 url: '/',
                 text: 'Đăng xuất',
-                icon: 'fi fi-rr-sign-out-alt',
-            },
-        ],
-    },
-];
+                icon: 'fi fi-rr-sign-out-alt'
+            }
+        ]
+    }
+]
 
 export const profileMenuItems = [
     {
         id: 'profile',
         label: 'Thông tin cá nhân',
-        icon: 'fi fi-rr-user',
+        icon: 'fi fi-rr-user'
     },
     {
         id: 'address',
         label: 'Địa chỉ',
-        icon: 'fi fi-rr-marker',
+        icon: 'fi fi-rr-marker'
     },
     {
         id: 'payment',
         label: 'Thanh toán',
-        icon: 'fi fi-rr-credit-card',
+        icon: 'fi fi-rr-credit-card'
     },
     {
         id: 'pets',
         label: 'Thú cưng',
         icon: 'fi fi-rr-paw',
-        count: 2,
+        count: 2
     },
     {
         id: 'notifications',
         label: 'Thông Báo',
         icon: 'fi fi-rr-bell',
-        count: 4,
+        count: 4
     },
     {
         id: 'membership',
         label: 'Ưu Đãi Hội Viên',
-        icon: 'fi fi-rr-gift-box-benefits',
+        icon: 'fi fi-rr-gift-box-benefits'
     },
     {
         id: 'orders',
         label: 'Đơn Hàng',
-        icon: 'fi fi-rr-shopping-bag',
+        icon: 'fi fi-rr-shopping-bag'
     },
     {
         id: 'cart',
         label: 'Giỏ Hàng',
-        icon: 'fi fi-rr-shopping-cart',
+        icon: 'fi fi-rr-shopping-cart'
     },
     {
         id: 'favorites',
         label: 'Yêu Thích',
-        icon: 'fi fi-rr-heart',
-    },
-];
+        icon: 'fi fi-rr-heart'
+    }
+]
