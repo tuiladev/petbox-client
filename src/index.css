@@ -14,22 +14,19 @@
   --color-secondary: #ff7f3e;
   --color-base-content: oklch(37.3% 0.034 259.733);
 }
+
 @theme {
   /* Fonts */
   --font-primary: 'Manrope', sans-serif;
   --font-secondary: 'Baloo 2', sans-serif;
   /* Gradients */
-  --gradient-yellow: linear-gradient(
-    90deg,
-    #ffffff 0%,
-    #FFECCO 47%,
-    #ffc132 100%
-  );
-  --gradient-primary: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    oklch(60% 0.12 242.749) 100%
-  );
+  --gradient-yellow: linear-gradient(90deg,
+      #ffffff 0%,
+      #FFECCO 47%,
+      #ffc132 100%);
+  --gradient-primary: linear-gradient(135deg,
+      var(--color-primary) 0%,
+      oklch(60% 0.12 242.749) 100%);
 
   /* Animation Presets */
   --animate-slideInTop: slideInTop 1s ease-out forwards;
@@ -42,6 +39,7 @@
   --animate-slideInRight: slideInRight 1s ease-in-out forwards;
   --animate-slideOutRight: slideOutRight 0.5s ease-in-out forwards;
 }
+
 /* =================== 2. Base Styles =================== */
 html {
   scroll-behavior: smooth;
@@ -53,6 +51,7 @@ html {
 * {
   scrollbar-width: none;
 }
+
 *::-webkit-scrollbar {
   display: none;
 }
@@ -101,6 +100,7 @@ body {
     opacity: 1;
     transform: scale(1);
   }
+
   100% {
     opacity: 0;
     transform: scale(0);
@@ -112,6 +112,7 @@ body {
     transform: translateY(-100%);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -123,6 +124,7 @@ body {
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(100%);
     opacity: 0;
@@ -134,6 +136,7 @@ body {
     width: 0;
     opacity: 0;
   }
+
   100% {
     width: 100%;
     opacity: 1;
@@ -145,6 +148,7 @@ body {
     opacity: 0;
     transform: scale(0);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -156,6 +160,7 @@ body {
     transform: translateX(100%);
     opacity: 0;
   }
+
   100% {
     transform: translateX(0);
     opacity: 1;
@@ -167,6 +172,7 @@ body {
     transform: translateX(0);
     opacity: 1;
   }
+
   100% {
     transform: translateX(100%);
     opacity: 0;
@@ -177,6 +183,7 @@ body {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 0.3;
   }
@@ -187,6 +194,7 @@ body {
     opacity: 0;
     transform: translate3d(0, 1rem, 0) scale(0.75);
   }
+
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
