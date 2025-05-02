@@ -1,8 +1,7 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-import { products } from '../../../data/mockdata'
-import useDropdown from '../../../hooks/useDropdown'
-import { Dropdown } from '../../common'
+import { products } from '~/data/mockdata'
+import useDropdown from '~/hooks/useDropdown'
+import Dropdown from '~/components/common/Dropdown'
 
 const CartItem = ({ product }) => {
   return (

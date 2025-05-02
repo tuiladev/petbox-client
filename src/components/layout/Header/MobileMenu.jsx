@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { Button, DropdownContent } from '../../common'
-import { storeInfo } from '../../../data/mockdata'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import Button from '~/components/common/Button'
+import { DropdownContent } from '~/components/common/Dropdown'
+import { storeInfo } from '~/data/mockdata'
 import Logo from '~/components/common/Logo'
 import { MenuItem } from './MenuList'
 import { UserCard } from './UserTools'
 import { MainMenuContent } from './MainMenu'
-import { useAuth } from '../../../redux/hooks/useAuth'
-import { useNavigate } from 'react-router-dom'
+import { useAuth } from '~/redux/hooks/useAuth'
 
 const MobileMenu = ({ dropdownState, className = '' }) => {
   const { isAuthenticated, user, logoutUser } = useAuth()

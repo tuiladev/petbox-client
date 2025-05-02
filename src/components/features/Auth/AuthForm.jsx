@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from '../../common'
+import { Button } from '~/components/common/Button'
 import SocialLogin from './SocialLogin'
 import FormInput from './FormInput'
 

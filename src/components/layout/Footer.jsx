@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import {
   socials,
@@ -6,8 +5,8 @@ import {
   services,
   helps,
   storeInfo
-} from '../../data/mockdata'
-import { IconLink } from '../common'
+} from '~/data/mockdata'
+import IconLink from '~/components/common/IconLink'
 import Logo from '~/components/common/Logo'
 
 const FooterCol = ({ title = '', list }) => {

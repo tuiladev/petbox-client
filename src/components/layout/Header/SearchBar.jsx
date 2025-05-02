@@ -1,7 +1,7 @@
-import React, { memo, useState, useEffect } from 'react'
-import { searchData } from '../../../data/mockdata'
-import { Dropdown } from '../../common'
-import useSearchbar from '../../../hooks/useSearchbar'
+import { memo, useState, useEffect } from 'react'
+import { searchData } from '~/data/mockdata'
+import useSearchbar from '~/hooks/useSearchbar'
+import Dropdown from '~/components/common/Dropdown'
 
 const Searchbar = ({ className = '' }) => {
   const [suggestions, setSuggestions] = useState([])

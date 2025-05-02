@@ -1,6 +1,7 @@
-import React, { memo } from 'react'
-import { DropdownContent, IconLink } from '../../common'
-import { categories, services, posts } from '../../../data/mockdata'
+import { memo } from 'react'
+import { DropdownContent } from '~/components/common/Dropdown'
+import IconLink from '~/components/common/IconLink'
+import { categories, services, posts } from '~/data/mockdata'
 import MenuList from './MenuList'
 
 const MainMenu = ({ dropdownState, className = '' }) => {

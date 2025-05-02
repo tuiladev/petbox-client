@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { notifications } from '../../../data/mockdata'
-import { Dropdown, NotificationItem, EmptyNotification } from '../../common'
-import useDropdown from '../../../hooks/useDropdown'
+import { notifications } from '~/data/mockdata'
+import Dropdown from '~/components/common/Dropdown'
+import NotificationItem from '~/components/common/NotificationItem'
+import EmptyNotification from '~/components/common/EmptyNotification'
+import useDropdown from '~/hooks/useDropdown'
 
 const Notifications = () => {
   const [notificationsList, setNotificationsList] = useState(notifications)

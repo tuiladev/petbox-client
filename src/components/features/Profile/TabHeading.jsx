@@ -1,9 +1,9 @@
-import React from 'react';
-
 const TabHeading = ({ title = '' }) => {
-    return (
-        <h2 className="title-xl capitalize text-primary mb-6 font-semibold">{title}</h2>
-    );
-};
+  return (
+    <h2 className='title-xl text-primary mb-6 font-semibold capitalize'>
+      {title}
+    </h2>
+  )
+}
 
-export default TabHeading;
+export default TabHeading

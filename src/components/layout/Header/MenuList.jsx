@@ -1,5 +1,5 @@
-import React, { memo, useState } from 'react'
-import { IconLink } from '../../common'
+import { memo, useState } from 'react'
+import IconLink from '~/components/common/IconLink'
 
 export const MenuItem = memo(({ category, className = '' }) => {
   return (

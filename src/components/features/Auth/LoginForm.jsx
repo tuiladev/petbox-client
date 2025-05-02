@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import FormInput from '../Auth/FormInput'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button } from '../../common'
+import FormInput from '../Auth/FormInput'
+import Button from '~/components/common/Button'
 import SocialLogin from './SocialLogin'
-import CustomCheckbox from '../../common/CustomCheckbox'
-import { useAuth } from '../../../redux/hooks/useAuth'
+import CustomCheckbox from '~/components/common/CustomCheckbox'
+import { useAuth } from '~/redux/hooks/useAuth'
 
 export const LoginForm = ({ onToggleForm, onForgotPassword }) => {
   const [emailOrPhone, setEmailOrPhone] = useState('')

@@ -9,7 +9,7 @@ import Services from '~/pages/Services'
 import Shop from '~/pages/Shop'
 import NotFound from '~/pages/NotFound'
 import MainLayout from '~/layout/MainLayout'
-import Auth from '~/components/features/Auth'
+import Auth from '~/pages/Auth'
 
 const router = createBrowserRouter([
   // No Component -> A Route Group
