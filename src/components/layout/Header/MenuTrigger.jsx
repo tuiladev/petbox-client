@@ -1,5 +1,4 @@
-import React from 'react'
-import { DropdownTrigger } from '../../common'
+import { DropdownTrigger } from '~/components/common/Dropdown'
 
 const MenuTrigger = ({ dropdownState, className = '' }) => {
   return (

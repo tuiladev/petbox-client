@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Button } from '../../common'
+import { useState } from 'react'
+import Button from '~/components/common/Button'
 import FormInput from '../Auth/FormInput'
 
 const PasswordResetForm = ({ onToggleForm }) => {

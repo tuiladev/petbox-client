@@ -1,10 +1,11 @@
 import { memo, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { images } from '../../../assets'
-import { userMenu } from '../../../data/mockdata'
-import useDropdown from '../../../hooks/useDropdown'
-import { IconLink, Dropdown } from '../../common'
-import { useAuth } from '../../../redux/hooks/useAuth'
+import { images } from '~/assets'
+import { userMenu } from '~/data/mockdata'
+import useDropdown from '~/hooks/useDropdown'
+import IconLink from '~/components/common/IconLink'
+import Dropdown from '~/components/common/Dropdown'
+import { useAuth } from '~/redux/hooks/useAuth'
 
 export const UserCard = memo(({ user, className = '' }) => {
   return (

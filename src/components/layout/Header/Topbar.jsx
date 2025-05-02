@@ -1,6 +1,5 @@
-import React from 'react'
-import { storeInfo, socials } from '../../../data/mockdata.js'
-import IconLink from '../../common/IconLink.jsx'
+import { storeInfo, socials } from '~/data/mockdata.js'
+import IconLink from '~/components/common/IconLink.jsx'
 
 const Topbar = ({ className = '', showOnMobile = false, data = storeInfo }) => {
   return (

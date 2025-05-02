@@ -1,6 +1,8 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { usePageLoader } from '../hooks/usePageLoader'
+import { usePageLoader } from '~/hooks/usePageLoader'
+import Header from '~/components/layout/Header'
+import Footer from '~/components/layout/Footer'
 
 const MainLayout = () => {
   usePageLoader()

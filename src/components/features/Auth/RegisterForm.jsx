@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { Button } from '../../common'
+import { useState } from 'react'
+import Button from '~/components/common/Button'
+import CustomCheckbox from '~/components/common/CustomCheckbox'
 import SocialLogin from './SocialLogin'
 import FormInput from './FormInput'
-import CustomCheckbox from '../../common/CustomCheckbox'
 
 const RegisterForm = ({ onToggleForm, handlerSubmit }) => {
   const [formData, setFormData] = useState({

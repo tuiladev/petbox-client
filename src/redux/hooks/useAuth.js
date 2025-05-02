@@ -1,25 +1,27 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { login, register, logout, reset } from '../slices/authSlice';
+import { useSelector, useDispatch } from 'react-redux'
+import { login, register, logout, reset } from '../slices/authSlice'
 
 export const useAuth = () => {
-  const dispatch = useDispatch();
-  const { user, isAuthenticated, isLoading, error } = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
+  const { user, isAuthenticated, isLoading, error } = useSelector(
+    (state) => state.auth
+  )
 
   const loginUser = (credentials) => {
-    return dispatch(login(credentials));
-  };
+    return dispatch(login(credentials))
+  }
 
   const registerUser = (userData) => {
-    return dispatch(register(userData));
-  };
+    return dispatch(register(userData))
+  }
 
   const logoutUser = () => {
-    dispatch(logout());
-  };
+    dispatch(logout())
+  }
 
   const resetAuthState = () => {
-    dispatch(reset());
-  };
+    dispatch(reset())
+  }
 
   return {
     user,
@@ -29,8 +31,8 @@ export const useAuth = () => {
     loginUser,
     registerUser,
     logoutUser,
-    resetAuthState,
-  };
-};
+    resetAuthState
+  }
+}
 
-export default useAuth;
+export default useAuth

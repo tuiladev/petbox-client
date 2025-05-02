@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import LoginForm from './LoginForm'
-import RegisterForm from './RegisterForm'
-import PasswordResetForm from './PasswordResetForm'
+import LoginForm from '~/components/features/Auth/LoginForm'
+import RegisterForm from '~/components/features/Auth/RegisterForm'
+import PasswordResetForm from '~/components/features/Auth/PasswordResetForm'
 import Logo from '~/components/common/Logo'
-import { usePageLoader } from '../../../hooks/usePageLoader'
-import { useDocumentTitle } from '../../../hooks/useDocumentTitle'
-import { useAuth } from '../../../redux/hooks/useAuth'
+import { usePageLoader } from '~/hooks/usePageLoader'
+import { useDocumentTitle } from '~/hooks/useDocumentTitle'
+import { useAuth } from '~/redux/hooks/useAuth'
 
 const Auth = () => {
   const { loginUser, registerUser, isAuthenticated } = useAuth()

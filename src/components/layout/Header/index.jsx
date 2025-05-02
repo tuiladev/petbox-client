@@ -1,11 +1,18 @@
-import { useState, useEffect, useRef } from 'react'
-import PropTypes from 'prop-types'
-import { Button, GoToTopButton } from '../../common'
-import * as HeaderParts from './index'
-import Logo from '~/components/common/Logo'
-import useDropdown from '../../../hooks/useDropdown'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../../redux/hooks/useAuth'
+import { useState, useEffect, useRef } from 'react'
+
+import Button from '~/components/common/Button'
+import GoToTopButton from '~/components/common/GoToTopButton'
+import Logo from '~/components/common/Logo'
+import Topbar from './Topbar'
+import MainMenu from './MainMenu'
+import MobileMenu from './MobileMenu'
+import MenuTrigger from './MenuTrigger'
+import SearchBar from './SearchBar'
+import Notifications from './Notifications'
+
+import useDropdown from '~/hooks/useDropdown'
+import { useAuth } from '~/redux/hooks/useAuth'
 
 const Header = ({ className = '' }) => {
   const { isAuthenticated } = useAuth()
@@ -78,7 +85,7 @@ const Header = ({ className = '' }) => {
         className={`z-50 bg-white shadow-md ${isSticky ? 'animate-slideInTop fixed top-0 left-0 w-full' : 'relative'} ${className} `}
       >
         {/* Phần còn lại của header giữ nguyên */}
-        {!isSticky && <HeaderParts.Topbar />}
+        {!isSticky && <Topbar />}
         <div className='l-container relative py-6!'>
           {/* Main Header */}
           <div className='grid grid-cols-[2fr_1fr] justify-center gap-6 md:flex md:items-center md:justify-between md:gap-4'>
@@ -86,14 +93,12 @@ const Header = ({ className = '' }) => {
             <Logo />
 
             {/* Searchbar */}
-            {!isSticky && (
-              <HeaderParts.SearchBar className='col-span-2 md:hidden' />
-            )}
+            {!isSticky && <SearchBar className='col-span-2 md:hidden' />}
             {/* Searchbar cho desktop */}
-            <HeaderParts.SearchBar className='col-span-2 hidden md:block' />
+            <SearchBar className='col-span-2 hidden md:block' />
 
             {/* Desktop Menu */}
-            <HeaderParts.MainMenu
+            <MainMenu
               dropdownState={mainMenuState}
               className='hidden md:block'
             />
@@ -105,7 +110,7 @@ const Header = ({ className = '' }) => {
                 className={`fixed top-0 left-0 z-999 h-screen w-screen bg-gray-950/80 transition-opacity duration-300 md:hidden ${mobileMenuState.isOpen ? 'opacity-100' : 'transition-delay-500 opacity-0'}`}
               ></div>
             )}
-            <HeaderParts.MobileMenu
+            <MobileMenu
               dropdownState={mobileMenuState}
               className='block md:hidden'
             />
@@ -114,10 +119,10 @@ const Header = ({ className = '' }) => {
             <ul className='col-start-2 row-end-1 ml-auto flex gap-x-6 self-stretch md:ml-0 lg:gap-x-7'>
               {/* Tạo MenuTrigger riêng cho từng menu */}
               <li className='order-last hidden md:order-first md:block'>
-                <HeaderParts.MenuTrigger dropdownState={mainMenuState} />
+                <MenuTrigger dropdownState={mainMenuState} />
               </li>
               <li className='order-last block md:hidden'>
-                <HeaderParts.MenuTrigger dropdownState={mobileMenuState} />
+                <MenuTrigger dropdownState={mobileMenuState} />
               </li>
 
               {/* Login Button */}
@@ -136,9 +141,9 @@ const Header = ({ className = '' }) => {
               )}
               {isAuthenticated && (
                 <>
-                  <HeaderParts.Notifications />
-                  <HeaderParts.CartView />
-                  <HeaderParts.UserTools className='hidden md:block' />
+                  <Notifications />
+                  <CartView />
+                  <UserTools className='hidden md:block' />
                 </>
               )}
             </ul>
@@ -150,10 +155,6 @@ const Header = ({ className = '' }) => {
       <GoToTopButton />
     </>
   )
-}
-
-Header.propTypes = {
-  className: PropTypes.string
 }
 
 export default Header
