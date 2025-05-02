@@ -1,32 +1,15 @@
-import { useState } from 'react'
-import { createAccountAPI } from '~/services/api'
+import React from 'react'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 const Home = () => {
-  const [fullname, setFullname] = useState(null)
-
-  const handlerSubmit = async () => {
-    await createAccountAPI(fullname)
-  }
-
+  useDocumentTitle('Trang Chủ')
   return (
-    <>
-      <div className='l-container h-screen flex flex-col items-center justify-center'>
-        <h1 className='text-7xl font-bold font-secondary'>Comming Soon...</h1>
-        {/* create a form with fullname field */}
-        <form
-          className='l-container flex flex-col items-center justify-center gap-4'
-          action={handlerSubmit}
-        >
-          <input
-            type='text'
-            placeholder='Full Name'
-            className='input'
-            onChange={(e) => setFullname(e.target.value)}
-          />
-          <button className='btn'>Create Account</button>
-        </form>
-      </div>
-    </>
+    <div className='l-container'>
+      <h1 className='mb-6 text-3xl font-bold'>Chào mừng đến với PetShop</h1>
+      <p className='text-gray-600'>
+        Trang chủ của cửa hàng thú cưng hàng đầu Việt Nam
+      </p>
+    </div>
   )
 }
 

@@ -10,24 +10,26 @@ import post_1 from './images/post/post-1.jpg'
 import post_2 from './images/post/post-2.jpg'
 import user_1 from './images/user/avatar 1.png'
 import member_icon from './images/user/crown 1.svg'
-import visa_icon from '../assets/images/icons/visa.png'
-import mastercard_icon from '../assets/images/icons/mastercard.svg'
+import visa_icon from './images/icons/visa.png'
+import mastercard_icon from './images/icons/mastercard.svg'
 import wallet_icon from '../assets/images/icons/wallet.png'
+import auth_banner from './images/auth/auth_banner.jpg'
 
 export const images = {
-    logo_light,
-    logo_dark,
-    product_1,
-    product_2,
-    product_3,
-    product_4,
-    post_1,
-    post_2,
-    user_1,
-    member_icon,
-    pre_loader,
-    Not_found,
-    visa_icon,
-    mastercard_icon,
-    wallet_icon
+  logo_light,
+  logo_dark,
+  product_1,
+  product_2,
+  product_3,
+  product_4,
+  post_1,
+  post_2,
+  user_1,
+  member_icon,
+  pre_loader,
+  Not_found,
+  visa_icon,
+  mastercard_icon,
+  wallet_icon,
+  auth_banner
 }
