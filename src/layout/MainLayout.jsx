@@ -1,12 +1,13 @@
-import { Outlet } from 'react-router'
-import Footer from '~/components/layout/Footer'
-import Header from '~/components/layout/Header'
+import React from 'react'
+import { Outlet } from 'react-router-dom'
+import { usePageLoader } from '../hooks/usePageLoader'
 
 const MainLayout = () => {
+  usePageLoader()
   return (
-    <div className='l-container'>
+    <div className='flex min-h-screen flex-col bg-white'>
       <Header />
-      <main>
+      <main className='w-full'>
         <Outlet />
       </main>
       <Footer />
