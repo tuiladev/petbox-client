@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 
 import Button from '~/components/common/Button'
-import GoToTopButton from '~/components/common/GoToTopButton'
+import GoToTopButton from '~/components/utils/GoToTopButton'
 import Logo from '~/components/common/Logo'
 import Topbar from './Topbar'
 import MainMenu from './MainMenu'
@@ -12,10 +12,12 @@ import SearchBar from './SearchBar'
 import Notifications from './Notifications'
 
 import useDropdown from '~/hooks/useDropdown'
-import { useAuth } from '~/redux/hooks/useAuth'
+import { useSelector } from 'react-redux'
+import { selectCurrentUser } from '~/redux/slices/authSlice'
 
 const Header = ({ className = '' }) => {
-  const { isAuthenticated } = useAuth()
+  const user = useSelector(selectCurrentUser)
+  const isAuthenticated = !!user
   const [overlayVisible, setOverlayVisible] = useState(false)
   const [isSticky, setIsSticky] = useState(false)
   const navigate = useNavigate()
@@ -136,7 +138,7 @@ const Header = ({ className = '' }) => {
                     </>
                   }
                   className='rounded-full max-md:aspect-square max-md:h-12 max-md:w-12 max-md:p-0!'
-                  onClick={() => navigate('/auth')}
+                  onClick={() => navigate('/login')}
                 />
               )}
               {isAuthenticated && (

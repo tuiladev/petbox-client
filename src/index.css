@@ -4,29 +4,18 @@
 @import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
 @import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css');
 @import 'tailwindcss';
-@plugin "daisyui";
 
 /* =================== 1. Tailwind Variables =================== */
-:root,
-[data-theme='light'] {
-  /* Colors */
-  --color-primary: oklch(50% 0.134 242.749);
-  --color-secondary: #ff7f3e;
-  --color-base-content: oklch(37.3% 0.034 259.733);
-  --radius-field: 9999rem;
-  --radius-selector: 9999rem;
-  --size-field: 0.25rem;
-  --size-selector: 0.2rem;
-  --border: 1.5px;
-  /* effects */
-  --depth: 0;
-  --noise: 0;
-}
-
 @theme {
   /* Fonts */
   --font-primary: 'Manrope', sans-serif;
   --font-secondary: 'Baloo 2', sans-serif;
+
+  /* Colors */
+  --color-primary: oklch(50% 0.134 242.749);
+  --color-secondary: #ff7f3e;
+  --color-base-content: oklch(37.2% 0.044 257.287);
+
   /* Gradients */
   --gradient-yellow: linear-gradient(
     90deg,
@@ -99,11 +88,11 @@ body {
 }
 
 .title-2xl {
-  @apply font-secondary text-[1.625rem] leading-tight font-bold md:text-4xl;
+  @apply font-secondary text-[1.625rem] leading-tight font-bold md:text-3xl;
 }
 
 .title-3xl {
-  @apply font-secondary text-3xl leading-tight font-bold md:text-5xl;
+  @apply font-secondary text-3xl leading-tight font-bold md:text-4xl;
 }
 
 /* =================== 5. Animations =================== */

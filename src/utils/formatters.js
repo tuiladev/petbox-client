@@ -26,3 +26,18 @@ export const formatPhoneNumber = (phoneNumber) => {
   }
   return phoneNumber
 }
+
+// Block spam api call
+export const interceptorLoadingElements = (calling) => {
+  // Take the element has className 'intercepter-loading'
+  const elements = document.querySelectorAll('.intercepter-loading')
+  for (let i = 0; i < elements.length; i++) {
+    if (calling) {
+      elements[i].style.opactity = '0.5'
+      elements[i].style.pointerEvents = 'none'
+    } else {
+      elements[i].style.opactity = 'initial'
+      elements[i].style.pointerEvents = 'initial'
+    }
+  }
+}

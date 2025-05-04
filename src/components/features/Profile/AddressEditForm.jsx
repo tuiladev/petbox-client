@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Button from '~/components/common/Button'
-import FloatingInput from '~/components/common/FloatingInput'
+import FloatingInput from '~/components/utils/FloatingInput'
 
 const AddressSelect = ({ value, onChange, error = false }) => {
   const [isOpen, setIsOpen] = useState(false)

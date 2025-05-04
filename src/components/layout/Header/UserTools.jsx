@@ -5,7 +5,6 @@ import { userMenu } from '~/data/mockdata'
 import useDropdown from '~/hooks/useDropdown'
 import IconLink from '~/components/common/IconLink'
 import Dropdown from '~/components/common/Dropdown'
-import { useAuth } from '~/redux/hooks/useAuth'
 
 export const UserCard = memo(({ user, className = '' }) => {
   return (
@@ -141,7 +140,7 @@ const MembershipInfo = memo(({ user }) => {
 })
 
 const Usertools = ({ className = '' }) => {
-  const { user, logoutUser } = useAuth()
+  const { user, logoutUser } = null
   const dropdownState = useDropdown({ openMode: 'hover' })
 
   return (
