@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react'
-import Preloader from '~/components/common/Preloader'
+import Preloader from '~/components/utils/Preloader'
 import { images } from '~/assets'
 
 // Tạo context

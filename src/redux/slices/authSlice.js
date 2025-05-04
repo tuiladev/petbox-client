@@ -1,98 +1,69 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import authService from '../../services/authService'
-
-// Lấy thông tin user từ localStorage nếu có
-const user = JSON.parse(localStorage.getItem('user'))
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
+import authorizedAxiosInstance from '~/services/axiosInstance'
+import { env } from '~/utils/enviroment'
 
 const initialState = {
-  user: user || null,
-  isAuthenticated: !!user,
-  isLoading: false,
-  error: null
+  currentUser: null
 }
 
-// Async thunk actions
-export const login = createAsyncThunk(
-  'auth/login',
-  async (credentials, thunkAPI) => {
-    try {
-      return await authService.login(credentials)
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        'Đăng nhập không thành công'
-      return thunkAPI.rejectWithValue(message)
-    }
+// Call API
+export const loginUserAPI = createAsyncThunk(
+  'auth/loginUserAPI',
+  async (data) => {
+    const response = await authorizedAxiosInstance.post(
+      `${env.API_ROOT}/${env.API_VERSION}/users/login`,
+      data
+    )
+    // Data from backend (services layer)
+    // -> (access token, refresh token, user info)
+    return response.data
   }
 )
 
-export const register = createAsyncThunk(
-  'auth/register',
-  async (userData, thunkAPI) => {
-    try {
-      return await authService.register(userData)
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        'Đăng ký không thành công'
-      return thunkAPI.rejectWithValue(message)
-    }
+export const regitserUserAPI = createAsyncThunk(
+  'auth/regitserUserAPI',
+  async (data) => {
+    const response = await authorizedAxiosInstance.post(
+      `${env.API_ROOT}/${env.API_VERSION}/users/register`,
+      data
+    )
+    // Data from backend (services layer)
+    // -> (user info)
+    return response.data
   }
 )
 
-export const logout = createAsyncThunk('auth/logout', async () => {
-  await authService.logout()
-})
+export const logoutUserAPI = createAsyncThunk(
+  'auth/logoutUserAPI',
+  async (showSuccessMessage = true) => {
+    const response = await authorizedAxiosInstance.delete(
+      `${env.API_ROOT}/${env.API_VERSION}/users/logout`
+    )
+    if (showSuccessMessage) {
+      toast.success('Logout success')
+    }
+    // loggedOut: true from backend with status code: 200
+    return response.data
+  }
+)
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    reset: (state) => {
-      state.isLoading = false
-      state.error = null
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(login.pending, (state) => {
-        state.isLoading = true
-        state.error = null
-      })
-      .addCase(login.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.isAuthenticated = true
-        state.user = action.payload
-      })
-      .addCase(login.rejected, (state, action) => {
-        state.isLoading = false
-        state.error = action.payload
-      })
-      .addCase(register.pending, (state) => {
-        state.isLoading = true
-        state.error = null
-      })
-      .addCase(register.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.isAuthenticated = true
-        state.user = action.payload
-      })
-      .addCase(register.rejected, (state, action) => {
-        state.isLoading = false
-        state.error = action.payload
-      })
-      .addCase(logout.fulfilled, (state) => {
-        state.isAuthenticated = false
-        state.user = null
-      })
+    builder.addCase(loginUserAPI.fulfilled, (state, action) => {
+      const user = action.payload
+      state.currentUser = user
+    })
+    builder.addCase(logoutUserAPI.fulfilled, (state) => {
+      state.currentUser = null
+    })
   }
 })
 
-export const { reset } = authSlice.actions
+// Selectors:
+export const selectCurrentUser = (state) => state.auth.currentUser
+
 export default authSlice.reducer

@@ -1,4 +1,20 @@
-import { createBrowserRouter, RouterProvider } from 'react-router'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet
+} from 'react-router-dom'
+
+// Redux
+import { useSelector } from 'react-redux'
+import { selectCurrentUser } from '~/redux/slices/authSlice'
+
+// React Toastify
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+// Components
 import Home from '~/pages/Home'
 import Account from '~/pages/Account'
 import About from '~/pages/About'
@@ -9,47 +25,68 @@ import Services from '~/pages/Services'
 import Shop from '~/pages/Shop'
 import NotFound from '~/pages/NotFound'
 import MainLayout from '~/layout/MainLayout'
-import Auth from '~/pages/Auth'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
-const router = createBrowserRouter([
-  // No Component -> A Route Group
-  {
-    path: '/',
-    children: [
-      {
-        // No Route -> A Layout Applied
-        path: 'auth',
-        Component: Auth
-      },
-      {
-        // No Route -> A Layout Applied
-        Component: MainLayout,
-        children: [
-          { index: true, Component: Home },
-          { path: 'about', Component: About },
-          {
-            path: 'account',
-            children: [{ path: ':tabName', Component: Account }]
-          },
-          {
-            path: 'blog',
-            children: [
-              { index: true, Component: Blog },
-              { path: ':articleID', Component: Article }
-            ]
-          },
-          { path: 'contact', Component: Contact },
-          { path: 'services', Component: Services },
-          { path: 'shop', Component: Shop },
-          { path: '*', Component: NotFound }
-        ]
-      }
-    ]
+const ProtectedRoute = () => {
+  const user = useSelector(selectCurrentUser)
+  if (!user) {
+    return <Navigate to='/login' replace={true} />
   }
-])
+  return <Outlet />
+}
 
 function App() {
-  return <RouterProvider router={router} />
+  return (
+    <>
+      <ToastContainer
+        position='bottom-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
+      <BrowserRouter>
+        <Routes>
+          {/* Auth Routes */}
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+
+          {/* Main Layout Routes */}
+          <Route path='/' element={<MainLayout />}>
+            <Route path='' element={<Home />} />
+            <Route path='about' element={<About />} />
+
+            {/* Protected Routes */}
+            <Route element={<ProtectedRoute />}>
+              <Route path='account'>
+                <Route path=':tabName' element={<Account />} />
+              </Route>
+            </Route>
+
+            {/* Blog Routes */}
+            <Route path='blog'>
+              <Route index element={<Blog />} />
+              <Route path=':articleID' element={<Article />} />
+            </Route>
+
+            {/* Other Routes */}
+            <Route path='contact' element={<Contact />} />
+            <Route path='services' element={<Services />} />
+            <Route path='shop' element={<Shop />} />
+
+            {/* 404 Route */}
+            <Route path='*' element={<NotFound />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
+  )
 }
 
 export default App

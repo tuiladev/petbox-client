@@ -9,14 +9,13 @@ import {
   Sidebar
 } from '../components/features/Profile'
 import { profileMenuItems } from '../data/mockdata'
-import { useAuth } from '../redux/hooks/useAuth'
 
 const Profile = () => {
   const navigate = useNavigate()
   const { section = 'profile' } = useParams()
   const [activeMenuItem, setActiveMenuItem] = useState(section)
 
-  const { isAuthenticated, user } = useAuth()
+  const { isAuthenticated, user } = null
   useEffect(() => {
     if (!isAuthenticated) {
       navigate('/auth', { state: { from: `/account/${section}` } })

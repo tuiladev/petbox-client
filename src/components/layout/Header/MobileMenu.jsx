@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { selectCurrentUser } from '~/redux/slices/authSlice'
 import { useNavigate } from 'react-router-dom'
 
 import Button from '~/components/common/Button'
@@ -8,10 +10,10 @@ import Logo from '~/components/common/Logo'
 import { MenuItem } from './MenuList'
 import { UserCard } from './UserTools'
 import { MainMenuContent } from './MainMenu'
-import { useAuth } from '~/redux/hooks/useAuth'
 
 const MobileMenu = ({ dropdownState, className = '' }) => {
-  const { isAuthenticated, user, logoutUser } = useAuth()
+  const user = useSelector(selectCurrentUser)
+  const isAuthenticated = !!user
   const [hasInteracted, setHasInteracted] = useState(false)
   const navigate = useNavigate()
 
@@ -23,15 +25,15 @@ const MobileMenu = ({ dropdownState, className = '' }) => {
 
   // Hàm xử lý đăng xuất
   const handleLogout = () => {
-    logoutUser()
-    dropdownState.setIsOpen(false)
-    navigate('/') // Điều hướng về trang chủ sau khi đăng xuất
+    // logoutUser()
+    // dropdownState.setIsOpen(false)
+    // navigate('/') // Điều hướng về trang chủ sau khi đăng xuất
   }
 
   // Hàm điều hướng đến trang đăng nhập
   const handleNavigateToLogin = () => {
-    dropdownState.setIsOpen(false)
-    navigate('/auth')
+    // dropdownState.setIsOpen(false)
+    // navigate('/auth')
   }
 
   return (
