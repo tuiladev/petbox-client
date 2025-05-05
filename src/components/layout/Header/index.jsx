@@ -13,7 +13,7 @@ import Notifications from './Notifications'
 
 import useDropdown from '~/hooks/useDropdown'
 import { useSelector } from 'react-redux'
-import { selectCurrentUser } from '~/redux/slices/authSlice'
+import { selectCurrentUser } from '~/redux/user/userSlice'
 
 const Header = ({ className = '' }) => {
   const user = useSelector(selectCurrentUser)

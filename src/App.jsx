@@ -8,7 +8,7 @@ import {
 
 // Redux
 import { useSelector } from 'react-redux'
-import { selectCurrentUser } from '~/redux/slices/authSlice'
+import { selectCurrentUser } from '~/redux/user/userSlice'
 
 // React Toastify
 import { ToastContainer } from 'react-toastify'
@@ -24,9 +24,11 @@ import Contact from '~/pages/Contact'
 import Services from '~/pages/Services'
 import Shop from '~/pages/Shop'
 import NotFound from '~/pages/NotFound'
+import Auth from '~/pages/Auth'
+import AccountVerification from './pages/Auth/AccountVerification'
+
+// Layouts
 import MainLayout from '~/layout/MainLayout'
-import Login from './pages/Login'
-import Register from './pages/Register'
 
 const ProtectedRoute = () => {
   const user = useSelector(selectCurrentUser)
@@ -40,7 +42,7 @@ function App() {
   return (
     <>
       <ToastContainer
-        position='bottom-right'
+        position='top-center'
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -54,8 +56,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Auth Routes */}
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Auth />} />
+          <Route path='/register' element={<Auth />} />
+          <Route
+            path='/account/verification'
+            element={<AccountVerification />}
+          />
 
           {/* Main Layout Routes */}
           <Route path='/' element={<MainLayout />}>

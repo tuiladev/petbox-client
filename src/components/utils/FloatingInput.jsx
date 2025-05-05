@@ -41,7 +41,7 @@ const FloatingInput = ({
             aria-label={showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
           >
             <i
-              className={`fi ${showPassword ? 'fi-rr-eye-crossed' : 'fi-rr-eye'} text-lg`}
+              className={`fi ${showPassword ? 'fi-rr-eye' : 'fi-rr-eye-crossed'} text-lg`}
             ></i>
           </button>
         )}
