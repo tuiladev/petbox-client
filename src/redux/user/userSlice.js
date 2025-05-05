@@ -16,7 +16,7 @@ export const loginUserAPI = createAsyncThunk(
       data
     )
     // Data from backend (services layer)
-    // -> (access token, refresh token, user info)
+    // -> (user info)
     return response.data
   }
 )
