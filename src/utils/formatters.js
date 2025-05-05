@@ -29,8 +29,8 @@ export const formatPhoneNumber = (phoneNumber) => {
 
 // Block spam api call
 export const interceptorLoadingElements = (calling) => {
-  // Take the element has className 'intercepter-loading'
-  const elements = document.querySelectorAll('.intercepter-loading')
+  // Take the element has className 'interceptor-loading'
+  const elements = document.querySelectorAll('.interceptor-loading')
   for (let i = 0; i < elements.length; i++) {
     if (calling) {
       elements[i].style.opactity = '0.5'

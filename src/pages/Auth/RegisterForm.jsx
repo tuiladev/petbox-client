@@ -140,7 +140,7 @@ const RegisterForm = () => {
 
         <Button
           type='submit'
-          className='intercepter-loading text-primary mt-6 w-full rounded-full bg-cyan-600!'
+          className='interceptor-loading text-primary mt-6 w-full rounded-full bg-cyan-600!'
         >
           Đăng Ký
         </Button>
