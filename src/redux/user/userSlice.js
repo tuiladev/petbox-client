@@ -9,7 +9,7 @@ const initialState = {
 
 // Call API
 export const loginUserAPI = createAsyncThunk(
-  'auth/loginUserAPI',
+  'user/loginUserAPI',
   async (data) => {
     const response = await authorizedAxiosInstance.post(
       `${env.API_ROOT}/${env.API_VERSION}/users/login`,
@@ -22,7 +22,7 @@ export const loginUserAPI = createAsyncThunk(
 )
 
 export const logoutUserAPI = createAsyncThunk(
-  'auth/logoutUserAPI',
+  'user/logoutUserAPI',
   async (showSuccessMessage = true) => {
     const response = await authorizedAxiosInstance.delete(
       `${env.API_ROOT}/${env.API_VERSION}/users/logout`
@@ -35,8 +35,8 @@ export const logoutUserAPI = createAsyncThunk(
   }
 )
 
-export const authSlice = createSlice({
-  name: 'auth',
+export const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -51,6 +51,6 @@ export const authSlice = createSlice({
 })
 
 // Selectors:
-export const selectCurrentUser = (state) => state.auth.currentUser
+export const selectCurrentUser = (state) => state.user.currentUser
 
-export default authSlice.reducer
+export default userSlice.reducer

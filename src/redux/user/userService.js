@@ -16,3 +16,19 @@ export const verifyUserAPI = async (data) => {
   )
   return response.data
 }
+
+export const refreshTokenAPI = async (data) => {
+  const response = await authorizedAxiosInstance.get(
+    `${env.API_ROOT}/${env.API_VERSION}/users/refresh-token`,
+    data
+  )
+  return response.data
+}
+
+export const checkAPI = async (data) => {
+  const response = await authorizedAxiosInstance.get(
+    `${env.API_ROOT}/${env.API_VERSION}/users/status`,
+    data
+  )
+  return response.data
+}

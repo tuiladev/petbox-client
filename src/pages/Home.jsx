@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useDocumentTitle from '~/hooks/useDocumentTitle'
+import { checkAPI } from '~/redux/user/userService'
 
 const Home = () => {
+  useEffect(() => {
+    checkAPI()
+    checkAPI()
+    checkAPI()
+    checkAPI()
+    checkAPI()
+  }, [])
   useDocumentTitle('Trang Chủ')
   return (
     <div className='l-container'>
