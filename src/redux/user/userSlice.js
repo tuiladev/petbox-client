@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
-import authorizedAxiosInstance from '~/services/axiosInstance'
+import authorizedAxiosInstance from '~/provider/axiosInstance'
 import { env } from '~/utils/enviroment'
 
 const initialState = {
@@ -17,19 +17,6 @@ export const loginUserAPI = createAsyncThunk(
     )
     // Data from backend (services layer)
     // -> (access token, refresh token, user info)
-    return response.data
-  }
-)
-
-export const regitserUserAPI = createAsyncThunk(
-  'auth/regitserUserAPI',
-  async (data) => {
-    const response = await authorizedAxiosInstance.post(
-      `${env.API_ROOT}/${env.API_VERSION}/users/register`,
-      data
-    )
-    // Data from backend (services layer)
-    // -> (user info)
     return response.data
   }
 )

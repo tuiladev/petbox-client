@@ -4,7 +4,7 @@ import { images } from '../assets'
 import useDocumentTitle from '~/hooks/useDocumentTitle'
 
 const NotFound = () => {
-  useDocumentTitle('404 | Không Tìm Thấy')
+  useDocumentTitle('Không tìm thấy')
   return (
     <div className='flex flex-col items-center justify-center py-12 md:h-full'>
       <img
