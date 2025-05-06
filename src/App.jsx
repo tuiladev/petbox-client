@@ -16,7 +16,6 @@ import 'react-toastify/dist/ReactToastify.css'
 
 // Components
 import Home from '~/pages/Home'
-import Account from '~/pages/Account'
 import About from '~/pages/About'
 import Blog from '~/pages/Blog'
 import Article from '~/pages/Article'
@@ -29,6 +28,7 @@ import AccountVerification from './pages/Auth/AccountVerification'
 
 // Layouts
 import MainLayout from '~/layout/MainLayout'
+import Profile from './pages/Profile/Profile'
 
 const ProtectedRoute = () => {
   const user = useSelector(selectCurrentUser)
@@ -71,7 +71,7 @@ function App() {
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
               <Route path='account'>
-                <Route path=':tabName' element={<Account />} />
+                <Route path=':tabName' element={<Profile />} />
               </Route>
             </Route>
 

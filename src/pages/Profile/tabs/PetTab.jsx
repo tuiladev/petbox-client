@@ -1,5 +1,5 @@
 import TabHeading from './TabHeading'
-import { Button } from '~/components/common/Button'
+import Button from '~/components/common/Button'
 
 const PetTab = ({ user }) => {
   // Sử dụng thú cưng từ user nếu có, nếu không thì dùng dữ liệu mẫu

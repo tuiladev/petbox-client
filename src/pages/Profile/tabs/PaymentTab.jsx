@@ -3,7 +3,7 @@ import { images } from '~/assets'
 import Modal from '~/components/common/Modal'
 import Button from '~/components/common/Button'
 import TabHeading from './TabHeading'
-import PaymentForm from './PaymentForm'
+import PaymentForm from '../forms/PaymentForm'
 import useModal from '~/hooks/useModal'
 
 // Component con hiển thị thẻ thanh toán

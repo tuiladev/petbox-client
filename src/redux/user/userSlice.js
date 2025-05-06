@@ -15,6 +15,7 @@ export const loginUserAPI = createAsyncThunk(
       `${env.API_ROOT}/${env.API_VERSION}/users/login`,
       data
     )
+    toast.success('Login success')
     // Data from backend (services layer)
     // -> (user info)
     return response.data
@@ -35,6 +36,17 @@ export const logoutUserAPI = createAsyncThunk(
   }
 )
 
+export const updateUserAPI = createAsyncThunk(
+  'user/updateUserAPI',
+  async (data) => {
+    const response = await authorizedAxiosInstance.put(
+      `${env.API_ROOT}/${env.API_VERSION}/users/update`,
+      data
+    )
+    return response.data
+  }
+)
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -46,6 +58,11 @@ export const userSlice = createSlice({
     })
     builder.addCase(logoutUserAPI.fulfilled, (state) => {
       state.currentUser = null
+    })
+    builder.addCase(updateUserAPI.fulfilled, (state, action) => {
+      const user = action.payload
+      state.currentUser = user
+      toast.success('Đã cập nhật thông tin!')
     })
   }
 })

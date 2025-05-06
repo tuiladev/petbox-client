@@ -24,11 +24,3 @@ export const refreshTokenAPI = async (data) => {
   )
   return response.data
 }
-
-export const checkAPI = async (data) => {
-  const response = await authorizedAxiosInstance.get(
-    `${env.API_ROOT}/${env.API_VERSION}/users/status`,
-    data
-  )
-  return response.data
-}

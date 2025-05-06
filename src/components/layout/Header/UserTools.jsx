@@ -5,6 +5,41 @@ import { userMenu } from '~/data/mockdata'
 import useDropdown from '~/hooks/useDropdown'
 import IconLink from '~/components/common/IconLink'
 import Dropdown from '~/components/common/Dropdown'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutUserAPI, selectCurrentUser } from '~/redux/user/userSlice'
+
+const Usertools = ({ className = '' }) => {
+  const dispatch = useDispatch()
+  const user = useSelector(selectCurrentUser)
+  const dropdownState = useDropdown({ openMode: 'hover' })
+
+  const logout = () => {
+    dispatch(logoutUserAPI())
+  }
+
+  return (
+    <Dropdown className={className}>
+      <Dropdown.Trigger triggerProps={dropdownState.getTriggerProps()}>
+        <UserAvatar user={user} />
+      </Dropdown.Trigger>
+
+      <Dropdown.Content
+        size='xs'
+        position='right'
+        contentProps={dropdownState.getContentProps()}
+        isOpen={dropdownState.isOpen}
+        className='overflow-hidden'
+      >
+        <UserCard user={user} />
+        {userMenu.map((group, index) => (
+          <MenuGroup key={index} group={group} onLogout={logout} />
+        ))}
+      </Dropdown.Content>
+    </Dropdown>
+  )
+}
+
+export default Usertools
 
 export const UserCard = memo(({ user, className = '' }) => {
   return (
@@ -13,11 +48,13 @@ export const UserCard = memo(({ user, className = '' }) => {
     >
       <div className='mb-4 flex items-center gap-x-4'>
         <UserAvatar user={user} />
-        <div>
-          <p className='title-lg line-clamp-1 text-gray-800'>
+        <div className='w-full space-y-1'>
+          <p className='title-lg text-gray-800'>
             {user?.fullName || 'Người dùng'}
           </p>
-          <p className=''>{user?.email || 'user@example.com'}</p>
+          <p className='line-clamp-1'>
+            {user?.email.split('@')[0] || 'user@example.com'}
+          </p>
         </div>
       </div>
       <MembershipInfo user={user} />
@@ -138,31 +175,3 @@ const MembershipInfo = memo(({ user }) => {
     </div>
   )
 })
-
-const Usertools = ({ className = '' }) => {
-  const { user, logoutUser } = null
-  const dropdownState = useDropdown({ openMode: 'hover' })
-
-  return (
-    <Dropdown className={className}>
-      <Dropdown.Trigger triggerProps={dropdownState.getTriggerProps()}>
-        <UserAvatar user={user} />
-      </Dropdown.Trigger>
-
-      <Dropdown.Content
-        size='xs'
-        position='right'
-        contentProps={dropdownState.getContentProps()}
-        isOpen={dropdownState.isOpen}
-        className='overflow-hidden'
-      >
-        <UserCard user={user} />
-        {userMenu.map((group, index) => (
-          <MenuGroup key={index} group={group} onLogout={logoutUser} />
-        ))}
-      </Dropdown.Content>
-    </Dropdown>
-  )
-}
-
-export default Usertools

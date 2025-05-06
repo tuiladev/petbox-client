@@ -4,7 +4,8 @@ const FloatingInput = ({
   type,
   name,
   label,
-  className,
+  inputClassName,
+  labelClassName,
   children,
   error,
   ...restProps
@@ -25,11 +26,11 @@ const FloatingInput = ({
           id={name}
           name={name}
           placeholder=' '
-          className={`peer block w-full appearance-none rounded-full border-[1.5px] border-transparent bg-gray-50 p-4 not-placeholder-shown:border-gray-300 not-placeholder-shown:bg-white placeholder-shown:border-transparent placeholder-shown:bg-gray-50 focus:border-cyan-600 focus:bg-white focus:ring-0 focus:outline-none ${error ? 'border-red-500 focus:border-red-500' : ''} ${className}`}
+          className={`peer block w-full appearance-none rounded-full border-[1.5px] border-transparent bg-gray-50 p-4 not-placeholder-shown:border-gray-300 not-placeholder-shown:bg-white placeholder-shown:border-transparent placeholder-shown:bg-gray-50 focus:border-cyan-600 focus:bg-white focus:ring-0 focus:outline-none ${error ? 'border-red-500 focus:border-red-500' : ''} ${inputClassName}`}
           {...restProps}
         />
         <span
-          className={`absolute top-1/2 left-4 z-10 origin-left -translate-y-1/2 cursor-text px-2 text-gray-500 duration-200 peer-focus:top-0 peer-focus:left-4 peer-focus:bg-white peer-focus:text-cyan-600 peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:left-4 peer-[&:not(:placeholder-shown)]:bg-white ${error ? 'peer-focus:text-red-500 peer-[&:not(:placeholder-shown)]:text-red-500' : 'peer-focus:text-cyan-600 peer-[&:not(:placeholder-shown)]:text-cyan-600'}`}
+          className={`absolute top-1/2 left-4 z-10 origin-left -translate-y-1/2 cursor-text px-2 text-gray-500 duration-200 peer-focus:top-0 peer-focus:left-4 peer-focus:bg-white peer-focus:text-cyan-600 peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:left-4 peer-[&:not(:placeholder-shown)]:bg-white ${error ? 'peer-focus:text-red-500 peer-[&:not(:placeholder-shown)]:text-red-500' : 'peer-focus:text-cyan-600 peer-[&:not(:placeholder-shown)]:text-cyan-600'} ${labelClassName}`}
         >
           {label}
         </span>

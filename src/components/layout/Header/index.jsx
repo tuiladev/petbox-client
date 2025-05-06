@@ -10,6 +10,8 @@ import MobileMenu from './MobileMenu'
 import MenuTrigger from './MenuTrigger'
 import SearchBar from './SearchBar'
 import Notifications from './Notifications'
+import CartView from './CartView'
+import UserTools from './UserTools'
 
 import useDropdown from '~/hooks/useDropdown'
 import { useSelector } from 'react-redux'
