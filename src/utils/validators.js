@@ -1,7 +1,7 @@
 export const OBJECT_ID_RULE = /^[0-9a-fA-F]{24}$/
 export const OBJECT_ID_RULE_MESSAGE =
   'Your string fails to match the Object Id pattern!'
-export const FEILD_REQUIRED_RULE_MESSAGE = 'Không được để trống!'
+export const FEILD_REQUIRED_RULE_MESSAGE = '* Bắt buộc'
 export const EMAIL_RULE = /^\S+@\S+\.\S+$/
 export const EMAIL_RULE_MESSAGE = 'Email không hợp lệ! (example@thepetsbox.com)'
 export const PASSWORD_RULE = /^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d\W]{8,256}$/

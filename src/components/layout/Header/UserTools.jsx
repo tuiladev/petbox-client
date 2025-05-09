@@ -52,8 +52,12 @@ export const UserCard = memo(({ user, className = '' }) => {
           <p className='title-lg text-gray-800'>
             {user?.fullName || 'Người dùng'}
           </p>
-          <p className='line-clamp-1'>
-            {user?.email.split('@')[0] || 'user@example.com'}
+          <p className='line-clamp-1 leading-normal'>
+            {user?.birthDate
+              ? new Date().getFullYear() -
+                new Date(user?.birthDate).getFullYear()
+              : 'Người đẹp không tuổi'}
+            {' tuổi sen'}
           </p>
         </div>
       </div>

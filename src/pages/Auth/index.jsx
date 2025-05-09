@@ -1,17 +1,19 @@
 import { useLocation } from 'react-router'
 import AuthBanner from '~/components/features/Auth/AuthBanner'
-import LoginForm from './LoginForm'
-import RegisterForm from './RegisterForm'
 import Logo from '~/components/common/Logo'
+import LoginForm from './LoginForm'
+import RegisterForm from './Register/RegisterForm'
+import ResetPasswordForm from './ResetPasswordForm'
 
 const Auth = () => {
   const location = useLocation()
   const isLogin = location.pathname === '/login'
-  const isRegister = location.pathname === '/register'
+  const isRegister = location.pathname.startsWith('/register')
+  const isResetPassword = location.pathname.startsWith('/reset-password')
 
   return (
     // Main container for the login and register forms
-    <div className='l-container flex h-screen gap-4 bg-white'>
+    <div className='l-container flex h-screen gap-4 bg-white py-18!'>
       <AuthBanner />
       <div className='relative flex grow items-center justify-center overflow-hidden'>
         {/* Logo for mobile */}
@@ -23,6 +25,7 @@ const Auth = () => {
         {/* Auth forms */}
         {isLogin && <LoginForm />}
         {isRegister && <RegisterForm />}
+        {isResetPassword && <ResetPasswordForm />}
       </div>
     </div>
   )

@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Navigate, useSearchParams } from 'react-router'
+import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import PageLoadingSpinner from '~/components/utils/PageLoadingSpinner'
 import { verifyUserAPI } from '~/redux/user/userService'
+import { logoutUserAPI } from '~/redux/user/userSlice'
 
 const AccountVerification = () => {
+  const dispatch = useDispatch()
   let [searchParams] = useSearchParams()
   const { email, token } = Object.fromEntries([...searchParams])
   const [verifed, setVerified] = useState(false)
@@ -25,6 +28,7 @@ const AccountVerification = () => {
 
   return (
     toast.success('Xác thực tài khoản thành công!'),
+    dispatch(logoutUserAPI()),
     (<Navigate to={`/login?verifiedEmail=${email}`} />)
   )
 }

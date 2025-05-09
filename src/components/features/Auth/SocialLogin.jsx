@@ -9,16 +9,11 @@ const SocialLogin = ({ isRegistered }) => {
       src: 'https://img.icons8.com/fluency/48/facebook-new.png',
       alt: 'facebook-new',
       text: 'Facebook'
-    },
-    {
-      src: 'https://img.icons8.com/ios-glyphs/30/mac-os.png',
-      alt: 'mac-os',
-      text: 'Apple'
     }
   ]
 
   return (
-    <div className='flex w-full items-center justify-center gap-4'>
+    <div className='flex w-full items-center justify-center gap-3'>
       {socials.map((item, index) => {
         return (
           <button

@@ -24,19 +24,36 @@ export const formatDate = (date) => {
 }
 
 /**
- * Định dạng số điện thoại Việt Nam thành dạng có khoảng cách
- * @param {string} phoneNumber - Số điện thoại cần định dạng
- * @returns {string} - Số điện thoại đã được định dạng (vd: 0912 345 678)
+ * Định dạng số điện thoại hiển thị cho người dùng
+ * Input: 0337336487 hoặc 84337336487 hoặc 337336487
+ * Output: "(+84) 337 336 487"
  */
 export const formatPhoneNumber = (phoneNumber) => {
-  // Giả sử định dạng là 10 số, ví dụ: 0912 345 678
   if (!phoneNumber) return ''
-  const cleaned = phoneNumber.replace(/\D/g, '')
-  const match = cleaned.match(/^(\d{4})(\d{3})(\d{3})$/)
-  if (match) {
-    return `${match[1]} ${match[2]} ${match[3]}`
+  let cleaned = ('' + phoneNumber).replace(/\D/g, '')
+  if (cleaned.startsWith('0')) {
+    cleaned = '84' + cleaned.substring(1)
+  } else if (cleaned.length === 9 && /^[3|5|7|8|9]/.test(cleaned)) {
+    cleaned = '84' + cleaned
   }
-  return phoneNumber
+  if (cleaned.length < 10) return phoneNumber
+  return `(+${cleaned.substring(0, 2)}) ${cleaned.substring(2, 5)} ${cleaned.substring(5, 8)} ${cleaned.substring(8)}`
+}
+
+/**
+ * Chuẩn hóa số điện thoại để gửi lên server
+ * Input: "(+84) 337 336 487" hoặc "0337336487"
+ * Output: "84337336487"
+ */
+export const normalizePhoneNumber = (phoneNumber) => {
+  if (!phoneNumber) return ''
+  let cleaned = ('' + phoneNumber).replace(/\D/g, '')
+  if (cleaned.startsWith('0')) {
+    cleaned = '84' + cleaned.substring(1)
+  } else if (cleaned.length === 9 && /^[3|5|7|8|9]/.test(cleaned)) {
+    cleaned = '84' + cleaned
+  }
+  return cleaned
 }
 
 /**

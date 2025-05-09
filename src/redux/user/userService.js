@@ -1,14 +1,6 @@
 import authorizedAxiosInstance from '~/provider/axiosInstance'
 import { env } from '~/utils/enviroment'
 
-export const registerUserAPI = async (data) => {
-  const response = await authorizedAxiosInstance.post(
-    `${env.API_ROOT}/${env.API_VERSION}/users/register`,
-    data
-  )
-  return response.data
-}
-
 export const verifyUserAPI = async (data) => {
   const response = await authorizedAxiosInstance.put(
     `${env.API_ROOT}/${env.API_VERSION}/users/verify`,

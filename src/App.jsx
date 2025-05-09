@@ -57,7 +57,8 @@ function App() {
         <Routes>
           {/* Auth Routes */}
           <Route path='/login' element={<Auth />} />
-          <Route path='/register' element={<Auth />} />
+          <Route path='/register/*' element={<Auth />} />
+          <Route path='/reset-password/*' element={<Auth />} />
           <Route
             path='/account/verification'
             element={<AccountVerification />}
