@@ -27,7 +27,7 @@ const CartItem = ({ product }) => {
 }
 
 const Cartview = ({ className = '' }) => {
-  const dropdownState = useDropdown({ openMode: 'hover' })
+  const dropdownState = useDropdown({ openMode: 'click' })
 
   return (
     <Dropdown className={className}>

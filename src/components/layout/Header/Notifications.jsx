@@ -8,7 +8,7 @@ import useDropdown from '~/hooks/useDropdown'
 
 const Notifications = () => {
   const [notificationsList, setNotificationsList] = useState(notifications)
-  const dropdownState = useDropdown({ openMode: 'hover' })
+  const dropdownState = useDropdown({ openMode: 'click' })
 
   const unreadCount = notificationsList.filter((notif) => !notif.isRead).length
 

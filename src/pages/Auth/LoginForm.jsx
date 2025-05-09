@@ -1,7 +1,10 @@
 import { useForm } from 'react-hook-form'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { loginUserAPI } from '~/redux/user/userSlice'
+import { selectCurrentUser } from '~/redux/user/userSlice'
+import { useSelector } from 'react-redux'
 
 import Button from '~/components/common/Button'
 // import CustomCheckbox from '~/components/utils/CustomCheckbox'
@@ -11,23 +14,36 @@ import FormContainer from '~/components/features/Auth/FormContainer'
 
 import {
   FEILD_REQUIRED_RULE_MESSAGE,
-  EMAIL_RULE,
-  EMAIL_RULE_MESSAGE
+  PHONE_RULE,
+  PHONE_RULE_MESSAGE
 } from '~/utils/validators'
+import { formatPhoneNumber, normalizePhoneNumber } from '~/utils/formatters'
 
 const LoginForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const currentUser = useSelector(selectCurrentUser)
+
+  // Return to homepage if user is logged in
+  useEffect(() => {
+    if (currentUser) {
+      navigate('/')
+    }
+  }, [currentUser, navigate])
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors }
-  } = useForm({})
+  } = useForm({
+    mode: 'onChange'
+  })
 
   const submitLogin = (data) => {
-    const { email, password } = data
-    dispatch(loginUserAPI({ email, password })).then((res) => {
+    const phoneNumber = normalizePhoneNumber(data.phoneNumber)
+    const password = data.password
+    dispatch(loginUserAPI({ phoneNumber, password })).then((res) => {
       if (!res.error) {
         navigate('/')
       }
@@ -46,15 +62,22 @@ const LoginForm = () => {
         noValidate
       >
         <FloatingInput
-          type='email'
-          name='email'
-          label='Email'
-          error={errors.email?.message}
-          {...register('email', {
+          type='text'
+          name='phoneNumber'
+          label='Số điện thoại'
+          variant='outlined'
+          error={errors.phoneNumber?.message}
+          {...register('phoneNumber', {
             required: FEILD_REQUIRED_RULE_MESSAGE,
-            pattern: {
-              value: EMAIL_RULE,
-              message: EMAIL_RULE_MESSAGE
+            validate: (value) => {
+              return (
+                PHONE_RULE.test(normalizePhoneNumber(value)) ||
+                PHONE_RULE_MESSAGE
+              )
+            },
+            onBlur: (e) => {
+              const formattedValue = formatPhoneNumber(e.target.value)
+              setValue('phoneNumber', formattedValue, { shouldValidate: true })
             }
           })}
         />
@@ -63,6 +86,7 @@ const LoginForm = () => {
           type='password'
           name='password'
           label='Mật khẩu'
+          variant='outlined'
           error={errors.password?.message}
           {...register('password', {
             required: FEILD_REQUIRED_RULE_MESSAGE
@@ -73,7 +97,7 @@ const LoginForm = () => {
           {/* <CustomCheckbox label='Lưu đăng nhập' {...register('remember')} /> */}
           <button
             type='button'
-            onClick={() => navigate('/auth/reset-password')}
+            onClick={() => navigate('/reset-password')}
             className='ml-auto cursor-pointer text-cyan-600 hover:text-cyan-700'
           >
             Quên mật khẩu?
@@ -91,11 +115,11 @@ const LoginForm = () => {
       <div className='relative mt-10 mb-8'>
         <hr className='border-gray-300' />
         <span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform bg-white px-3 text-sm text-gray-500'>
-          Hoặc sử dụng
+          HOẶC
         </span>
       </div>
 
-      <SocialLogin isRegistered={true} />
+      <SocialLogin />
 
       <div className='mt-6 text-center'>
         <p className='text-gray-600'>
