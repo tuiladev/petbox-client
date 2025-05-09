@@ -4,15 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cross-env BUILD_MODE=dev vite --host",
-    "build": "cross-env BUILD_MODE=production vite build",
+    "dev": "vite --host",
+    "build": "vite build",
     "lint": "eslint . --ext .js,.jsx",
     "preview": "vite preview"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.7.0",
     "axios": "^1.9.0",
-    "cross-env": "^7.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.1",
