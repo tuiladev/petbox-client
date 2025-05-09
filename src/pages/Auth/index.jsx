@@ -13,7 +13,7 @@ const Auth = () => {
 
   return (
     // Main container for the login and register forms
-    <div className='l-container flex h-screen gap-4 bg-white py-18!'>
+    <div className='l-container flex h-screen gap-4 bg-white md:py-18!'>
       <AuthBanner />
       <div className='relative flex grow items-center justify-center overflow-hidden'>
         {/* Logo for mobile */}

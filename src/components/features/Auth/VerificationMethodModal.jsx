@@ -52,15 +52,15 @@ const VerificationMethodModal = ({
       <Modal isOpen={isOpen}>
         <Modal.Overlay onClick={onClose} className='opacity-70' />
         <Modal.Content size='lg' className='px-8 py-6'>
-          <h3 className='mx-auto mb-6 w-full max-w-4/5 text-center text-base leading-relaxed font-medium text-gray-800'>
+          <h3 className='mx-auto mb-6 w-full md:max-w-4/5 text-center text-base leading-relaxed font-medium text-gray-800'>
             Chúng tôi sẽ gửi mã xác minh qua Zalo đến số điện thoại{' '}
             {phoneNumber}
           </h3>
 
-          <div className='grid grid-cols-3 gap-3'>
+          <div className='grid gap-3 md:grid-cols-3'>
             <Button
               onClick={onClose}
-              className='text-base-content! w-full rounded-sm border-1 border-gray-200 bg-white! hover:bg-gray-100!'
+              className='text-base-content! row-start-3 md:row-start-1 w-full rounded-sm border-1 border-gray-200 bg-white! hover:bg-gray-100!'
               disabled={isLoading}
             >
               Huỷ bỏ
@@ -68,7 +68,7 @@ const VerificationMethodModal = ({
 
             <Button
               onClick={handleSmsVerification}
-              className='text-base-content! w-full rounded-sm border-1 border-gray-200 bg-white! hover:bg-gray-100!'
+              className='row-start-2 md:row-start-1 text-base-content! w-full rounded-sm border-1 border-gray-200 bg-white! hover:bg-gray-100!'
               disabled={isLoading}
             >
               Tin nhắn SMS

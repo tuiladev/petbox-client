@@ -28,7 +28,7 @@ export const ModalContent = ({
       case 'md':
         return 'w-full max-w-md'
       case 'lg':
-        return 'w-full max-w-lg'
+        return 'w-full md:max-w-lg max-w-sm'
       case 'xl':
         return 'w-full max-w-xl'
       case '2xl':
