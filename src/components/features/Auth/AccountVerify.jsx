@@ -13,9 +13,6 @@ const AccountVerify = () => {
     const state = params.get('state')
     const codeVerifier = localStorage.getItem('zalo_code_verifier')
 
-    console.log('window.location.search:', window.location.search)
-    console.log('window.location.href:', window.location.href)
-
     const savedState = localStorage.getItem('zalo_state')
     if (state !== savedState) {
       localStorage.removeItem('zalo_code_verifier')
