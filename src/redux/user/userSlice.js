@@ -125,10 +125,11 @@ export const userSlice = createSlice({
       const user = action.payload
       state.currentUser = user
     })
-    builder.addCase(logoutUserAPI.fulfilled, (state) => {
-      state.currentUser = null
+    builder.addCase(googleLoginAPI.fulfilled, (state, action) => {
+      const user = action.payload
+      state.currentUser = user
     })
-    builder.addCase(googleLoginAPI.fulfilled, (state) => {
+    builder.addCase(logoutUserAPI.fulfilled, (state) => {
       state.currentUser = null
     })
     builder.addCase(updateUserAPI.fulfilled, (state, action) => {
