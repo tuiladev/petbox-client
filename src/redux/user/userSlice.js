@@ -69,6 +69,18 @@ export const loginUserAPI = createAsyncThunk(
   }
 )
 
+export const googleLoginAPI = createAsyncThunk(
+  'user/googleLoginAPI',
+  async (data) => {
+    const response = await authorizedAxiosInstance.post(
+      `${env.API_ROOT}/${env.API_VERSION}/users/google-login`,
+      { code: data.code }
+    )
+    toast.success('Login success')
+    return response.data
+  }
+)
+
 export const logoutUserAPI = createAsyncThunk(
   'user/logoutUserAPI',
   async (showSuccessMessage = true) => {
@@ -114,6 +126,9 @@ export const userSlice = createSlice({
       state.currentUser = user
     })
     builder.addCase(logoutUserAPI.fulfilled, (state) => {
+      state.currentUser = null
+    })
+    builder.addCase(googleLoginAPI.fulfilled, (state) => {
       state.currentUser = null
     })
     builder.addCase(updateUserAPI.fulfilled, (state, action) => {
