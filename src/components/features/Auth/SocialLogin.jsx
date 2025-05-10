@@ -3,9 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { images } from '~/assets'
 import { googleLoginAPI } from '~/redux/user/userSlice'
-import { zaloLoginAPI } from '~/redux/user/userSlice'
 import { ZaloProvider } from '~/provider/ZaloProvider'
-import { useEffect } from 'react'
 
 const SocialLogin = ({ isRegistered }) => {
   const dispatch = useDispatch()
@@ -28,31 +26,6 @@ const SocialLogin = ({ isRegistered }) => {
     const url = await ZaloProvider.createAuthUrl()
     window.location.href = url
   }
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const authorization_code = params.get('code')
-    const state = params.get('state')
-    const codeVerifier = localStorage.getItem('zalo_code_verifier')
-
-    const savedState = localStorage.getItem('zalo_state')
-    if (state !== savedState) {
-      localStorage.removeItem('zalo_state')
-      return
-    }
-
-    if (authorization_code && codeVerifier) {
-      dispatch(zaloLoginAPI({ authorization_code, codeVerifier })).then(
-        (res) => {
-          if (!res.error) {
-            navigate('/')
-          }
-        }
-      )
-      localStorage.removeItem('zalo_code_verifier')
-      localStorage.removeItem('zalo_state')
-    }
-  }, [navigate, dispatch])
 
   return (
     <div className='flex w-full items-center justify-center gap-3'>
