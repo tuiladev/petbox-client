@@ -81,6 +81,18 @@ export const googleLoginAPI = createAsyncThunk(
   }
 )
 
+export const zaloLoginAPI = createAsyncThunk(
+  'user/zaloLoginAPI',
+  async (data) => {
+    const response = await authorizedAxiosInstance.post(
+      `${env.API_ROOT}/${env.API_VERSION}/users/zalo-login`,
+      { code: data.code }
+    )
+    toast.success('Login success')
+    return response.data
+  }
+)
+
 export const logoutUserAPI = createAsyncThunk(
   'user/logoutUserAPI',
   async (showSuccessMessage = true) => {
@@ -126,6 +138,10 @@ export const userSlice = createSlice({
       state.currentUser = user
     })
     builder.addCase(googleLoginAPI.fulfilled, (state, action) => {
+      const user = action.payload
+      state.currentUser = user
+    })
+    builder.addCase(zaloLoginAPI.fulfilled, (state, action) => {
       const user = action.payload
       state.currentUser = user
     })
