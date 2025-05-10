@@ -1,12 +1,21 @@
 import { useGoogleLogin } from '@react-oauth/google'
-import { googleLoginAPI } from '~/redux/user/userService'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router'
+import { googleLoginAPI } from '~/redux/user/userSlice'
 
 const SocialLogin = ({ isRegistered }) => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   // Use Google Login
   const googleLogin = useGoogleLogin({
     flow: 'auth-code',
     redirect_uri: 'https://petbox-client.vercel.app',
-    onSuccess: (codeResponse) => googleLoginAPI(codeResponse)
+    onSuccess: (codeResponse) =>
+      dispatch(googleLoginAPI(codeResponse)).then((res) => {
+        if (!res.error) {
+          navigate('/')
+        }
+      })
   })
 
   return (
