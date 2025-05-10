@@ -5,6 +5,7 @@ import {
   Navigate,
   Outlet
 } from 'react-router-dom'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 // Redux
 import { useSelector } from 'react-redux'
@@ -24,7 +25,6 @@ import Services from '~/pages/Services'
 import Shop from '~/pages/Shop'
 import NotFound from '~/pages/NotFound'
 import Auth from '~/pages/Auth'
-import AccountVerification from './pages/Auth/AccountVerification'
 
 // Layouts
 import MainLayout from '~/layout/MainLayout'
@@ -40,7 +40,7 @@ const ProtectedRoute = () => {
 
 function App() {
   return (
-    <>
+    <GoogleOAuthProvider clientId='1043487308280-rfe3nmcb1avbkv7n7eg5ved64vji0tfp.apps.googleusercontent.com'>
       <ToastContainer
         position='top-center'
         autoClose={5000}
@@ -59,10 +59,6 @@ function App() {
           <Route path='/login' element={<Auth />} />
           <Route path='/register/*' element={<Auth />} />
           <Route path='/reset-password/*' element={<Auth />} />
-          <Route
-            path='/account/verification'
-            element={<AccountVerification />}
-          />
 
           {/* Main Layout Routes */}
           <Route path='/' element={<MainLayout />}>
@@ -92,7 +88,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </GoogleOAuthProvider>
   )
 }
 
