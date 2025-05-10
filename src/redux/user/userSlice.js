@@ -86,7 +86,7 @@ export const zaloLoginAPI = createAsyncThunk(
   async (data) => {
     const response = await authorizedAxiosInstance.post(
       `${env.API_ROOT}/${env.API_VERSION}/users/zalo-login`,
-      { authorization_code: data.authorization_code }
+      data
     )
     toast.success('Login success')
     return response.data
