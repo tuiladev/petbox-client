@@ -5,7 +5,7 @@ const SocialLogin = ({ isRegistered }) => {
   // Use Google Login
   const googleLogin = useGoogleLogin({
     flow: 'auth-code',
-    redirect_uri: 'https://petbox-api-e4a2.onrender.com',
+    redirect_uri: 'https://petbox-client.vercel.app',
     onSuccess: (codeResponse) => googleLoginAPI(codeResponse)
   })
 
