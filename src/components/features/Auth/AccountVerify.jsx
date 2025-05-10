@@ -20,14 +20,16 @@ const AccountVerify = () => {
       return
     }
 
+    const payload = {
+      authorization_code: authorization_code,
+      codeVerifier: codeVerifier
+    }
     if (authorization_code && codeVerifier) {
-      dispatch(zaloLoginAPI({ authorization_code, codeVerifier })).then(
-        (res) => {
-          if (!res.error) {
-            navigate('/')
-          }
+      dispatch(zaloLoginAPI(payload)).then((res) => {
+        if (!res.error) {
+          navigate('/')
         }
-      )
+      })
       localStorage.removeItem('zalo_code_verifier')
       localStorage.removeItem('zalo_state')
     }
