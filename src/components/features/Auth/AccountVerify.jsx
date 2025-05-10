@@ -24,6 +24,7 @@ const AccountVerify = () => {
       authorization_code: authorization_code,
       codeVerifier: codeVerifier
     }
+    console.log('This is payload from frontend: ', payload)
     if (authorization_code && codeVerifier) {
       dispatch(zaloLoginAPI(payload)).then((res) => {
         if (!res.error) {
