@@ -56,8 +56,8 @@ export const UserCard = memo(({ user, className = '' }) => {
             {user?.birthDate
               ? new Date().getFullYear() -
                 new Date(user?.birthDate).getFullYear()
-              : 'Người đẹp không tuổi'}
-            {' tuổi sen'}
+              : 'Người đẹp không'}
+            {' tuổi'}
           </p>
         </div>
       </div>
