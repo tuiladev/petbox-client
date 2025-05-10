@@ -25,10 +25,11 @@ import Services from '~/pages/Services'
 import Shop from '~/pages/Shop'
 import NotFound from '~/pages/NotFound'
 import Auth from '~/pages/Auth'
+import Profile from './pages/Profile/Profile'
+import AccountVerify from './components/features/Auth/AccountVerify'
 
 // Layouts
 import MainLayout from '~/layout/MainLayout'
-import Profile from './pages/Profile/Profile'
 
 const ProtectedRoute = () => {
   const user = useSelector(selectCurrentUser)
@@ -59,6 +60,7 @@ function App() {
           <Route path='/login' element={<Auth />} />
           <Route path='/register/*' element={<Auth />} />
           <Route path='/reset-password/*' element={<Auth />} />
+          <Route path='/verify-account/*' element={<AccountVerify />} />
 
           {/* Main Layout Routes */}
           <Route path='/' element={<MainLayout />}>
