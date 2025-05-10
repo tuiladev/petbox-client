@@ -4,8 +4,9 @@ import { googleLoginAPI } from '~/redux/user/userService'
 const SocialLogin = ({ isRegistered }) => {
   // Use Google Login
   const googleLogin = useGoogleLogin({
-    onSuccess: (codeResponse) => googleLoginAPI(codeResponse),
-    flow: 'auth-code'
+    flow: 'auth-code',
+    redirect_uri: 'https://petbox-api-e4a2.onrender.com',
+    onSuccess: (codeResponse) => googleLoginAPI(codeResponse)
   })
 
   return (
