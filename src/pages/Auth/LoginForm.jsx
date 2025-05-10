@@ -1,10 +1,9 @@
-import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginUserAPI } from '~/redux/user/userSlice'
 import { selectCurrentUser } from '~/redux/user/userSlice'
-import { useSelector } from 'react-redux'
 
 import Button from '~/components/common/Button'
 // import CustomCheckbox from '~/components/utils/CustomCheckbox'
