@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import { images } from '~/assets'
 import { googleLoginAPI } from '~/redux/user/userSlice'
 import { zaloLoginAPI } from '~/redux/user/userSlice'
-import { ZaloProvider } from '~/provider/zaloProvider'
+import { ZaloProvider } from '~/provider/ZaloProvider'
 import { useEffect } from 'react'
 
 const SocialLogin = ({ isRegistered }) => {
