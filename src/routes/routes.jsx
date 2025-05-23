@@ -18,6 +18,7 @@ const Profile = lazy(() => import('~/pages/Profile/_id'))
 const LoginForm = lazy(() => import('~/pages/Auth/LoginForm'))
 const RegisterForm = lazy(() => import('~/pages/Auth/Register/RegisterForm'))
 const ResetPasswordForm = lazy(() => import('~/pages/Auth/ResetPasswordForm'))
+const AccountVerify = lazy(() => import('~/components/Auth/AccountVerify'))
 
 // ProtectedRoute wrapper
 export const ProtectedRoute = ({ children }) => {
@@ -33,7 +34,8 @@ export const routes = [
     children: [
       { path: 'login', element: <LoginForm /> },
       { path: 'register/*', element: <RegisterForm /> },
-      { path: 'reset-password/*', element: <ResetPasswordForm /> }
+      { path: 'reset-password/*', element: <ResetPasswordForm /> },
+      { path: 'verify-account', element: <AccountVerify /> }
     ]
   },
   {

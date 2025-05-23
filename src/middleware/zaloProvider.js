@@ -26,7 +26,7 @@ const createAuthUrl = async () => {
 
   const state = Date.now().toString()
   localStorage.setItem('zalo_state', state)
-  const zaloAuthUrl = `https://oauth.zaloapp.com/v4/permission?app_id=${env.APP_ID}&redirect_uri=${env.CALLBACK_URL}&code_challenge=${codeChallenge}&state=${state}`
+  const zaloAuthUrl = `https://oauth.zaloapp.com/v4/permission?app_id=${env.ZALO_APP_ID}&redirect_uri=${env.ZALO_CALLBACK_URL}&code_challenge=${codeChallenge}&state=${state}`
 
   return zaloAuthUrl
 }
