@@ -16,7 +16,7 @@ const SocialLogin = ({ isRegistered }) => {
     onSuccess: (codeResponse) => {
       const data = {
         provider: 'google',
-        code: codeResponse
+        ...codeResponse
       }
       dispatch(socialLoginAPI(data)).then((res) => {
         if (!res.error) {
