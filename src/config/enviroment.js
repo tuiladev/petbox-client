@@ -8,5 +8,6 @@ export const env = {
 
   // Google Auth
   GOOGLE_APP_ID: import.meta.env.VITE_GOOGLE_APP_ID,
+  GOOGLE_CLIENT_ID: import.meta.env.VITE_GOOGLE_CLIENT_ID,
   GOOGLE_CALLBACK_URL: import.meta.env.VITE_GOOGLE_CALLBACK_URL
 }

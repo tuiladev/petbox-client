@@ -14,7 +14,7 @@ import { env } from './config/enviroment'
 
 function App() {
   return (
-    <GoogleOAuthProvider clientId={env.GOOGLE_APP_ID}>
+    <GoogleOAuthProvider clientId={env.GOOGLE_CLIENT_ID}>
       <ToastContainer
         position='top-center'
         autoClose={5000}
