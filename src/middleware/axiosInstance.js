@@ -47,14 +47,17 @@ authorizedAxiosInstance.interceptors.response.use(
   },
   (error) => {
     interceptorLoadingElements(false)
-    // Handle status codes that are not 2xx (200 -> 299)
+
+    // Handle status codes that are not 2xx
     let errorMessage = error?.message
     if (error.response?.data?.message) {
-      errorMessage = error.response?.data?.message
+      errorMessage = error.response.data?.message
     }
+
     // Case 1: Handle status code: 401 and refresh token
-    if (error.response?.status === 401)
-      axiosReduxStore.dispatch(logoutUserAPI(false)) // false to not show message (force logout)
+    // false to not show message (force logout)
+    if (error.response?.status === 401) axiosReduxStore.dispatch(logoutUserAPI(false))
+
     // Case 2: Handle status code: 410 GONE (refresh token)
     const originalRequests = error.config
     if (error.response?.status === 410 && originalRequests) {
@@ -71,7 +74,6 @@ authorizedAxiosInstance.interceptors.response.use(
             refreshTokenPromise = null // Reset refreshTokenPromise to null after
           })
       }
-      // eslint-disable-next-line no-unused-vars
       return refreshTokenPromise.then((accessToken) => {
         // Attension: save accessToken in localStorage if you want to use it in other place
         // (in this case, we have added it to httpOnly via backend service)

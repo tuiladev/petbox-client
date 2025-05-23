@@ -1,9 +1,10 @@
 import { memo, useState, useEffect } from 'react'
-import { searchData } from '~/data/mockdata'
+import { getSearchData } from '~/data/mockdata'
 import useSearchbar from '~/hooks/useSearchbar'
 import Dropdown from '~/components/common/Dropdown'
 
 const Searchbar = ({ className = '' }) => {
+  const searchData = getSearchData()
   const [suggestions, setSuggestions] = useState([])
   const { text, icon, keywords, products } = searchData
   const {
@@ -30,7 +31,7 @@ const Searchbar = ({ className = '' }) => {
       )
       setSuggestions(matchedKeywords)
     } else {
-      setSuggestions([])
+      // setSuggestions([])
     }
   }, [searchQuery, keywords])
 
@@ -98,9 +99,7 @@ const Searchbar = ({ className = '' }) => {
                 ))}
               </div>
             ) : (
-              <p className='text-sm text-gray-500'>
-                Không tìm thấy từ khóa phù hợp
-              </p>
+              <p className='text-sm text-gray-500'>Không tìm thấy từ khóa phù hợp</p>
             )}
           </div>
         ) : (
@@ -113,10 +112,7 @@ const Searchbar = ({ className = '' }) => {
                 onClearHistory={clearSearchHistory}
               />
             )}
-            <HotSearchSection
-              keywords={displayedKeywords}
-              onKeywordClick={performSearch}
-            />
+            <HotSearchSection keywords={displayedKeywords} onKeywordClick={performSearch} />
             <SuggestedProductsSection products={products} />
           </>
         )}
@@ -127,50 +123,53 @@ const Searchbar = ({ className = '' }) => {
 
 export default Searchbar
 
-const SearchHistorySection = memo(
-  ({ searchHistory, onSelectHistory, onRemoveHistory, onClearHistory }) => (
-    <div className='mb-8'>
-      <div className='text-primary mb-3 flex items-center justify-between'>
-        <div className='flex items-center gap-x-2'>
-          <p className='title-xl'>Lịch sử tìm kiếm</p>
-          <i className='fi fi-rr-time-past translate-y-0.5 text-xl'></i>
-        </div>
-
-        <button
-          type='button'
-          className='text-sm text-gray-500 transition duration-200 hover:text-red-500'
-          onClick={onClearHistory}
-          aria-label='Xóa lịch sử tìm kiếm'
-        >
-          Xóa tất cả
-        </button>
+const SearchHistorySection = ({
+  searchHistory,
+  onSelectHistory,
+  onRemoveHistory,
+  onClearHistory
+}) => (
+  <div className='mb-8'>
+    <div className='text-primary mb-3 flex items-center justify-between'>
+      <div className='flex items-center gap-x-2'>
+        <p className='title-xl'>Lịch sử tìm kiếm</p>
+        <i className='fi fi-rr-time-past translate-y-0.5 text-xl'></i>
       </div>
 
-      {/* Sử dụng flex-wrap để hiển thị nhiều dòng nếu cần */}
-      <div className='flex flex-wrap gap-3'>
-        {searchHistory.map((keyword, index) => (
-          <div
-            key={`history-${index}`}
-            className='group flex cursor-pointer items-center gap-x-2 rounded-sm bg-gray-100 px-3 py-2 text-sm tracking-wider text-gray-800 hover:bg-gray-200 hover:transition hover:duration-300 hover:ease-in-out'
-            onClick={() => onSelectHistory(keyword)}
-          >
-            <i className='fi fi-rr-time-past text-sm text-gray-500'></i>
-            {keyword}
-            <button
-              className='ml-1 text-gray-500 opacity-0 transition duration-200 group-hover:opacity-100 hover:text-red-500'
-              onClick={(e) => onRemoveHistory(keyword, e)}
-              aria-label={`Xóa từ khóa ${keyword} khỏi lịch sử`}
-            >
-              <i className='fi fi-br-cross-small text-xs'></i>
-            </button>
-          </div>
-        ))}
-      </div>
+      <button
+        type='button'
+        className='text-sm text-gray-500 transition duration-200 hover:text-red-500'
+        onClick={onClearHistory}
+        aria-label='Xóa lịch sử tìm kiếm'
+      >
+        Xóa tất cả
+      </button>
     </div>
-  )
+
+    {/* Sử dụng flex-wrap để hiển thị nhiều dòng nếu cần */}
+    <div className='flex flex-wrap gap-3'>
+      {searchHistory.map((keyword, index) => (
+        <div
+          key={`history-${index}`}
+          className='group flex cursor-pointer items-center gap-x-2 rounded-sm bg-gray-100 px-3 py-2 text-sm tracking-wider text-gray-800 hover:bg-gray-200 hover:transition hover:duration-300 hover:ease-in-out'
+          onClick={() => onSelectHistory(keyword)}
+        >
+          <i className='fi fi-rr-time-past text-sm text-gray-500'></i>
+          {keyword}
+          <button
+            className='ml-1 text-gray-500 opacity-0 transition duration-200 group-hover:opacity-100 hover:text-red-500'
+            onClick={(e) => onRemoveHistory(keyword, e)}
+            aria-label={`Xóa từ khóa ${keyword} khỏi lịch sử`}
+          >
+            <i className='fi fi-br-cross-small text-xs'></i>
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
 )
 
-const KeywordButton = memo(({ keyword, onKeywordClick, highlight = '' }) => {
+const KeywordButton = ({ keyword, onKeywordClick, highlight = '' }) => {
   const renderHighlightedKeyword = () => {
     if (!highlight) return keyword
 
@@ -203,9 +202,9 @@ const KeywordButton = memo(({ keyword, onKeywordClick, highlight = '' }) => {
       {renderHighlightedKeyword()}
     </button>
   )
-})
+}
 
-const HotSearchSection = memo(({ keywords, onKeywordClick }) => (
+const HotSearchSection = ({ keywords, onKeywordClick }) => (
   <div className='mb-8'>
     <div className='text-primary mb-3 flex items-center gap-x-2'>
       <p className='title-xl'>Tìm kiếm nổi bật</p>
@@ -214,17 +213,13 @@ const HotSearchSection = memo(({ keywords, onKeywordClick }) => (
 
     <div className='flex flex-wrap gap-3'>
       {keywords.map((keyword, index) => (
-        <KeywordButton
-          key={`hot-${index}`}
-          keyword={keyword}
-          onKeywordClick={onKeywordClick}
-        />
+        <KeywordButton key={`hot-${index}`} keyword={keyword} onKeywordClick={onKeywordClick} />
       ))}
     </div>
   </div>
-))
+)
 
-const Product = memo(({ product }) => {
+const Product = ({ product }) => {
   return (
     <a
       href={product.url}
@@ -245,26 +240,21 @@ const Product = memo(({ product }) => {
           <p className='text-primary/60 title-sm hidden line-through md:block'>
             {product.normalPrice.toLocaleString()}đ
           </p>
-          <p className='text-secondary title-xl'>
-            {product.discountPrice.toLocaleString()}đ
-          </p>
+          <p className='text-secondary title-xl'>{product.discountPrice.toLocaleString()}đ</p>
         </div>
       </div>
     </a>
   )
-})
+}
 
-const SuggestedProductsSection = memo(({ products }) => {
+const SuggestedProductsSection = ({ products }) => {
   const limitedProducts = products.slice(0, 4)
 
   return (
     <div>
       <div className='text-primary mb-3 flex justify-between'>
         <p className='title-xl'>Hàng mới - Giá tốt</p>
-        <a
-          href='#'
-          className='hover:text-secondary transition duration-300 ease-in-out'
-        >
+        <a href='#' className='hover:text-secondary transition duration-300 ease-in-out'>
           Xem tất cả
           <i className='fi fi-rr-arrow-circle-right ml-2 inline-block translate-y-0.5'></i>
         </a>
@@ -285,4 +275,4 @@ const SuggestedProductsSection = memo(({ products }) => {
       </div>
     </div>
   )
-})
+}

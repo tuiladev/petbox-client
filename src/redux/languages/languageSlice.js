@@ -4,7 +4,7 @@ import i18n from '~/config/i18n'
 const languageSlice = createSlice({
   name: 'language',
   initialState: {
-    currentLanguage: i18n.language || 'en'
+    currentLanguage: i18n.language || 'vi'
   },
   reducers: {
     setLanguage: (state, action) => {
@@ -16,6 +16,6 @@ const languageSlice = createSlice({
 
 export const { setLanguage } = languageSlice.actions
 
-export const selectCurrentLanguage = (state) => state.language.currentLanguage
+export const selectLanguage = (state) => state.language.currentLanguage
 
 export default languageSlice.reducer

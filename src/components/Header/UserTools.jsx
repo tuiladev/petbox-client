@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { images } from '~/assets'
-import { userMenu } from '~/data/mockdata'
+import { getUserMenu } from '~/data/mockdata'
 import useDropdown from '~/hooks/useDropdown'
 import IconLink from '~/components/common/IconLink'
 import Dropdown from '~/components/common/Dropdown'
@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { logoutUserAPI, selectCurrentUser } from '~/redux/user/userSlice'
 
 const Usertools = ({ className = '' }) => {
+  const userMenu = getUserMenu()
   const dispatch = useDispatch()
   const user = useSelector(selectCurrentUser)
   const dropdownState = useDropdown({ openMode: 'hover' })
@@ -41,7 +42,7 @@ const Usertools = ({ className = '' }) => {
 
 export default Usertools
 
-export const UserCard = memo(({ user, className = '' }) => {
+export const UserCard = ({ user, className = '' }) => {
   return (
     <div
       className={`bg-gradient-to-r from-amber-50 via-yellow-300 to-amber-500 p-6 md:p-4 ${className}`}
@@ -49,13 +50,10 @@ export const UserCard = memo(({ user, className = '' }) => {
       <div className='mb-4 flex items-center gap-x-4'>
         <UserAvatar user={user} />
         <div className='w-full space-y-1'>
-          <p className='title-lg text-gray-800'>
-            {user?.fullName || 'Người dùng'}
-          </p>
+          <p className='title-lg text-gray-800'>{user?.fullName || 'Người dùng'}</p>
           <p className='line-clamp-1 leading-normal'>
             {user?.birthDate
-              ? new Date().getFullYear() -
-                new Date(user?.birthDate).getFullYear()
+              ? new Date().getFullYear() - new Date(user?.birthDate).getFullYear()
               : 'Người đẹp không'}
             {' tuổi'}
           </p>
@@ -64,9 +62,9 @@ export const UserCard = memo(({ user, className = '' }) => {
       <MembershipInfo user={user} />
     </div>
   )
-})
+}
 
-export const UserAvatar = memo(({ user, className = '' }) => {
+export const UserAvatar = ({ user, className = '' }) => {
   return (
     <div
       className={`border-secondary group relative aspect-square h-14 w-14 rounded-full border-2 bg-white p-1 ${className}`}
@@ -85,12 +83,11 @@ export const UserAvatar = memo(({ user, className = '' }) => {
       )}
     </div>
   )
-})
+}
 
-const MenuItem = memo(({ item, onClick }) => {
+const MenuItem = ({ item, onClick }) => {
   const isLogoutItem =
-    item.icon.includes('sign-out') ||
-    item.text.toLowerCase().includes('đăng xuất')
+    item.icon.includes('sign-out') || item.text.toLowerCase().includes('đăng xuất')
 
   const handleClick = useCallback(
     (e) => {
@@ -134,9 +131,7 @@ const MenuItem = memo(({ item, onClick }) => {
     iconClassName: 'text-xl mr-3 translate-y-0.5',
     onClick: handleClick,
     // Props cho hiệu ứng
-    hoverEffect: isLogoutItem
-      ? 'hover:bg-red-100'
-      : 'hover:bg-secondary/10 hover:text-secondary',
+    hoverEffect: isLogoutItem ? 'hover:bg-red-100' : 'hover:bg-secondary/10 hover:text-secondary',
     transitionEffect: 'transition-colors duration-200'
   }
 
@@ -145,37 +140,27 @@ const MenuItem = memo(({ item, onClick }) => {
       <IconLink {...linkProps} />
     </li>
   )
-})
+}
 
-const MenuGroup = memo(({ group, onLogout }) => {
+const MenuGroup = ({ group, onLogout }) => {
   return (
     <>
-      {group.title && (
-        <p className='title-md text-primary px-4 py-3 uppercase'>
-          {group.title}
-        </p>
-      )}
+      {group.title && <p className='title-md text-primary px-4 py-3 uppercase'>{group.title}</p>}
       {group.items.map((item) => (
         <MenuItem key={item.url || item.text} item={item} onClick={onLogout} />
       ))}
     </>
   )
-})
+}
 
-const MembershipInfo = memo(({ user }) => {
+const MembershipInfo = ({ user }) => {
   const membershipLevel = user?.membershipLevel || 'Hội viên cao cấp'
   const membershipPoints = user?.points || 0
 
   return (
-    <div
-      className={
-        'flex w-full gap-x-4 rounded-full bg-white px-5 py-3 font-semibold shadow-sm'
-      }
-    >
+    <div className={'flex w-full gap-x-4 rounded-full bg-white px-5 py-3 font-semibold shadow-sm'}>
       <p className='text-secondary capitalize'>{membershipLevel}</p>
-      <p className='text-primary ml-auto'>
-        {membershipPoints.toLocaleString()} điểm
-      </p>
+      <p className='text-primary ml-auto'>{membershipPoints.toLocaleString()} điểm</p>
     </div>
   )
-})
+}

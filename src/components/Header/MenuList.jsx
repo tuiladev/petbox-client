@@ -1,7 +1,7 @@
 import { memo, useState } from 'react'
 import IconLink from '~/components/common/IconLink'
 
-export const MenuItem = memo(({ category, className = '' }) => {
+export const MenuItem = ({ category, className = '' }) => {
   return (
     <li
       className={`border-t border-gray-100 p-4 pl-12 md:ml-4 md:border-none md:p-0 md:not-last:mb-4 ${className}`}
@@ -17,9 +17,9 @@ export const MenuItem = memo(({ category, className = '' }) => {
       />
     </li>
   )
-})
+}
 
-const MenuList = memo(({ isMobile = false, title, items }) => {
+const MenuList = ({ isMobile = false, title, items }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleAccordion = () => {
@@ -52,6 +52,6 @@ const MenuList = memo(({ isMobile = false, title, items }) => {
       </div>
     </div>
   )
-})
+}
 
 export default MenuList

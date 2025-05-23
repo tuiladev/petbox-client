@@ -1,17 +1,18 @@
+/* eslint-disable react/no-children-prop */
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { selectCurrentUser } from '~/redux/user/userSlice'
 import { useNavigate } from 'react-router-dom'
-
 import Button from '~/components/common/Button'
 import { DropdownContent } from '~/components/common/Dropdown'
-import { storeInfo } from '~/data/mockdata'
+import { getStoreInfo } from '~/data/mockdata'
 import Logo from '~/components/common/Logo'
 import { MenuItem } from './MenuList'
 import { UserCard } from './UserTools'
 import { MainMenuContent } from './MainMenu'
 
 const MobileMenu = ({ dropdownState, className = '' }) => {
+  const storeInfo = getStoreInfo()
   const user = useSelector(selectCurrentUser)
   const isAuthenticated = !!user
   const [hasInteracted, setHasInteracted] = useState(false)
@@ -62,11 +63,7 @@ const MobileMenu = ({ dropdownState, className = '' }) => {
           >
             <i
               className={`fi fi-br-cross-small text-primary inline-block text-4xl transition-all delay-200 duration-300 ${
-                !hasInteracted
-                  ? ''
-                  : dropdownState.isOpen
-                    ? 'rotate-90'
-                    : 'rotate-[270deg]'
+                !hasInteracted ? '' : dropdownState.isOpen ? 'rotate-90' : 'rotate-[270deg]'
               }`}
             ></i>
           </div>
@@ -81,11 +78,7 @@ const MobileMenu = ({ dropdownState, className = '' }) => {
           </p>
           <ul>
             {storeInfo.map((item, index) => (
-              <MenuItem
-                key={index}
-                category={item}
-                className='text-primary border-none pl-8!'
-              />
+              <MenuItem key={index} category={item} className='text-primary border-none pl-8!' />
             ))}
           </ul>
         </div>

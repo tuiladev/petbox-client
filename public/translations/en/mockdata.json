@@ -1,0 +1,85 @@
+{
+  "storeInfo": {
+    "address": "55 Dan Chu, Binh Tho, Thu Duc City",
+    "hotline": "Hotline: 1900 1919",
+    "openingHours": "Open from: 08:00 → 20:00"
+  },
+  "categories": {
+    "food": "Food",
+    "beds": "Beds",
+    "cleaning": "Cleaning Supplies",
+    "accessories": "Accessories"
+  },
+  "helps": {
+    "support": "Support",
+    "terms": "Terms",
+    "policy": "Policy",
+    "career": "Careers"
+  },
+  "services": {
+    "hotel": "Pet Hotel",
+    "spa": "Spa & Grooming",
+    "medical": "Medical Care",
+    "sterilization": "Sterilization",
+    "homeCare": "Home Care"
+  },
+  "products": {
+    "product1": "Cat food for all ages catsrang",
+    "product2": "Royal Canin cat food",
+    "product3": "Pet litter sand",
+    "product4": "Seafood flavored cat pate (for cats from 6 months)"
+  },
+  "search": {
+    "promotion": "20% off Royal Canin ...",
+    "keywords": {
+      "catgrass": "Cat grass",
+      "catfood": "Cat food",
+      "cleaning": "Cleaning supplies",
+      "catlitter": "Cat litter",
+      "dogcollar": "Dog collar",
+      "cattag": "Cat name tag",
+      "petchain": "Pet chain"
+    }
+  },
+  "posts": {
+    "post1": {
+      "title": "What to note when caring for cats after neutering?",
+      "time": "March 28, 2025"
+    },
+    "post2": {
+      "title": "Signs that your cat has hairballs in its stomach",
+      "time": "March 26, 2025"
+    }
+  },
+  "notifications": {
+    "delivered": "Order #ABC123 has been delivered successfully on 28/03/2025",
+    "appointment": "It's time for your follow-up appointment, please bring your pet on 28/03/2025",
+    "promotion": "25% discount when booking rabies vaccination on website",
+    "date": {
+      "march28": "March 28, 2025",
+      "march27": "March 27, 2025",
+      "march26": "March 26, 2025"
+    }
+  },
+  "userMenu": {
+    "account": "Account",
+    "accountInfo": "Account Information",
+    "myPets": "My Pets",
+    "shopping": "Shopping",
+    "myOrders": "My Orders",
+    "favoriteProducts": "Favorite Products",
+    "shippingAddress": "Shipping Address",
+    "logout": "Logout"
+  },
+  "profileMenu": {
+    "personalInfo": "Personal Information",
+    "address": "Address",
+    "payment": "Payment",
+    "pets": "Pets",
+    "notifications": "Notifications",
+    "membership": "Membership Benefits",
+    "orders": "Orders",
+    "cart": "Cart",
+    "favorites": "Favorites"
+  }
+}

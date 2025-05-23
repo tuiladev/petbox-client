@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import TabHeading from './TabHeading'
 import Button from '~/components/common/Button'
 

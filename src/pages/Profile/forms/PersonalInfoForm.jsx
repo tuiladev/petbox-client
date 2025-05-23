@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { maskSensitiveInfo } from '~/utils/formatters'
@@ -66,7 +67,11 @@ const PersonalInfoForm = ({ user }) => {
 
       <UserInput label='Email' register={register('email')} disabled={true} />
 
-      <UserInput label='Số điện thoại' register={register('phoneNumber')} disabled={true} />
+      <UserInput
+        label='Số điện thoại'
+        register={register('phoneNumber')}
+        disabled={true}
+      />
 
       <Button
         children={<span>Lưu Thay Đổi</span>}

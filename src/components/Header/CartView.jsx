@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { products } from '~/data/mockdata'
+import { getProducts } from '~/data/mockdata'
 import useDropdown from '~/hooks/useDropdown'
 import Dropdown from '~/components/common/Dropdown'
 
@@ -15,9 +15,7 @@ const CartItem = ({ product }) => {
         className='aspect-square h-16 w-16 rounded-sm object-cover'
       />
       <div className='flex grow flex-col'>
-        <p className='title-md mb-2 line-clamp-2 font-medium! text-zinc-700'>
-          {product.name}
-        </p>
+        <p className='title-md mb-2 line-clamp-2 font-medium! text-zinc-700'>{product.name}</p>
         <p className='title-md text-right text-zinc-700'>
           {product.discountPrice.toLocaleString()}đ
         </p>
@@ -27,6 +25,7 @@ const CartItem = ({ product }) => {
 }
 
 const Cartview = ({ className = '' }) => {
+  const products = getProducts()
   const dropdownState = useDropdown({ openMode: 'click' })
 
   return (
@@ -49,15 +48,11 @@ const Cartview = ({ className = '' }) => {
         contentProps={dropdownState.getContentProps()}
         isOpen={dropdownState.isOpen}
       >
-        <p className='title-xl text-primary border-b border-gray-200 p-4'>
-          Giỏ hàng
-        </p>
+        <p className='title-xl text-primary border-b border-gray-200 p-4'>Giỏ hàng</p>
 
         {/* Products List */}
         {products.length > 0 ? (
-          products.map((product, index) => (
-            <CartItem key={index} product={product} />
-          ))
+          products.map((product, index) => <CartItem key={index} product={product} />)
         ) : (
           <div className='p-4 text-center text-gray-500'>Giỏ hàng trống</div>
         )}

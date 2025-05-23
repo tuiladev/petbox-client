@@ -14,7 +14,7 @@ const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['user', 'language'], // only navigation will be persisted
-  blacklist: [] // navigation will not be persisted
+  blacklist: [''] // navigation will not be persisted
 }
 
 const persistedReducers = persistReducer(persistConfig, reducers)

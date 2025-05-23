@@ -1,4 +1,3 @@
-/* eslint-disable quotes */
 import { useEffect } from 'react'
 
 const useDocumentTitle = (title) => {

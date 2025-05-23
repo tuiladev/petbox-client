@@ -26,7 +26,10 @@ const ProfileAvatar = ({ user }) => {
       <div className='h-32 w-32 overflow-hidden rounded-full border-2 border-gray-200'>
         <UserAvatar user={user} className='h-full w-full border-0' />
       </div>
-      <button type='button' className='text-primary mt-2 cursor-pointer text-sm'>
+      <button
+        type='button'
+        className='text-primary mt-2 cursor-pointer text-sm'
+      >
         Upload Ảnh
       </button>
     </div>

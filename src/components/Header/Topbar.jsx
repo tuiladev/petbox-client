@@ -1,31 +1,12 @@
-import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { selectCurrentLanguage } from '~/redux/languages/languageSlice'
 import { getStoreInfo, getSocials } from '~/data/mockdata.js'
 import IconLink from '~/components/common/IconLink.jsx'
 import LanguageSwitcher from '../utils/LanguageSwitcher'
 
 const Topbar = ({ className = '', showOnMobile = false }) => {
-  const { t, i18n } = useTranslation()
-  const currentLanguage = useSelector(selectCurrentLanguage)
-  const [storeInfoData, setStoreInfoData] = useState([])
-  const [socialsData, setSocialsData] = useState([])
-
-  // Cập nhật dữ liệu khi ngôn ngữ thay đổi
-  useEffect(() => {
-    if (currentLanguage && i18n.language !== currentLanguage) {
-      i18n.changeLanguage(currentLanguage)
-    }
-
-    // Lấy dữ liệu đã dịch
-    setStoreInfoData(getStoreInfo())
-    setSocialsData(getSocials())
-  }, [currentLanguage, i18n])
+  const storeInfoData = getStoreInfo()
+  const socialsData = getSocials()
   return (
-    <div
-      className={`bg-primary ${showOnMobile ? 'block' : 'hidden sm:block'} ${className}`}
-    >
+    <div className={`bg-primary ${showOnMobile ? 'block' : 'hidden sm:block'} ${className}`}>
       <div className='l-container flex flex-wrap items-center justify-center gap-y-4 py-2 text-white md:justify-between'>
         {/* Left Side */}
         <div className='flex items-center gap-x-4'>

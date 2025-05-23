@@ -1,11 +1,14 @@
-import { useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router'
-import { useSelector } from 'react-redux'
+// Libraries
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate, useLocation } from 'react-router'
+
+// Redux & hooks
+import { useSelector } from 'react-redux'
 import { selectCurrentUser } from '~/redux/user/userSlice'
-import { selectCurrentLanguage } from '~/redux/languages/languageSlice'
 import useDocumentTitle from '~/hooks/useDocumentTitle'
 
+// Components
 import FormContainer from '~/components/Auth/FormContainer'
 import StepBar from '~/components/common/StepBar'
 import PhoneForm from '../PhoneForm'
@@ -14,63 +17,71 @@ import PasswordForm from '../PasswordForm'
 import UserForm from './UserForm'
 
 const RegisterForm = () => {
-  const { t, i18n } = useTranslation()
-  useDocumentTitle(t('auth.register.title'))
+  const { t } = useTranslation('auth')
   const navigate = useNavigate()
+  const location = useLocation()
   const currentUser = useSelector(selectCurrentUser)
-  const currentLanguage = useSelector(selectCurrentLanguage)
 
-  // Language switch effect
-  useEffect(() => {
-    if (currentLanguage && i18n.language !== currentLanguage) {
-      i18n.changeLanguage(currentLanguage)
-    }
-  }, [currentLanguage, i18n])
+  // Map routes to step index
+  const pathToStep = {
+    '/register': 0,
+    '/register/verify-otp': 1,
+    '/register/set-password': 2,
+    '/register/user-info': 3
+  }
 
-  // Return to homepage if user is logged in
+  // Step bar items
+  const steps = [
+    { name: t('register.steps.verifyOtp'), step: 1 },
+    { name: t('register.steps.createPassword'), step: 2 },
+    { name: t('register.steps.complete'), step: 3 }
+  ]
+
+  // Redirect logged in user
   useEffect(() => {
     if (currentUser) {
       navigate('/')
     }
   }, [currentUser, navigate])
 
-  const location = useLocation()
-  const phoneStep = location.pathname === '/register'
-  const otpStep = location.pathname === '/register/verify-otp'
-  const passwordStep = location.pathname === '/register/set-password'
-  const userStep = location.pathname === '/register/user-info'
+  const currentStep = pathToStep[location.pathname] ?? 0
 
-  // Determine current step for stepbar
-  let currentStep = 0
-  if (otpStep) currentStep = 1
-  else if (passwordStep) currentStep = 2
-  else if (userStep) currentStep = 3
-
-  const steps = [
-    { name: t('auth.register.steps.verifyOtp'), step: 1 },
-    { name: t('auth.register.steps.createPassword'), step: 2 },
-    { name: t('auth.register.steps.complete'), step: 3 }
+  // Set document title based on step
+  const titles = [
+    t('register.title'),
+    t('register.enterOtp'),
+    t('register.createPassword'),
+    t('register.steps.complete')
   ]
+  useDocumentTitle(titles[currentStep])
+
+  // Determine which form component to render
+  const renderForm = () => {
+    switch (currentStep) {
+      case 0:
+        return <PhoneForm />
+      case 1:
+        return <OtpForm />
+      case 2:
+        return <PasswordForm />
+      case 3:
+        return <UserForm />
+      default:
+        return null
+    }
+  }
 
   return (
     <>
-      {/* Step Bar - Only show on OTP, Password and User steps */}
-      {(otpStep || passwordStep || userStep) && (
-        <StepBar steps={steps} currentStep={currentStep} />
-      )}
+      {/* Show StepBar for steps > 0 */}
+      {currentStep > 0 && <StepBar steps={steps} currentStep={currentStep} />}
+
       <FormContainer>
         <h2 className='mb-10 text-center text-4xl font-bold text-cyan-600'>
-          {phoneStep && t('auth.register.title')}
-          {otpStep && t('auth.register.enterOtp')}
-          {passwordStep && t('auth.register.createPassword')}
-          {userStep && t('auth.register.completeRegistration')}
+          {titles[currentStep]}
         </h2>
 
-        {/* Auth forms */}
-        {phoneStep && <PhoneForm />}
-        {otpStep && <OtpForm />}
-        {passwordStep && <PasswordForm />}
-        {userStep && <UserForm />}
+        {renderForm()}
       </FormContainer>
     </>
   )

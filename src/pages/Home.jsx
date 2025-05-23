@@ -12,16 +12,22 @@ const Home = () => {
               Lorem, ipsum dolor sit amet consectetur adipisicing elit
             </h2>
             <p className='hidden text-gray-500 sm:mt-4 sm:block'>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae dolor officia blanditiis repellat in, vero,
-              aperiam porro ipsum laboriosam consequuntur exercitationem incidunt tempora nisi? Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Deleniti voluptas voluptatum enim ipsam odio rerum impedit praesentium.
-              Quam dicta nemo repellendus autem consectetur et repudiandae sunt illo numquam commodi, aliquam vel! Nisi
-              laborum recusandae velit. Necessitatibus, cumque? Optio odit voluptatem eius libero animi vero adipisci,
-              suscipit omnis in quam rerum minima laborum? Accusantium, quae beatae veniam explicabo vel asperiores
-              obcaecati esse dignissimos enim possimus, voluptas distinctio corporis dolorem repellat deserunt
-              voluptatibus. Ex molestiae id perspiciatis earum laboriosam veniam qui mollitia cupiditate! Dolorem atque,
-              harum vel, necessitatibus ipsa voluptate magnam eius distinctio fugiat maiores reiciendis odio, delectus
-              aperiam tempora cumque ducimus?
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae
+              dolor officia blanditiis repellat in, vero, aperiam porro ipsum
+              laboriosam consequuntur exercitationem incidunt tempora nisi?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+              voluptas voluptatum enim ipsam odio rerum impedit praesentium.
+              Quam dicta nemo repellendus autem consectetur et repudiandae sunt
+              illo numquam commodi, aliquam vel! Nisi laborum recusandae velit.
+              Necessitatibus, cumque? Optio odit voluptatem eius libero animi
+              vero adipisci, suscipit omnis in quam rerum minima laborum?
+              Accusantium, quae beatae veniam explicabo vel asperiores obcaecati
+              esse dignissimos enim possimus, voluptas distinctio corporis
+              dolorem repellat deserunt voluptatibus. Ex molestiae id
+              perspiciatis earum laboriosam veniam qui mollitia cupiditate!
+              Dolorem atque, harum vel, necessitatibus ipsa voluptate magnam
+              eius distinctio fugiat maiores reiciendis odio, delectus aperiam
+              tempora cumque ducimus?
             </p>
           </div>
 
@@ -52,7 +58,12 @@ const Home = () => {
                   viewBox='0 0 24 24'
                   stroke='currentColor'
                 >
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M17 8l4 4m0 0l-4 4m4-4H3' />
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
+                    d='M17 8l4 4m0 0l-4 4m4-4H3'
+                  />
                 </svg>
               </button>
             </form>

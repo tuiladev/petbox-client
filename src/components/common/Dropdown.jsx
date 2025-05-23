@@ -2,7 +2,11 @@ const Dropdown = ({ className = '', children }) => {
   return <div className={`relative self-stretch ${className}`}>{children}</div>
 }
 
-export const DropdownTrigger = ({ className = '', children, triggerProps = {} }) => {
+export const DropdownTrigger = ({
+  className = '',
+  children,
+  triggerProps = {}
+}) => {
   return (
     <div
       className={`relative flex h-full cursor-pointer items-center after:absolute after:top-full after:h-4 after:w-full ${className}`}

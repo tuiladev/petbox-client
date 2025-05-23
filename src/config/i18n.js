@@ -1,18 +1,37 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import en from '~/translations/en.json'
-import vi from '~/translations/vi.json'
+import Backend from 'i18next-http-backend'
 
-i18n.use(initReactI18next).init({
-  resources: {
-    en: { translation: en },
-    vi: { translation: vi }
-  },
-  lng: 'vi',
-  fallbackLng: 'vi',
-  interpolation: {
-    escapeValue: false
-  }
-})
+// Khởi tạo i18next với HTTP backend để load file JSON
+i18n
+  // Sử dụng backend để load file dịch qua HTTP
+  .use(Backend)
+  // Kết nối i18next với React
+  .use(initReactI18next)
+  .init({
+    // Ngôn ngữ fallback khi không tìm thấy ngôn ngữ hiện tại
+    fallbackLng: 'vi',
+    // Danh sách các ngôn ngữ hỗ trợ
+    supportedLngs: ['en', 'vi'],
+    // Các namespace (file dịch) sẽ được load
+    ns: ['auth', 'banner', 'common', 'footer', 'formLabel', 'mockdata', 'validationMessage'],
+    // Namespace mặc định khi gọi t('key') không chỉ định namespace
+    defaultNS: 'common',
+
+    // Cấu hình backend load file dịch
+    backend: {
+      loadPath: '/translations/{{lng}}/{{ns}}.json'
+    },
+
+    // Cấu hình interpolation (chèn biến vào chuỗi)
+    interpolation: {
+      escapeValue: false
+    },
+
+    // Kích hoạt Suspense khi load file dịch
+    react: {
+      useSuspense: true
+    }
+  })
 
 export default i18n

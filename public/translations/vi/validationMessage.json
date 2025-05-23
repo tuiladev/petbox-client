@@ -1,0 +1,9 @@
+{
+  "required": "Vui lòng nhập trường này",
+  "passwordMismatch": "Mật khẩu không trùng khớp",
+  "enterFullOtp": "Vui lòng nhập đủ 4 chữ số",
+  "minPasswordLength": "Tối thiểu 8 ký tự",
+  "atLeastOneUpperCase": "Tối thiểu 1 ký tự in hoa và in thường",
+  "atLeastOneNumber": "Tối thiểu 1 chữ số",
+  "atLeastOneSpecialChar": "Tối thiểu 1 ký tự đặc biệt"
+}

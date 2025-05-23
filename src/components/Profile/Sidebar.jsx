@@ -1,6 +1,7 @@
-import { profileMenuItems } from '~/data/mockdata'
+import { getProfileMenu } from '~/data/mockdata'
 
 const Sidebar = ({ activeTab, onTabChange, className }) => {
+  const profileMenuItems = getProfileMenu()
   return (
     <aside className={`border-r border-gray-200 bg-white ${className}`}>
       <div className='px-8'>

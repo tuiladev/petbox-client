@@ -55,9 +55,15 @@ const Profile = () => {
 
   return (
     <div className='l-container pt-12! pb-24!'>
-      <h2 className='title-xl mb-6 ml-14 text-gray-800'>Chào mừng, {user.fullName}</h2>
+      <h2 className='title-xl mb-6 ml-14 text-gray-800'>
+        Chào mừng, {user.fullName}
+      </h2>
       <div className='flex gap-8'>
-        <Sidebar activeTab={activeMenuItem} onTabChange={handleMenuItemChange} className='w-full max-w-xs' />
+        <Sidebar
+          activeTab={activeMenuItem}
+          onTabChange={handleMenuItemChange}
+          className='w-full max-w-xs'
+        />
         <div className='grow'>{getContent()}</div>
       </div>
     </div>

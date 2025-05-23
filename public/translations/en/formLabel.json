@@ -1,0 +1,16 @@
+{
+  "phoneNumber": "Phone number",
+  "password": "Password",
+  "confirmPassword": "Confirm password",
+  "fullName": "Full name",
+  "birthDate": "Date of birth",
+  "selectGender": "Select gender",
+  "male": "Male",
+  "female": "Female",
+  "other": "Other",
+  "sendVerification": "Send Verification Code",
+  "continue": "Continue",
+  "back": "Back",
+  "or": "OR",
+  "otp": "Verification code"
+}

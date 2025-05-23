@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { notifications } from '~/data/mockdata'
+import { getNotifications } from '~/data/mockdata'
 import Dropdown from '~/components/common/Dropdown'
 import NotificationItem from '~/components/common/NotificationItem'
 import EmptyNotification from '~/components/common/EmptyNotification'
 import useDropdown from '~/hooks/useDropdown'
 
 const Notifications = () => {
+  const notifications = getNotifications()
   const [notificationsList, setNotificationsList] = useState(notifications)
   const dropdownState = useDropdown({ openMode: 'click' })
 
@@ -48,9 +49,7 @@ const Notifications = () => {
         contentProps={dropdownState.getContentProps()}
         isOpen={dropdownState.isOpen}
       >
-        <div className='title-xl text-primary border-b border-gray-200 p-4'>
-          Thông báo
-        </div>
+        <div className='title-xl text-primary border-b border-gray-200 p-4'>Thông báo</div>
 
         {notificationsList && notificationsList.length > 0 ? (
           <ul>

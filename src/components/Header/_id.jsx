@@ -103,7 +103,10 @@ const Header = ({ className = '' }) => {
             <SearchBar className='col-span-2 hidden md:block' />
 
             {/* Desktop Menu */}
-            <MainMenu dropdownState={mainMenuState} className='hidden md:block' />
+            <MainMenu
+              dropdownState={mainMenuState}
+              className='hidden md:block'
+            />
 
             {/* Mobile Menu */}
             {/* Overlay với hiệu ứng mờ dần có delay */}
@@ -112,7 +115,10 @@ const Header = ({ className = '' }) => {
                 className={`fixed top-0 left-0 z-999 h-screen w-screen bg-gray-950/80 transition-opacity duration-300 md:hidden ${mobileMenuState.isOpen ? 'opacity-100' : 'transition-delay-500 opacity-0'}`}
               ></div>
             )}
-            <MobileMenu dropdownState={mobileMenuState} className='block md:hidden' />
+            <MobileMenu
+              dropdownState={mobileMenuState}
+              className='block md:hidden'
+            />
 
             {/* User Menu Utility */}
             <ul className='col-start-2 row-end-1 ml-auto flex gap-x-6 self-stretch md:ml-0 lg:gap-x-7'>

@@ -1,0 +1,16 @@
+{
+  "phoneNumber": "Số điện thoại",
+  "password": "Mật khẩu",
+  "confirmPassword": "Xác nhận mật khẩu",
+  "fullName": "Họ và tên",
+  "birthDate": "Ngày sinh",
+  "selectGender": "Chọn giới tính",
+  "male": "Nam",
+  "female": "Nữ",
+  "other": "Khác",
+  "sendVerification": "Gửi Mã Xác Thực",
+  "continue": "Tiếp tục",
+  "back": "Quay lại",
+  "or": "HOẶC",
+  "otp": "Mã Xác Thực"
+}

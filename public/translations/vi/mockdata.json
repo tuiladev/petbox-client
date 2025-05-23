@@ -1,0 +1,85 @@
+{
+  "storeInfo": {
+    "address": "55 Dân Chủ, Bình Thọ, Tp. Thủ Đức",
+    "hotline": "Hotline: 1900 1919",
+    "openingHours": "Mở cửa từ: 08:00 → 20:00"
+  },
+  "categories": {
+    "food": "Thức ăn",
+    "beds": "Giường ngủ",
+    "cleaning": "Dụng cụ vệ sinh",
+    "accessories": "Phụ kiện"
+  },
+  "helps": {
+    "support": "Hỗ trợ",
+    "terms": "Điều khoản",
+    "policy": "Chính sách",
+    "career": "Tuyển dụng"
+  },
+  "services": {
+    "hotel": "Khách sạn",
+    "spa": "Spa và tỉa lông",
+    "medical": "Khám bệnh",
+    "sterilization": "Triệt sản",
+    "homeCare": "Chăm sóc tại nhà"
+  },
+  "products": {
+    "product1": "Hạt mèo cho mọi lứa tuổi catsrang",
+    "product2": "Thức ăn cho mèo Royal Canin",
+    "product3": "Cát vệ sinh thú cưng",
+    "product4": "Pate mèo vị hải sản (dành cho mèo từ 6 tháng tuổi)"
+  },
+  "search": {
+    "promotion": "Giảm giá 20% Royal Canin ...",
+    "keywords": {
+      "catgrass": "Cỏ mèo",
+      "catfood": "Thức ăn cho mèo",
+      "cleaning": "Dụng cụ vệ sinh",
+      "catlitter": "Cát vệ sinh mèo",
+      "dogcollar": "Vòng cổ cho chó",
+      "cattag": "Bảng tên mèo",
+      "petchain": "Dây xích thú cưng"
+    }
+  },
+  "posts": {
+    "post1": {
+      "title": "Chăm sóc mèo sau khi triệt sản cần lưu ý điều gì?",
+      "time": "28 Tháng 3, 2025"
+    },
+    "post2": {
+      "title": "Dấu hiệu nhận biết mèo tích nhiều búi lông trong bụng?",
+      "time": "26 Tháng 3, 2025"
+    }
+  },
+  "notifications": {
+    "delivered": "Đơn hàng #ABC123 đã được giao thành công vào ngày 28/03/2025",
+    "appointment": "Đã đến lịch hẹn tái khám, bạn vui lòng mang thú cưng đến vào ngày 28/03/2025",
+    "promotion": "Giảm giá 25% khi đặt lịch tiêm vaccine phòng dại tại website",
+    "date": {
+      "march28": "28 Tháng 3, 2025",
+      "march27": "27 Tháng 3, 2025",
+      "march26": "26 Tháng 3, 2025"
+    }
+  },
+  "userMenu": {
+    "account": "Tài khoản",
+    "accountInfo": "Thông tin tài khoản",
+    "myPets": "Thú cưng của tôi",
+    "shopping": "Mua sắm",
+    "myOrders": "Đơn hàng của tôi",
+    "favoriteProducts": "Sản phẩm yêu thích",
+    "shippingAddress": "Địa chỉ giao hàng",
+    "logout": "Đăng xuất"
+  },
+  "profileMenu": {
+    "personalInfo": "Thông tin cá nhân",
+    "address": "Địa chỉ",
+    "payment": "Thanh toán",
+    "pets": "Thú cưng",
+    "notifications": "Thông Báo",
+    "membership": "Ưu Đãi Hội Viên",
+    "orders": "Đơn Hàng",
+    "cart": "Giỏ Hàng",
+    "favorites": "Yêu Thích"
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 
@@ -6,7 +7,11 @@ import Button from '~/components/common/Button'
 import UserInput from '~/components/Profile/UserInput'
 
 // Validate message
-import { FEILD_REQUIRED_RULE_MESSAGE, PASSWORD_RULE, PASSWORD_RULE_MESSAGE } from '~/utils/validators'
+import {
+  FEILD_REQUIRED_RULE_MESSAGE,
+  PASSWORD_RULE,
+  PASSWORD_RULE_MESSAGE
+} from '~/utils/validators'
 import { updateUserAPI } from '~/redux/user/userSlice'
 import { toast } from 'react-toastify'
 
@@ -78,7 +83,8 @@ const PasswordChangeForm = () => {
         type='password'
         register={register('confirmPassword', {
           required: FEILD_REQUIRED_RULE_MESSAGE,
-          validate: (value) => value === watch('newPassword') || 'Mật khẩu xác nhận không khớp'
+          validate: (value) =>
+            value === watch('newPassword') || 'Mật khẩu xác nhận không khớp'
         })}
         error={errors.confirmPassword?.message}
         name='confirmPassword'
