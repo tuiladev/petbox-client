@@ -2,7 +2,7 @@ import { useGoogleLogin } from '@react-oauth/google'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { images } from '~/assets'
-import { googleLoginAPI, socialLoginAPI } from '~/redux/user/userSlice'
+import { socialLoginAPI } from '~/redux/user/userSlice'
 import { ZaloProvider } from '~/middleware/zaloProvider'
 
 const SocialLogin = ({ isRegistered }) => {

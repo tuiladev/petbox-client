@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux'
-import { zaloLoginAPI } from '~/redux/user/userSlice'
+import { socialLoginAPI } from '~/redux/user/userSlice'
 import PageLoadingSpinner from '~/components/utils/PageLoadingSpinner'
 
 const AccountVerify = () => {
@@ -26,7 +26,7 @@ const AccountVerify = () => {
       codeVerifier: codeVerifier
     }
     if (authorization_code && codeVerifier) {
-      dispatch(zaloLoginAPI(payload)).then((res) => {
+      dispatch(socialLoginAPI(payload)).then((res) => {
         if (!res.error) {
           navigate('/')
         }
