@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { getCategories, getHelps, getServices, getStoreInfo, getSocials } from '~/data/mockdata'
+import { getHelps, getStoreInfo, getSocials } from '~/config/siteConfig'
+import { getCategories, getServices } from '~/data/mockdata'
 import IconLink from '~/components/common/IconLink'
 import Logo from '~/components/common/Logo'
 
@@ -26,7 +27,6 @@ const FooterCol = ({ title = '', list }) => {
 
 const Footer = () => {
   const { t } = useTranslation('footer')
-
   const categories = getCategories()
   const services = getServices()
   const storeInfo = getStoreInfo()

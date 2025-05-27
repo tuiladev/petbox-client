@@ -1,3 +1,21 @@
 {
-  "slogan": "Mỗi thú cưng đều xứng đáng với những điều tuyệt vời !"
+  "slogan": "Mọi thú cưng đều xứng đáng được yêu thương!",
+  "title": "Điều tuyệt vời dành cho thú cưng của bạn",
+  "subtitle": "Thức ăn và dịch vụ chăm sóc thú cưng tốt nhất 💖",
+  "button": "Mua ngay",
+  "appointment": "Đặt Lịch",
+  "sale": "Giảm giá",
+  "forMembership": "Khách hàng thân thiết",
+  "forYour": "Dành cho",
+  "onlineAppointment": "Đặt lịch khám online",
+  "benefit": {
+    "freeShipping": "Miễn phí giao hàng",
+    "freeShippingDesc": "Áp dụng cho đơn từ 200k",
+    "moneyGuarantee": "Đảm bảo hoàn tiền",
+    "moneyGuaranteeDesc": "Đổi trả trong 30 ngày",
+    "returnPolicy": "Chính sách hoàn trả 100%",
+    "returnPolicyDesc": "Hoàn trả bất cứ lúc nào",
+    "bestDeal": "Ưu đãi tốt nhất",
+    "bestDealDesc": "Săn deal liền tay"
+  }
 }

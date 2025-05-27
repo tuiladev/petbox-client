@@ -1,0 +1,31 @@
+{
+  "navigation": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "allProducts": "Tất cả sản phẩm",
+    "blog": "Blog",
+    "contact": "Liên hệ",
+    "services": "Dịch vụ",
+    "notFound": "Không tìm thấy"
+  },
+  "userMenu": {
+    "account": "Tài khoản",
+    "shopping": "Mua sắm",
+    "favorites": "Yêu thích",
+    "cart": "Giỏ hàng"
+  },
+  "profileMenu": {
+    "personalInfo": "Thông tin cá nhân",
+    "address": "Địa chỉ",
+    "payment": "Phương thức thanh toán",
+    "pets": "Thú cưng",
+    "notifications": "Thông báo",
+    "membership": "Thành viên",
+    "orders": "Đơn hàng"
+  },
+  "storeInfo": {
+    "address": "55 Dân Chủ, Bình Thọ, Thủ Đức",
+    "hotline": "19001919",
+    "openingHours": "Mở cửa 9:00 - 21:00"
+  }
+}

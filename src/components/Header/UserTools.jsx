@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { images } from '~/assets'
-import { getUserMenu } from '~/data/mockdata'
+import { getUserMenu } from '~/config/menuConfig'
 import useDropdown from '~/hooks/useDropdown'
 import IconLink from '~/components/common/IconLink'
 import Dropdown from '~/components/common/Dropdown'

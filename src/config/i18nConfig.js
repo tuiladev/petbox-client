@@ -14,7 +14,17 @@ i18n
     // Danh sách các ngôn ngữ hỗ trợ
     supportedLngs: ['en', 'vi'],
     // Các namespace (file dịch) sẽ được load
-    ns: ['auth', 'banner', 'common', 'footer', 'formLabel', 'mockdata', 'validationMessage'],
+    ns: [
+      'auth',
+      'banner',
+      'common',
+      'footer',
+      'formLabel',
+      'mockdata',
+      'validationMessage',
+      'header',
+      'product'
+    ],
     // Namespace mặc định khi gọi t('key') không chỉ định namespace
     defaultNS: 'common',
 

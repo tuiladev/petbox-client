@@ -7,7 +7,7 @@ import App from './App'
 import './index.css'
 import { store } from '~/redux/store'
 import { injectStore } from '~/middleware/axiosInstance'
-import './config/i18n'
+import './config/i18nConfig'
 import PageLoadingSpinner from '~/components/utils/PageLoadingSpinner'
 import I18nLoader from './components/utils/I18nLoader'
 

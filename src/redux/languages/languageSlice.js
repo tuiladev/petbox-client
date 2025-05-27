@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import i18n from '~/config/i18n'
+import i18n from '~/config/i18nConfig'
 
 const languageSlice = createSlice({
   name: 'language',

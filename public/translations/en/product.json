@@ -1,0 +1,18 @@
+{
+  "review": "Review",
+  "type": "Select type:",
+  "addToCart": "Add to cart",
+  "addToWishList": "Favourite",
+  "buyItNow": "Buy it now",
+  "quantity": "Quantity",
+  "soldOut": "Out of stock",
+  "product": "product",
+  "stock": "Stock",
+  "share": "share",
+  "description": "product description",
+  "cart": {
+    "name": "cart",
+    "empty": "empty cart",
+    "view": "view cart"
+  }
+}

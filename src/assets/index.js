@@ -15,6 +15,9 @@ import mastercard_icon from './images/icons/mastercard.svg'
 import wallet_icon from '../assets/images/icons/wallet.png'
 import auth_banner from './images/auth/auth_banner.jpg'
 import zalo_icon from './images/icons/zalo.svg'
+import banner_1 from './images/banner/banner-1.jpg'
+import banner_2 from './images/banner/banner-2.jpg'
+import banner_3 from './images/banner/banner-3.jpg'
 
 export const images = {
   logo_light,
@@ -33,5 +36,8 @@ export const images = {
   mastercard_icon,
   wallet_icon,
   auth_banner,
-  zalo_icon
+  zalo_icon,
+  banner_1,
+  banner_2,
+  banner_3,
 }

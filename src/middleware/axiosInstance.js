@@ -65,19 +65,19 @@ authorizedAxiosInstance.interceptors.response.use(
       if (!refreshTokenPromise) {
         refreshTokenPromise = refreshTokenAPI()
           .then((data) => {
-            return data?.accessToken // Already in httpOnly (Backend service)
+            return data?.accessToken
+            // Already in httpOnly (Backend service)
           })
           .catch(() => {
-            axiosReduxStore.dispatch(logoutUserAPI(false)) // Any another error -> logout force !
+            axiosReduxStore.dispatch(logoutUserAPI(false))
+            // Any another error -> logout force !
           })
           .finally(() => {
-            refreshTokenPromise = null // Reset refreshTokenPromise to null after
+            refreshTokenPromise = null
+            // Reset refreshTokenPromise to null after
           })
       }
       return refreshTokenPromise.then((accessToken) => {
-        // Attension: save accessToken in localStorage if you want to use it in other place
-        // (in this case, we have added it to httpOnly via backend service)
-
         // Recall error api cause by 410 GONE (needed refreshToKen)
         return authorizedAxiosInstance(originalRequests)
       })

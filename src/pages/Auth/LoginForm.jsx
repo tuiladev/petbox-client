@@ -2,7 +2,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useForm } from 'react-hook-form'
-import i18n from '~/config/i18n'
+import i18n from '~/config/i18nConfig'
 import { useTranslation } from 'react-i18next'
 
 // Redux & hooks

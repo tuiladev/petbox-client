@@ -16,10 +16,8 @@ const Button = ({
   const variantClasses = {
     outlined:
       'bg-white border-[1.5px] text-primary border-primary hover:bg-primary hover:border-primary hover:text-white',
-    filled:
-      'bg-sky-700 overflow-hidden text-white relative hover:text-white z-10 hover:opacity-80',
-    logout:
-      'bg-white border-2 text-red-500 border-red-500 hover:bg-red-500 hover:text-white'
+    filled: 'bg-primary overflow-hidden text-white relative hover:text-white z-10 hover:opacity-80',
+    logout: 'bg-white border-2 text-red-500 border-red-500 hover:bg-red-500 hover:text-white'
   }
 
   const sizeClasses = {
@@ -41,13 +39,7 @@ const Button = ({
     .join(' ')
 
   return (
-    <button
-      className={buttonClasses}
-      onClick={onClick}
-      type={type}
-      disabled={disabled}
-      {...props}
-    >
+    <button className={buttonClasses} onClick={onClick} type={type} disabled={disabled} {...props}>
       {children}
     </button>
   )

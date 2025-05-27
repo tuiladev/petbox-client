@@ -1,4 +1,4 @@
-import { getProfileMenu } from '~/data/mockdata'
+import { getProfileMenu } from '~/config/menuConfig'
 
 const Sidebar = ({ activeTab, onTabChange, className }) => {
   const profileMenuItems = getProfileMenu()

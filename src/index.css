@@ -12,13 +12,17 @@
   --font-secondary: 'Baloo 2', sans-serif;
 
   /* Colors */
-  --color-primary: oklch(50% 0.134 242.749);
+  --color-primary: oklch(0.51 0.15 251.83);
   --color-secondary: #ff7f3e;
   --color-base-content: oklch(37.2% 0.044 257.287);
 
   /* Gradients */
   --gradient-yellow: linear-gradient(90deg, #ffffff 0%, #FFECCO 47%, #ffc132 100%);
-  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, oklch(60% 0.12 242.749) 100%);
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    oklch(60% 0.12 242.749) 100%
+  );
 
   /* Animation Presets */
   --animate-slideInTop: slideInTop 1s ease-out forwards;
@@ -79,11 +83,15 @@ body {
 }
 
 .title-2xl {
-  @apply font-secondary text-[1.625rem] leading-tight font-bold md:text-3xl;
+  @apply font-secondary text-[1.625rem] leading-tight font-semibold md:text-3xl;
 }
 
 .title-3xl {
-  @apply font-secondary text-3xl leading-tight font-bold md:text-4xl;
+  @apply font-secondary text-3xl leading-tight font-semibold md:text-4xl;
+}
+
+.title-4xl {
+  @apply font-secondary text-4xl leading-tight font-bold md:text-5xl;
 }
 
 /* =================== 5. Animations =================== */

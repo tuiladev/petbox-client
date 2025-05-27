@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectCurrentUser } from '~/redux/user/userSlice'
 import AuthLayout from '~/layout/AuthLayout'
@@ -8,17 +8,22 @@ import MainLayout from '~/layout/MainLayout'
 // Lazy-load page components
 const Home = lazy(() => import('~/pages/Home'))
 const About = lazy(() => import('~/pages/About'))
+const Shop = lazy(() => import('~/pages/Shop'))
 const Blog = lazy(() => import('~/pages/Blog'))
 const Article = lazy(() => import('~/pages/Article'))
 const Contact = lazy(() => import('~/pages/Contact'))
 const Services = lazy(() => import('~/pages/Services'))
-const Shop = lazy(() => import('~/pages/Shop'))
 const NotFound = lazy(() => import('~/pages/NotFound'))
 const Profile = lazy(() => import('~/pages/Profile/_id'))
 const LoginForm = lazy(() => import('~/pages/Auth/LoginForm'))
 const RegisterForm = lazy(() => import('~/pages/Auth/Register/RegisterForm'))
 const ResetPasswordForm = lazy(() => import('~/pages/Auth/ResetPasswordForm'))
 const AccountVerify = lazy(() => import('~/components/Auth/AccountVerify'))
+const CartPage = lazy(() => import('~/pages/CartPage'))
+
+// Products
+const ProductDetail = lazy(() => import('~/pages/ProductDetail'))
+import { productDetailLoader } from '~/pages/ProductDetail'
 
 // ProtectedRoute wrapper
 export const ProtectedRoute = ({ children }) => {
@@ -26,7 +31,6 @@ export const ProtectedRoute = ({ children }) => {
   return user ? children : <Navigate to='/login' replace />
 }
 
-// Unified routes array
 export const routes = [
   {
     path: '/',
@@ -41,23 +45,43 @@ export const routes = [
   {
     path: '/',
     element: <MainLayout />,
+    handle: { breadcrumb: 'navigation.home' },
     children: [
       { index: true, element: <Home /> },
-      { path: 'about', element: <About /> },
+      { path: 'about', element: <About />, handle: { breadcrumb: 'navigation.about' } },
+      {
+        path: 'shop',
+        element: <Outlet />,
+        handle: { breadcrumb: 'navigation.allProducts' },
+        children: [
+          { index: true, element: <Shop /> },
+          {
+            path: ':productId',
+            element: <ProductDetail />,
+            loader: productDetailLoader,
+            handle: { breadcrumb: ({ data }) => data.name }
+          }
+        ]
+      },
+      { path: 'cart-view', element: <CartPage /> },
       {
         path: 'account/:tabName',
         element: (
           <ProtectedRoute>
             <Profile />
           </ProtectedRoute>
-        )
+        ),
+        handle: { breadcrumb: 'userMenu.account' }
       },
-      { path: 'blog', element: <Blog /> },
-      { path: 'blog/:articleID', element: <Article /> },
-      { path: 'contact', element: <Contact /> },
-      { path: 'services', element: <Services /> },
-      { path: 'shop', element: <Shop /> },
-      { path: '*', element: <NotFound /> }
+      { path: 'blog', element: <Blog />, handle: { breadcrumb: 'navigation.blog' } },
+      {
+        path: 'blog/:articleID',
+        element: <Article />,
+        handle: { breadcrumb: 'navigation.blog' }
+      },
+      { path: 'contact', element: <Contact />, handle: { breadcrumb: 'navigation.contact' } },
+      { path: 'services', element: <Services />, handle: { breadcrumb: 'navigation.services' } },
+      { path: '*', element: <NotFound />, handle: { breadcrumb: 'navigation.notFound' } }
     ]
   }
 ]

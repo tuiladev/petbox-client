@@ -1,0 +1,18 @@
+{
+  "review": "Nhận xét",
+  "type": "Chọn loại:",
+  "addToCart": "Thêm vào giỏ hàng",
+  "addToWishList": "Yêu thích",
+  "buyItNow": "Mua ngay",
+  "quantity": "Số lượng:",
+  "soldOut": "Hết hàng",
+  "product": "sản phẩm",
+  "stock": "Kho",
+  "share": "chia sẻ",
+  "description": "chi tiết sản phẩm",
+  "cart":{
+    "name": "giỏ hàng",
+    "empty": "giỏ hàng trống",
+    "view": "xem giỏ hàng"
+  }
+}

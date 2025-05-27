@@ -3,9 +3,13 @@ import react from '@vitejs/plugin-react-swc'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  server: {
+    port: 3000,
+    open: true
+  },
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: [{ find: '~', replacement: '/src' }],
-    extensions: ['._id.jsx', '.jsx', '.js']
+    extensions: ['.jsx', '.js']
   }
 })

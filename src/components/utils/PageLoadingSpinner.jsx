@@ -11,4 +11,4 @@ const PageLoadingSpinner = ({ caption = '' }) => {
   )
 }
 
-export default PageLoadingSpinner 
+export default PageLoadingSpinner

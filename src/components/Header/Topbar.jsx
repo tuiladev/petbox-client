@@ -1,25 +1,25 @@
-import { getStoreInfo, getSocials } from '~/data/mockdata.js'
+import { getStoreInfo, getSocials } from '~/config/siteConfig'
 import IconLink from '~/components/common/IconLink.jsx'
 import LanguageSwitcher from '../utils/LanguageSwitcher'
 
 const Topbar = ({ className = '', showOnMobile = false }) => {
-  const storeInfoData = getStoreInfo()
-  const socialsData = getSocials()
+  const storeInfo = getStoreInfo()
+  const socials = getSocials()
   return (
     <div className={`bg-primary ${showOnMobile ? 'block' : 'hidden sm:block'} ${className}`}>
-      <div className='l-container flex flex-wrap items-center justify-center gap-y-4 py-2 text-white md:justify-between'>
+      <div className='l-container flex flex-wrap items-center justify-center gap-y-4 py-2! text-white md:justify-between'>
         {/* Left Side */}
         <div className='flex items-center gap-x-4'>
           {/* Language Switcher */}
           <LanguageSwitcher />
 
           {/* Address */}
-          {storeInfoData.length > 0 && (
+          {storeInfo.length > 0 && (
             <IconLink
-              icon={storeInfoData[0].icon}
-              text={storeInfoData[0].text}
-              url={storeInfoData[0].url}
-              internal={storeInfoData[0].url.startsWith('/')}
+              icon={storeInfo[0].icon}
+              text={storeInfo[0].text}
+              url={storeInfo[0].url}
+              internal={storeInfo[0].url.startsWith('/')}
               iconClassName='text-white translate-y-0.5'
               textClassName='hidden sm:inline'
             />
@@ -30,11 +30,11 @@ const Topbar = ({ className = '', showOnMobile = false }) => {
           </span>
 
           {/* Contact */}
-          {storeInfoData.length > 1 && (
+          {storeInfo.length > 1 && (
             <IconLink
-              icon={storeInfoData[1].icon}
-              text={storeInfoData[1].text}
-              url={storeInfoData[1].url}
+              icon={storeInfo[1].icon}
+              text={storeInfo[1].text}
+              url={storeInfo[1].url}
               iconClassName='text-white translate-y-0.5'
               textClassName='hidden sm:inline'
             />
@@ -44,10 +44,10 @@ const Topbar = ({ className = '', showOnMobile = false }) => {
         {/* Right Side */}
         <div className='flex items-center gap-x-4 text-white'>
           {/* Business Hour */}
-          {storeInfoData.length > 2 && (
+          {storeInfo.length > 2 && (
             <IconLink
-              icon={storeInfoData[2].icon}
-              text={storeInfoData[2].text}
+              icon={storeInfo[2].icon}
+              text={storeInfo[2].text}
               iconClassName='translate-y-0.5'
               textClassName='hidden sm:inline'
             />
@@ -60,7 +60,7 @@ const Topbar = ({ className = '', showOnMobile = false }) => {
 
           {/* Social Media */}
           <div className='flex items-center gap-x-3'>
-            {socialsData.map((social, index) => (
+            {socials.map((social, index) => (
               <IconLink
                 key={index}
                 icon={social.icon}

@@ -1,3 +1,21 @@
 {
-  "slogan": "Every pet deserves wonderful things!"
+  "slogan": "Every pet deserves wonderful things!",
+  "title": "Pet Healthy Food & Accessories",
+  "subtitle": "Delicious Food Made With Love",
+  "button": "Shop Now",
+  "appointment": "Make Appointment",
+  "sale": "Sale off",
+  "forMembership": "For our membership",
+  "forYour": "For Your",
+  "onlineAppointment": "Pet Basket",
+  "benefit": {
+    "freeShipping": "Free Shipping",
+    "freeShippingDesc": "for orders over $200",
+    "moneyGuarantee": "Money Guarantee",
+    "moneyGuaranteeDesc": "30 days for an exchange",
+    "returnPolicy": "100% Return Policy",
+    "returnPolicyDesc": "Any Time Return Product",
+    "bestDeal": "Best Deal Offer",
+    "bestDealDesc": "Grab Your Gear and Go"
+  }
 }
