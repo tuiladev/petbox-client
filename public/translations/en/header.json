@@ -10,9 +10,15 @@
   },
   "userMenu": {
     "account": "Account",
+    "accountInfo": "Account Info",
+    "myPets": "My Pets",
+    "myOrders": "My Orders",
+    "favoriteProducts": "Wishlist",
+    "shippingAddress": "Address",
     "shopping": "Shopping",
     "favorites": "Favorites",
-    "cart": "Cart"
+    "cart": "Cart",
+    "logout": "Log out"
   },
   "profileMenu": {
     "personalInfo": "Personal Info",

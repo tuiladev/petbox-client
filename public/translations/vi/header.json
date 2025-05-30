@@ -10,9 +10,15 @@
   },
   "userMenu": {
     "account": "Tài khoản",
+    "accountInfo": "Thông tin tài khoản",
+    "myPets": "Danh sách thú cưng",
+    "myOrders": "Đơn hàng",
+    "favoriteProducts": "Sản phẩm yêu thích",
+    "shippingAddress": "Địa chỉ giao hàng",
     "shopping": "Mua sắm",
     "favorites": "Yêu thích",
-    "cart": "Giỏ hàng"
+    "cart": "Giỏ hàng",
+    "logout": "Đăng xuất"
   },
   "profileMenu": {
     "personalInfo": "Thông tin cá nhân",
