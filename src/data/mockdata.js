@@ -8,7 +8,7 @@ const t = (key) => i18n.t(`mockdata:${key}`)
  */
 export const getProducts = () => [
   {
-    url: '/product/1',
+    url: '/shop/product/thuc-an-cho-meo-con-royal-canin-kitten',
     name: t('products.product1'),
     normalPrice: 92000,
     discountPrice: 59000,

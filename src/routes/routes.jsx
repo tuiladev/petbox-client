@@ -23,7 +23,7 @@ const CartPage = lazy(() => import('~/pages/CartPage'))
 
 // Products
 const ProductDetail = lazy(() => import('~/pages/ProductDetail'))
-import { productDetailLoader } from '~/pages/ProductDetail'
+import { productLoader } from '~/pages/ProductDetail'
 
 // ProtectedRoute wrapper
 export const ProtectedRoute = ({ children }) => {
@@ -56,9 +56,9 @@ export const routes = [
         children: [
           { index: true, element: <Shop /> },
           {
-            path: ':productId',
+            path: 'product/:slug',
             element: <ProductDetail />,
-            loader: productDetailLoader,
+            loader: productLoader,
             handle: { breadcrumb: ({ data }) => data.name }
           }
         ]
