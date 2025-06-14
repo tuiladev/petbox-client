@@ -145,7 +145,7 @@ const MenuItem = ({ item, onClick }) => {
 const MenuGroup = ({ group, onLogout }) => {
   return (
     <>
-      {group.title && <p className='title-md text-primary px-4 py-3 uppercase'>{group.title}</p>}
+      {group.title && <p className='title-base text-primary px-4 py-3 uppercase'>{group.title}</p>}
       {group.items.map((item) => (
         <MenuItem key={item.url || item.text} item={item} onClick={onLogout} />
       ))}

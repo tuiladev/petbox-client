@@ -1,42 +1,44 @@
 // Libraries
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 
 // Redux & hooks
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { resetPasswordAPI } from '~/redux/user/userService'
-import { resetRegistration, updateRegistrationData } from '~/redux/user/userSlice'
+import {
+  resetRegistration,
+  selectRegistrationData,
+  updateRegistrationData
+} from '~/redux/user/userSlice'
 
 // Components
 import Button from '~/components/common/Button'
-import FloatingInput from '~/components/utils/FloatingInput'
+import FloatingLabel from '~/components/utils/FloatingLabel'
 
 // Utils
 import { PASSWORD_RULE } from '~/utils/validators'
 
 const PasswordForm = () => {
+  // Get form state and reject illegal request
+  const formData = useSelector(selectRegistrationData)
+  useEffect(() => {
+    if (!formData.isVerified) navigate('/register')
+  }, [formData.isVerified])
+
+  // Translation file
   const { t } = useTranslation(['auth', 'formLabel', 'validationMessage'])
+
   const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  // State and constants
   const [isPasswordTouched, setIsPasswordTouched] = useState(false)
-
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors, isValid }
-  } = useForm({
-    defaultValues: ''
-  })
-
   const isResetPassword = location.pathname.startsWith('/reset-password')
   const password = watch('password', '')
-
   const passwordConditions = [
     {
       condition: password.length >= 8,
@@ -60,6 +62,22 @@ const PasswordForm = () => {
     }
   ]
 
+  // Show condition hint
+  const handlePasswordFocus = () => {
+    setIsPasswordTouched(true)
+  }
+
+  // useForm set up
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+  } = useForm({
+    defaultValues: ''
+  })
+
+  // Handler on submit
   const onSubmit = async (data) => {
     if (!isResetPassword) {
       dispatch(updateRegistrationData({ password: data.password }))
@@ -78,38 +96,36 @@ const PasswordForm = () => {
     }
   }
 
-  const handlePasswordFocus = () => {
-    setIsPasswordTouched(true)
-  }
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className='space-y-5'>
-        <FloatingInput
+        <FloatingLabel
           type='password'
           name='password'
           label={t('formLabel:password')}
+          size='md'
           variant='outlined'
-          autoFocus
-          error={errors.password?.message}
-          onFocus={handlePasswordFocus}
+          error={errors?.password?.message}
           {...register('password', {
-            required: t('validationMessage:required'),
+            required: 'required',
             pattern: {
               value: PASSWORD_RULE
             }
           })}
+          onFocus={handlePasswordFocus}
+          autoFocus
         />
 
-        <FloatingInput
+        <FloatingLabel
           type='password'
           name='confirmPassword'
           label={t('formLabel:confirmPassword')}
+          size='md'
           variant='outlined'
-          error={errors.confirmPassword?.message}
+          error={errors?.confirmPassword?.message}
           {...register('confirmPassword', {
-            required: t('validationMessage:required'),
-            validate: (value) => value === password || t('validationMessage:passwordMismatch')
+            required: 'required',
+            validate: (value) => value === password || 'passwordMismatch'
           })}
         />
 
@@ -131,7 +147,8 @@ const PasswordForm = () => {
 
       <Button
         type='submit'
-        className='interceptor-loading text-primary mt-8 w-full rounded-full bg-cyan-600!'
+        size='md'
+        className='interceptor-loading text-primary mt-8 !min-h-13 w-full !bg-cyan-600 hover:!border-cyan-500 hover:!bg-cyan-500'
       >
         {isResetPassword ? t('auth:resetPassword.resetButton') : t('formLabel:continue')}
       </Button>

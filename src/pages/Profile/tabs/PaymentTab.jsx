@@ -31,11 +31,7 @@ const PaymentCard = ({ method, onDelete, onSetDefault }) => {
       <div className='flex justify-between'>
         {/* Logo thẻ */}
         <div className='flex items-center gap-4'>
-          <img
-            src={renderCardLogo()}
-            alt=''
-            className='aspect-square h-8 w-8'
-          />
+          <img src={renderCardLogo()} alt='' className='aspect-square h-8 w-8' />
           <span>{method.type}</span>
         </div>
 
@@ -149,9 +145,7 @@ const PaymentTab = ({ user }) => {
             ))}
         </div>
       ) : (
-        <p className='text-center text-gray-500'>
-          Bạn chưa có phương thức thanh toán nào
-        </p>
+        <p className='text-center text-gray-500'>Bạn chưa có phương thức thanh toán nào</p>
       )}
       <Button onClick={openModal} variant='filled' size='md' type='button'>
         + Thêm thẻ/ví

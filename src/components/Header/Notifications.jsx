@@ -49,7 +49,7 @@ const Notifications = () => {
         contentProps={dropdownState.getContentProps()}
         isOpen={dropdownState.isOpen}
       >
-        <div className='title-xl text-primary border-b border-gray-200 p-4'>Thông báo</div>
+        <div className='title-lg text-primary border-b border-gray-200 p-4'>Thông báo</div>
 
         {notificationsList && notificationsList.length > 0 ? (
           <ul>

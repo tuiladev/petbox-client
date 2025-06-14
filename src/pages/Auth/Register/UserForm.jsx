@@ -1,136 +1,226 @@
+// Libraries
+import React, { useMemo } from 'react'
 import { useNavigate } from 'react-router'
-import { useForm, Controller } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+import { useForm, Controller, useWatch } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import dayjs from 'dayjs'
+
+// Redux & hooks
 import { useDispatch, useSelector } from 'react-redux'
 import {
   selectRegistrationData,
-  updateRegistrationData,
   registerUserAPI,
   resetRegistration,
   loginUserAPI
 } from '~/redux/user/userSlice'
-import { useTranslation } from 'react-i18next'
+
+// Components
 import Button from '~/components/common/Button'
-import FloatingInput from '~/components/utils/FloatingInput'
-import DatePickerInput from '~/components/utils/DatePickerInput'
-import { normalizePhoneNumber } from '~/utils/formatters'
-import { format } from 'date-fns'
+import FloatingLabel from '~/components/utils/FloatingLabel'
+import DatePickerDialog from '~/components/DatePickerDialog'
+import { EMAIL_RULE, NAME_RULE, PHONE_RULE } from '~/utils/validators'
 
-function parseDate(str) {
-  if (!str) return null
-  const [d, m, y] = str.split('auth:/')
-  return new Date(+y, +m - 1, +d)
-}
+// Utils
+import { formatDate, parseDate, maskDateInput } from '~/utils/formatters'
 
-const getInitialFormValues = (formData) => ({
-  fullName: formData.fullName || '',
-  birthDate: formData.birthDate ? parseDate(formData.birthDate) : null,
-  gender: formData.gender || ''
-})
-
-const UserForm = () => {
+// MAIN COMPONENT
+export default function UserForm() {
+  // Import translation file
   const { t } = useTranslation(['auth', 'formLabel', 'validationMessage'])
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const formData = useSelector(selectRegistrationData)
-  const initialValues = getInitialFormValues(formData)
 
+  // Determine which fields to show
+  const formData = useSelector(selectRegistrationData)
+  const hasEmail = Boolean(formData.email)
+  const hasPhone = Boolean(formData.phone)
+
+  // useForm hook setup
   const {
-    register,
-    handleSubmit,
     control,
-    watch,
-    formState: { errors, isSubmitting }
+    register,
+    setFocus,
+    handleSubmit,
+    formState: { errors, isSubmitting, touchedFields }
   } = useForm({
-    defaultValues: initialValues,
-    mode: 'onBlur'
+    mode: 'onTouched',
+    defaultValues: {
+      fullName: '',
+      email: '',
+      phone: '',
+      birthDate: ''
+    }
   })
 
-  const genderValue = watch('gender', '')
+  /* ---------- Email helper ---------- */
+  const emailValue = useWatch({ control, name: 'email' })
+  const emailHelper = useMemo(() => {
+    if (touchedFields.email && emailValue === '')
+      return { msg: t('formLabel:emailForInvoice'), kind: 'info' }
+    return null
+  }, [touchedFields.email, emailValue])
 
-  const onSubmit = async (data) => {
-    const registerData = {
-      ...data,
-      password: formData.password
+  /* ---------- On Errors ---------- */
+  const onError = (formErrors) => {
+    const msgMap = {
+      fullName: t('validationMessage:requiredName'),
+      birthDate: t('validationMessage:requiredBirthDate'),
+      email: t('validationMessage:requiredEmail'),
+      phone: t('validationMessage:requiredPhone')
     }
+    for (const key of Object.keys(formErrors)) {
+      if (formErrors[key]?.type === 'required') {
+        toast.error(msgMap[key])
+        setFocus(key)
+        return
+      }
+      return
+    }
+  }
+
+  /* ---------- On Submit ---------- */
+  const onSubmit = async (data) => {
+    const registerData = { ...data, password: formData.password }
     try {
       await dispatch(registerUserAPI(registerData)).unwrap()
       await dispatch(
         loginUserAPI({
-          phoneNumber: normalizePhoneNumber(formData.phoneNumber),
+          phone: formData.phone,
           password: formData.password
         })
       ).unwrap()
       dispatch(resetRegistration())
       navigate('/')
-    } catch (err) {
+    } catch {
       dispatch(resetRegistration())
       navigate('/register')
     }
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
       <div className='space-y-5'>
         {/* Full Name */}
-        <FloatingInput
+        <FloatingLabel
           type='text'
-          name='fullName'
           label={t('formLabel:fullName')}
+          size='md'
           variant='outlined'
+          error={errors?.fullName?.message}
+          {...register('fullName', {
+            required: true,
+            pattern: {
+              value: NAME_RULE,
+              message: 'invalidName'
+            }
+          })}
           autoFocus
-          error={errors.fullName?.message}
-          {...register('fullName', { required: t('validationMessage:required') })}
         />
+
+        {/* Email */}
+        {!hasEmail && (
+          <FloatingLabel
+            type='email'
+            label={t('formLabel:email')}
+            size='md'
+            variant='outlined'
+            helper={emailHelper}
+            error={errors?.email?.message}
+            {...register('email', {
+              required: true,
+              pattern: { value: EMAIL_RULE, message: t('formLabel:invalidEmail') }
+            })}
+          />
+        )}
+
+        {/* Phone */}
+        {!hasPhone && (
+          <FloatingLabel
+            type='text'
+            label={t('formLabel:phone')}
+            size='md'
+            variant='outlined'
+            error={errors?.phone?.message}
+            {...register('phone', {
+              required: true,
+              pattern: { value: PHONE_RULE, message: t('validationMessage:invalidPhone') }
+            })}
+          />
+        )}
 
         {/* Birth Date */}
         <Controller
-          name='birthDate'
           control={control}
+          name='birthDate'
           rules={{
-            required: t('validationMessage:required'),
-            validate: (date) =>
-              (date instanceof Date && !isNaN(date)) || t('auth:Ngày sinh không hợp lệ!')
+            required: true,
+            validate: (value) => {
+              const date = dayjs(value, 'DD/MM/YYYY', true)
+              if (!date.isValid()) return 'invalidBirthDate'
+              const age = dayjs().diff(date, 'year')
+              if (age < 16 || age >= 100) return 'invalidBirthDate'
+              return true
+            }
           }}
-          render={({ field: { value, onChange } }) => (
-            <DatePickerInput
-              name='birthDate'
-              value={value}
-              onChange={onChange}
-              error={errors.birthDate?.message}
-              placeholder={t('formLabel:birthDate')}
-            />
+          render={({ field, fieldState }) => (
+            <FloatingLabel
+              {...field}
+              value={field.value}
+              onChange={(e) => field.onChange(maskDateInput(e.target.value))}
+              onKeyDown={(e) => {
+                if (e.key === 'Backspace') {
+                  field.onChange('')
+                  e.preventDefault()
+                }
+              }}
+              type='text'
+              label={t('formLabel:birthDate')}
+              size='md'
+              variant='outlined'
+              error={fieldState.error?.message}
+            >
+              <DatePickerDialog
+                selectedDate={parseDate(field.value)}
+                onSelect={(date) => field.onChange(formatDate(date))}
+                trigger={
+                  <button
+                    type='button'
+                    tabIndex={-1}
+                    className='absolute top-1/2 right-4 flex size-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full transition-all duration-200 hover:bg-gray-100'
+                    aria-label='Chọn ngày sinh'
+                  >
+                    <i className='fi fi-rr-calendar-day translate-y-0.5 text-lg' />
+                  </button>
+                }
+              />
+            </FloatingLabel>
           )}
         />
-
-        {/* Gender */}
-        <div className='relative'>
-          <select
-            id='gender'
-            className={`peer block w-full appearance-none rounded-full border-1 border-gray-300 px-6 py-4 pr-10 focus:ring-0 focus:outline-none ${
-              errors.gender ? 'border-red-500' : ''
-            } ${!genderValue ? 'text-gray-500' : 'text-base-content'}`}
-            {...register('gender', { required: t('formLabel:required') })}
-            defaultValue=''
-          >
-            <option value='' disabled>
-              {t('formLabel:selectGender')}
-            </option>
-            <option value='male'>{t('formLabel:male')}</option>
-            <option value='female'>{t('formLabel:female')}</option>
-            <option value='other'>{t('formLabel:other')}</option>
-          </select>
-          {errors.gender && <p className='mt-1 text-sm text-red-500'>{errors.gender.message}</p>}
-        </div>
+        <p className='px-4 leading-normal'>
+          {t('formLabel:agreeTo')} <br />
+          <a href='#' className='font-semibold text-cyan-600'>
+            {t('formLabel:termOfUse')}{' '}
+          </a>
+          {t('formLabel:and')} <br />
+          <a href='#' className='font-semibold text-cyan-600'>
+            {t('formLabel:privacyPolicy')}
+          </a>
+        </p>
       </div>
 
+      {/* Actions */}
       <div className='mt-8 flex flex-col gap-3'>
         <Button
           type='submit'
-          className='interceptor-loading text-primary w-full rounded-full bg-cyan-600!'
+          size='md'
+          className='interceptor-loading text-primary !min-h-13 w-full rounded-full bg-cyan-600! hover:!border-cyan-500 hover:!bg-cyan-500'
           disabled={isSubmitting}
         >
           {isSubmitting ? t('auth:register.processing') : t('auth:register.completeButton')}
         </Button>
+
         <div className='mt-3 text-center'>
           <button
             type='button'
@@ -144,4 +234,3 @@ const UserForm = () => {
     </form>
   )
 }
-export default UserForm

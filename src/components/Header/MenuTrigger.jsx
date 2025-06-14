@@ -2,12 +2,9 @@ import { DropdownTrigger } from '~/components/common/Dropdown'
 
 const MenuTrigger = ({ dropdownState, className = '' }) => {
   return (
-    <DropdownTrigger
-      triggerProps={dropdownState.getTriggerProps()}
-      className={className}
-    >
+    <DropdownTrigger triggerProps={dropdownState.getTriggerProps()} className={className}>
       <button
-        className={`title-xl ${dropdownState.isOpen ? 'text-secondary' : 'text-primary'} hidden cursor-pointer rounded-sm focus:outline-none md:block`}
+        className={`title-lg ${dropdownState.isOpen ? 'text-secondary' : 'text-primary'} hidden cursor-pointer rounded-sm focus:outline-none md:block`}
       >
         Góc của Sen
         <i

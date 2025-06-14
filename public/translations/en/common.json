@@ -1,4 +1,32 @@
 {
   "welcome": "Welcome to PetBox",
-  "login": "Login"
+  "login": "Login",
+  "contact": "Contact",
+  "follow": "Follow us",
+  "workingHour": "Open from 09:00 - 21:00",
+  "hotline": "Hotline: 1900 8198",
+  "category": "Category",
+  "service": "Service",
+  "categories": {
+    "food": "Food",
+    "beds": "Beds",
+    "cleaning": "Cleaning Supplies",
+    "accessories": "Accessories"
+  },
+  "helps": {
+    "support": "Support",
+    "terms": "Terms",
+    "policy": "Policy",
+    "career": "Careers"
+  },
+  "services": {
+    "hotel": "Pet Hotel",
+    "spa": "Spa & Grooming",
+    "medical": "Medical Care",
+    "sterilization": "Sterilization",
+    "homeCare": "Home Care"
+  },
+  "date": {
+    "month": "Month"
+  }
 }

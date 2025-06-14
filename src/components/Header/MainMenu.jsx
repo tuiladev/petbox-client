@@ -18,7 +18,7 @@ const MainMenu = ({ dropdownState, className = '' }) => {
       <MainMenuContent>
         {/* Blogs */}
         <div className='col-span-1 lg:col-span-2'>
-          <p className='title-xl text-primary mb-6 capitalize'>Tin mới cập nhật</p>
+          <p className='title-lg text-primary mb-6 capitalize'>Tin mới cập nhật</p>
           <ul className='mb-6 grid grid-cols-1 gap-6 md:grid-cols-2'>
             {posts.map((post, index) => (
               <PostCard key={post.url || index} post={post} />
@@ -77,7 +77,9 @@ const PostCard = ({ post }) => (
         />
       </div>
       <p className='text-sm'>{post.time}</p>
-      <p className='title-md group-hover:text-secondary line-clamp-2 text-gray-700'>{post.title}</p>
+      <p className='title-base group-hover:text-secondary line-clamp-2 text-gray-700'>
+        {post.title}
+      </p>
       <p className='line-clamp-3 text-sm'>{post.desc}</p>
     </a>
   </li>

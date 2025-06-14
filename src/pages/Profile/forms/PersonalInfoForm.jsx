@@ -19,7 +19,7 @@ const PersonalInfoForm = ({ user }) => {
   const initialFormData = {
     fullName: user?.fullName,
     email: maskSensitiveInfo(user?.email),
-    phoneNumber: maskSensitiveInfo(user?.phoneNumber)
+    phone: maskSensitiveInfo(user?.phone)
   }
 
   // Config useForm hook
@@ -67,11 +67,7 @@ const PersonalInfoForm = ({ user }) => {
 
       <UserInput label='Email' register={register('email')} disabled={true} />
 
-      <UserInput
-        label='Số điện thoại'
-        register={register('phoneNumber')}
-        disabled={true}
-      />
+      <UserInput label='Số điện thoại' register={register('phone')} disabled={true} />
 
       <Button
         children={<span>Lưu Thay Đổi</span>}

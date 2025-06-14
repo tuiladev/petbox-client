@@ -132,7 +132,7 @@ const SearchHistorySection = ({
   <div className='mb-8'>
     <div className='text-primary mb-3 flex items-center justify-between'>
       <div className='flex items-center gap-x-2'>
-        <p className='title-xl'>Lịch sử tìm kiếm</p>
+        <p className='title-lg'>Lịch sử tìm kiếm</p>
         <i className='fi fi-rr-time-past translate-y-0.5 text-xl'></i>
       </div>
 
@@ -207,7 +207,7 @@ const KeywordButton = ({ keyword, onKeywordClick, highlight = '' }) => {
 const HotSearchSection = ({ keywords, onKeywordClick }) => (
   <div className='mb-8'>
     <div className='text-primary mb-3 flex items-center gap-x-2'>
-      <p className='title-xl'>Tìm kiếm nổi bật</p>
+      <p className='title-lg'>Tìm kiếm nổi bật</p>
       <i className='fi fi-rr-arrow-trend-up translate-y-0.5 text-2xl'></i>
     </div>
 
@@ -233,14 +233,14 @@ const Product = ({ product }) => {
         loading='lazy'
       />
       <div className='flex grow flex-col justify-between'>
-        <p className='title-md text-primary mb-2 line-clamp-3 font-medium! md:line-clamp-2'>
+        <p className='title-base text-primary mb-2 line-clamp-3 font-medium! md:line-clamp-2'>
           {product.name}
         </p>
         <div className='flex items-center justify-end gap-x-2'>
           <p className='text-primary/60 title-sm hidden line-through md:block'>
             {product.normalPrice.toLocaleString()}đ
           </p>
-          <p className='text-secondary title-xl'>{product.discountPrice.toLocaleString()}đ</p>
+          <p className='text-secondary title-lg'>{product.discountPrice.toLocaleString()}đ</p>
         </div>
       </div>
     </a>
@@ -253,7 +253,7 @@ const SuggestedProductsSection = ({ products }) => {
   return (
     <div>
       <div className='text-primary mb-3 flex justify-between'>
-        <p className='title-xl'>Hàng mới - Giá tốt</p>
+        <p className='title-lg'>Hàng mới - Giá tốt</p>
         <a href='#' className='hover:text-secondary transition duration-300 ease-in-out'>
           Xem tất cả
           <i className='fi fi-rr-arrow-circle-right ml-2 inline-block translate-y-0.5'></i>

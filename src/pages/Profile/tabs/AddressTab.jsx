@@ -54,9 +54,7 @@ const AddressTab = ({ user }) => {
   const handleSaveAddress = (formData) => {
     if (selectedAddress) {
       setAddresses((prev) =>
-        prev.map((addr) =>
-          addr.id === selectedAddress.id ? { ...addr, ...formData } : addr
-        )
+        prev.map((addr) => (addr.id === selectedAddress.id ? { ...addr, ...formData } : addr))
       )
     } else {
       const newAddress = {
@@ -95,16 +93,9 @@ const AddressTab = ({ user }) => {
             ))}
         </div>
       ) : (
-        <p className='text-center text-gray-500'>
-          Bạn chưa có địa chỉ giao hàng nào
-        </p>
+        <p className='text-center text-gray-500'>Bạn chưa có địa chỉ giao hàng nào</p>
       )}
-      <Button
-        onClick={handleAddNewAddress}
-        variant='filled'
-        size='md'
-        type='button'
-      >
+      <Button onClick={handleAddNewAddress} variant='filled' size='md' type='button'>
         + Thêm địa chỉ
       </Button>
 
@@ -197,9 +188,7 @@ const AddressCard = ({ address, onUpdate, onDelete, onSetDefault }) => {
               Đặt làm mặc định
             </button>
           )}
-          {address.isDefault && (
-            <span className='text-sm font-bold text-amber-600'>Mặc định</span>
-          )}
+          {address.isDefault && <span className='text-sm font-bold text-amber-600'>Mặc định</span>}
         </div>
       </div>
     </div>

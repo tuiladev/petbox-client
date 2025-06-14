@@ -4,9 +4,8 @@
     "about": "About",
     "allProducts": "All Products",
     "blog": "Blog",
-    "contact": "Contact",
-    "services": "Services",
-    "notFound": "Not Found"
+    "notFound": "Not Found",
+    "login": "Login"
   },
   "userMenu": {
     "account": "Account",
@@ -28,10 +27,5 @@
     "notifications": "Notifications",
     "membership": "Membership",
     "orders": "Orders"
-  },
-  "storeInfo": {
-    "address": "123 Pet Street, Pet City",
-    "hotline": "19001919",
-    "openingHours": "Open 9:00 AM - 9:00 PM"
   }
 }

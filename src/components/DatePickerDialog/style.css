@@ -1,0 +1,76 @@
+@reference '../../index.css';
+
+.react-calendar {
+  @apply font-primary border-none p-2;
+}
+
+/* ======== NAVIGATION ======== */
+.react-calendar__navigation {
+  @apply mb-3 flex justify-between;
+  /* pre, label, next */
+  button {
+    @apply !grow-0 rounded-md p-3;
+    &:hover {
+      @apply !bg-primary/8 cursor-pointer;
+    }
+    &:focus {
+      @apply bg-transparent;
+    }
+  }
+}
+
+/* ======== Weekdays label: Mon Tue ... ======== */
+.react-calendar__month-view__weekdays {
+  @apply mb-1 text-center;
+  abbr {
+    @apply text-sm font-normal text-gray-500 normal-case no-underline;
+  }
+}
+.react-calendar__month-view__days__day--weekend {
+  abbr {
+    @apply text-base-content;
+  }
+}
+.react-calendar__month-view__days__day--neighboringMonth {
+  abbr {
+    @apply !text-gray-300;
+  }
+}
+
+/* ======== A DAY CELL ======== */
+.react-calendar__tile {
+  @apply flex-center aspect-square cursor-pointer rounded-full text-base;
+  &:hover {
+    @apply !bg-primary/8;
+  }
+}
+.react-calendar__tile--active {
+  @apply bg-cyan-600 !ring-0;
+  abbr {
+    @apply text-white;
+  }
+  &:hover {
+    @apply !bg-cyan-700;
+  }
+}
+
+/* ======== CURRENT DAY, MONTH, YEAR ======== */
+.react-calendar__tile--now {
+  @apply bg-transparent font-semibold text-cyan-700 ring-[1.5px] ring-cyan-600;
+}
+
+/* ======== VIEWS ======== */
+.react-calendar__month-view__days,
+.react-calendar__year-view__months,
+.react-calendar__decade-view__years,
+.react-calendar__century-view__decades {
+  @apply gap-y-1;
+  button {
+    @apply aspect-auto h-auto p-3;
+  }
+}
+.react-calendar__month-view__days {
+  button {
+    @apply aspect-square;
+  }
+}

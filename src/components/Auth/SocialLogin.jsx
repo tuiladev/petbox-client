@@ -33,17 +33,16 @@ const SocialLogin = ({ isRegistered }) => {
   }
 
   return (
-    <div className='flex w-full items-center justify-center gap-3'>
+    <div className='flex w-full items-center justify-center gap-4'>
       <button
         type='button'
         onClick={() => googleLogin()}
-        className={`group flex ${isRegistered ? '' : 'flex-1'} cursor-pointer items-center justify-center rounded-full p-3 outline-1 outline-gray-300 transition-all duration-300 ease-in-out hover:bg-sky-50 hover:outline-sky-500`}
+        className={`group min-h-13 flex-center w-1/2 cursor-pointer rounded-full px-4 py-2 outline-1 outline-gray-300 transition-all duration-300 ease-in-out hover:bg-sky-50 hover:outline-sky-500`}
       >
         <img
-          width='24'
-          height='24'
           src='https://img.icons8.com/color/48/google-logo.png'
           alt='google-logo'
+          className='size-7'
         />
         <span className={`${isRegistered ? 'hidden' : 'pl-2 group-hover:text-sky-600'}`}>
           Google
@@ -52,9 +51,9 @@ const SocialLogin = ({ isRegistered }) => {
       <button
         type='button'
         onClick={() => zaloLogin()}
-        className={`group flex ${isRegistered ? '' : 'flex-1'} cursor-pointer items-center justify-center rounded-full p-3 outline-1 outline-gray-300 transition-all duration-300 ease-in-out hover:bg-sky-50 hover:outline-sky-500`}
+        className={`group min-h-13 flex-center w-1/2 cursor-pointer rounded-full px-2 py-2 outline-1 outline-gray-300 transition-all duration-300 ease-in-out hover:bg-sky-50 hover:outline-sky-500`}
       >
-        <img width='24' height='24' src={images.zalo_icon} alt='google-logo' />
+        <img src={images.zalo_icon} alt='zalo-logo' className='size-7' />
         <span className={`${isRegistered ? 'hidden' : 'pl-2 group-hover:text-sky-600'}`}>Zalo</span>
       </button>
     </div>

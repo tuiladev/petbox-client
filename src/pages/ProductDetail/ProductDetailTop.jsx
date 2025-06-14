@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { formatCurrency } from '~/utils/formatters'
+// import { formatCurrency } from '~/utils/formatters'
 import { useTranslation } from 'react-i18next'
 import Button from '~/components/common/Button'
 import { Link } from 'react-router-dom'
@@ -59,7 +59,7 @@ const ProductDetailTop = ({ product }) => {
 
         {/* Price */}
         <div className='text-secondary text-4xl font-bold'>
-          {formatCurrency(selectedVariant.salePrice)}
+          {/* {formatCurrency(selectedVariant.salePrice)} */}
         </div>
       </div>
 

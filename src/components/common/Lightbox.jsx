@@ -35,7 +35,7 @@ function Lightbox({ images, startIndex, onClose, productName }) {
 
   return (
     <div
-      className='bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black/15'
+      className='bg-opacity-50 fixed inset-0 z-50 flex-center bg-black/15'
       onClick={onClose}
       ref={lightboxRef}
       tabIndex={-1}

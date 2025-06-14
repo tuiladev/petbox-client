@@ -76,8 +76,8 @@ const RegisterForm = () => {
       {/* Show StepBar for steps > 0 */}
       {currentStep > 0 && <StepBar steps={steps} currentStep={currentStep} />}
 
-      <FormContainer>
-        <h2 className='mb-10 text-center text-4xl font-bold text-cyan-600'>
+      <FormContainer className='space-y-9'>
+        <h2 className='mb-10 text-center text-[2rem] font-bold text-cyan-600'>
           {titles[currentStep]}
         </h2>
 

@@ -52,9 +52,7 @@ const NotificationItem = ({ notification, toggleRead }) => {
       <a
         href={notification.url}
         className={`flex items-center gap-x-4 rounded px-4 py-3 ${getBaseBg()} ${
-          notification.type === 'warning' && !isRead
-            ? 'border-l-4 border-red-500'
-            : ''
+          notification.type === 'warning' && !isRead ? 'border-l-4 border-red-500' : ''
         } ${getHoverEffect()} relative z-10 transition-all duration-300 ease-in-out hover:shadow-md`}
         onClick={(e) => {
           e.preventDefault()
@@ -72,10 +70,8 @@ const NotificationItem = ({ notification, toggleRead }) => {
         </div>
         <div className='flex-1'>
           <p
-            className={`title-md mb-2 line-clamp-2 font-medium! ${
-              notification.type === 'warning' && !isRead
-                ? 'text-red-500'
-                : 'text-zinc-700'
+            className={`title-base mb-2 line-clamp-2 font-medium! ${
+              notification.type === 'warning' && !isRead ? 'text-red-500' : 'text-zinc-700'
             } transition-colors duration-300`}
           >
             {notification.title}

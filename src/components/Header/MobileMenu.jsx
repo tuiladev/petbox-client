@@ -5,7 +5,7 @@ import { selectCurrentUser } from '~/redux/user/userSlice'
 import { useNavigate } from 'react-router-dom'
 import Button from '~/components/common/Button'
 import { DropdownContent } from '~/components/common/Dropdown'
-import { getStoreInfo } from '~/config/siteConfig'
+import { storeInfo } from '~/config/siteConfig'
 import Logo from '~/components/common/Logo'
 import { MenuItem } from './MenuList'
 import { UserCard } from './UserTools'
@@ -76,7 +76,7 @@ const MobileMenu = ({ dropdownState, className = '' }) => {
             Liên Hệ
           </p>
           <ul>
-            {getStoreInfo().map((item, index) => (
+            {storeInfo.map((item, index) => (
               <MenuItem key={index} category={item} className='text-primary border-none pl-8!' />
             ))}
           </ul>

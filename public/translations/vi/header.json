@@ -4,9 +4,8 @@
     "about": "Giới thiệu",
     "allProducts": "Tất cả sản phẩm",
     "blog": "Blog",
-    "contact": "Liên hệ",
-    "services": "Dịch vụ",
-    "notFound": "Không tìm thấy"
+    "notFound": "Không tìm thấy",
+    "login": "Đăng nhập"
   },
   "userMenu": {
     "account": "Tài khoản",
@@ -28,10 +27,5 @@
     "notifications": "Thông báo",
     "membership": "Thành viên",
     "orders": "Đơn hàng"
-  },
-  "storeInfo": {
-    "address": "55 Dân Chủ, Bình Thọ, Thủ Đức",
-    "hotline": "19001919",
-    "openingHours": "Mở cửa 9:00 - 21:00"
   }
 }

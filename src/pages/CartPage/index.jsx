@@ -15,7 +15,7 @@ const ProductImage = ({ src, alt, className = '' }) => (
       onError={(e) => {
         e.target.style.display = 'none'
         e.target.parentNode.innerHTML =
-          '<div class="text-gray-400 text-xs flex items-center justify-center h-full">📦</div>'
+          '<div class="text-gray-400 text-xs flex-center h-full">📦</div>'
       }}
     />
   </div>
@@ -129,7 +129,7 @@ const CartItem = ({ product, onQuantityUpdate, onVariantUpdate, onProductRemove 
         </div>
 
         {/* Quantity Control Section */}
-        <div className='col-span-2 flex items-center justify-center'>
+        <div className='col-span-2 flex-center'>
           <QuantityControl
             quantity={product.quantity}
             onQuantityChange={onQuantityUpdate}

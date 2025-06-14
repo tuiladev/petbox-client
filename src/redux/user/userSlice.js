@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import authorizedAxiosInstance from '~/middleware/axiosInstance'
@@ -8,26 +7,24 @@ const initialState = {
   // Step state for registration process
   registration: {
     formData: {
+      phone: '',
       password: '',
+      email: '',
       fullName: '',
       birthDate: '',
-      gender: '',
       isVerified: false,
       tries: 0
     }
   }
 }
 
-export const registerUserAPI = createAsyncThunk(
-  'user/registerUserAPI', async (data) => {
-  const response = await authorizedAxiosInstance
-    .post('/users/register', data)
+export const registerUserAPI = createAsyncThunk('user/registerUserAPI', async (data) => {
+  const response = await authorizedAxiosInstance.post('/users/register', data)
   return response.data
 })
 
 export const loginUserAPI = createAsyncThunk('user/loginUserAPI', async (data) => {
   const response = await authorizedAxiosInstance.post('/users/login', data)
-  toast.success('Login success')
   // Data from backend (services layer)
   // -> (user info)
   return response.data

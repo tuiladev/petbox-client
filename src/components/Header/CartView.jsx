@@ -30,7 +30,7 @@ const Cartview = ({ className = '' }) => {
         contentProps={dropdownState.getContentProps()}
         isOpen={dropdownState.isOpen}
       >
-        <p className='title-xl text-primary border-b border-gray-200 p-4 capitalize'>
+        <p className='title-lg text-primary border-b border-gray-200 p-4 capitalize'>
           {t('cart.name')}
         </p>
 
@@ -75,8 +75,8 @@ const CartItem = ({ product }) => {
         className='aspect-square h-16 w-16 rounded-sm object-cover'
       />
       <div className='flex grow flex-col'>
-        <p className='title-md mb-2 line-clamp-2 font-medium! text-zinc-700'>{product.name}</p>
-        <p className='title-md text-right text-zinc-700'>
+        <p className='title-base mb-2 line-clamp-2 font-medium! text-zinc-700'>{product.name}</p>
+        <p className='title-base text-right text-zinc-700'>
           {product.discountPrice.toLocaleString()}đ
         </p>
       </div>

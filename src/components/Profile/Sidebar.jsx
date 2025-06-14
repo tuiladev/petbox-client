@@ -12,8 +12,8 @@ const Sidebar = ({ activeTab, onTabChange, className }) => {
                 onClick={() => onTabChange(item.id)}
                 className={`flex w-full cursor-pointer items-center rounded-lg px-6 py-3 text-left leading-none! ${
                   activeTab === item.id
-                    ? 'title-md text-primary bg-sky-50'
-                    : 'title-md font-normal! text-gray-700 hover:bg-gray-100'
+                    ? 'title-base text-primary bg-sky-50'
+                    : 'title-base font-normal! text-gray-700 hover:bg-gray-100'
                 }`}
               >
                 {item.icon && (

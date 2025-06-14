@@ -11,6 +11,7 @@ import { requestOtpAPI, verifyOtpAPI } from '~/redux/user/userSlice'
 
 // Components
 import Button from '~/components/common/Button'
+import { formatPhoneNumber } from '~/utils/formatters'
 
 const OtpForm = () => {
   // Translation
@@ -33,6 +34,7 @@ const OtpForm = () => {
     // Check if already verify phone number
     if (formData.isVerified)
       navigate(isResetPassword ? '/reset-password/new-password' : '/register/set-password')
+    else if (!formData.phone) navigate('/register')
   }, [formData.isVerified])
 
   // Countdown timer for OTP resend
@@ -75,7 +77,7 @@ const OtpForm = () => {
     // Set state and join the otp
     setIsSubmitting(true)
     const data = {
-      phoneNumber: formData.phoneNumber,
+      phone: formData.phone,
       code: otp.join('')
     }
     // Call api
@@ -92,7 +94,7 @@ const OtpForm = () => {
     // Set state and call api
     setIsResending(true)
     const payload = {
-      phoneNumber: formData.phoneNumber,
+      phone: formData.phone,
       actionType: isResetPassword ? 'reset-password' : 'register'
     }
 
@@ -112,7 +114,7 @@ const OtpForm = () => {
     <>
       <p className='mb-6 text-center leading-relaxed text-gray-600'>
         {t('auth:otp.sentTo')} <br />
-        <span className='font-medium'>{formData.phoneNumber}</span>
+        <span className='font-medium'>{formatPhoneNumber(formData.phone)}</span>
       </p>
 
       <form onSubmit={handleSubmit} className='space-y-6'>
@@ -134,7 +136,7 @@ const OtpForm = () => {
             ))}
           </div>
 
-          <div className='mt-6 text-center'>
+          <div className='mt-4 text-center'>
             {resendCount < MAX_RESENDS &&
               (countdown > 0 ? (
                 <p className='mb-2 text-gray-600'>
@@ -158,7 +160,8 @@ const OtpForm = () => {
 
         <Button
           type='submit'
-          className='interceptor-loading text-primary mt-6 w-full rounded-full bg-cyan-600!'
+          size='md'
+          className='interceptor-loading text-primary mx-auto mt-12 !min-h-13 w-full !bg-cyan-600 hover:!border-cyan-500 hover:!bg-cyan-500'
           disabled={isSubmitting || !isOtpValid}
         >
           {isSubmitting ? t('auth:otp.verifying') : t('auth:otp.confirm')}

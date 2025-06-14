@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 // Components
 import Button from '~/components/common/Button'
-import FloatingInput from '~/components/utils/FloatingInput'
+import FloatingLabel from '~/components/utils/FloatingLabel'
 import CustomCheckbox from '~/components/utils/CustomCheckbox'
 
 const AddressEditForm = ({ address, onClose, onSave }) => {
@@ -82,7 +82,7 @@ const AddressEditForm = ({ address, onClose, onSave }) => {
     <div className='p-6'>
       <h2 className='mb-6 text-xl font-semibold'>Cập nhật địa chỉ</h2>
       <form onSubmit={handleSubmit} className='space-y-4'>
-        <FloatingInput
+        <FloatingLabel
           label='Họ và tên'
           name='name'
           value={formData.name}
@@ -91,7 +91,7 @@ const AddressEditForm = ({ address, onClose, onSave }) => {
           error={errors.name}
         />
 
-        <FloatingInput
+        <FloatingLabel
           label='Số điện thoại'
           name='phone'
           type='tel'
@@ -107,7 +107,7 @@ const AddressEditForm = ({ address, onClose, onSave }) => {
           error={errors.province}
         />
 
-        <FloatingInput
+        <FloatingLabel
           label='Địa chỉ cụ thể'
           name='address'
           value={formData.address}
@@ -117,9 +117,7 @@ const AddressEditForm = ({ address, onClose, onSave }) => {
         />
 
         <div>
-          <label className='mb-1 block text-sm text-gray-500'>
-            Loại địa chỉ:
-          </label>
+          <label className='mb-1 block text-sm text-gray-500'>Loại địa chỉ:</label>
           <div className='mt-2 flex gap-4' onClick={(e) => e.stopPropagation()}>
             <div onClick={() => handleTypeChange('Nhà Riêng')}>
               <CustomCheckbox
@@ -238,9 +236,7 @@ const AddressSelect = ({ value, onChange, error = false }) => {
           <div className='flex border-b'>
             <div
               className={`flex-1 cursor-pointer p-3 text-center ${
-                activeTab === 'province'
-                  ? 'text-primary border-primary border-b-2'
-                  : ''
+                activeTab === 'province' ? 'text-primary border-primary border-b-2' : ''
               }`}
               onClick={() => setActiveTab('province')}
             >
@@ -248,9 +244,7 @@ const AddressSelect = ({ value, onChange, error = false }) => {
             </div>
             <div
               className={`flex-1 cursor-pointer p-3 text-center ${
-                activeTab === 'district'
-                  ? 'text-primary border-primary border-b-2'
-                  : ''
+                activeTab === 'district' ? 'text-primary border-primary border-b-2' : ''
               } ${!selectedProvince ? 'cursor-not-allowed opacity-50' : ''}`}
               onClick={() => selectedProvince && setActiveTab('district')}
             >
@@ -258,9 +252,7 @@ const AddressSelect = ({ value, onChange, error = false }) => {
             </div>
             <div
               className={`flex-1 cursor-pointer p-3 text-center ${
-                activeTab === 'ward'
-                  ? 'text-primary border-primary border-b-2'
-                  : ''
+                activeTab === 'ward' ? 'text-primary border-primary border-b-2' : ''
               } ${!selectedDistrict ? 'cursor-not-allowed opacity-50' : ''}`}
               onClick={() => selectedDistrict && setActiveTab('ward')}
             >

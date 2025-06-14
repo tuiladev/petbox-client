@@ -1,28 +1,4 @@
 {
-  "storeInfo": {
-    "address": "55 Dan Chu, Binh Tho, Thu Duc City",
-    "hotline": "Hotline: 1900 1919",
-    "openingHours": "Open from: 08:00 → 20:00"
-  },
-  "categories": {
-    "food": "Food",
-    "beds": "Beds",
-    "cleaning": "Cleaning Supplies",
-    "accessories": "Accessories"
-  },
-  "helps": {
-    "support": "Support",
-    "terms": "Terms",
-    "policy": "Policy",
-    "career": "Careers"
-  },
-  "services": {
-    "hotel": "Pet Hotel",
-    "spa": "Spa & Grooming",
-    "medical": "Medical Care",
-    "sterilization": "Sterilization",
-    "homeCare": "Home Care"
-  },
   "products": {
     "product1": "Cat food for all ages catsrang",
     "product2": "Royal Canin cat food",

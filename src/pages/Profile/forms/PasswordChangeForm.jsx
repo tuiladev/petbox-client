@@ -83,8 +83,7 @@ const PasswordChangeForm = () => {
         type='password'
         register={register('confirmPassword', {
           required: FEILD_REQUIRED_RULE_MESSAGE,
-          validate: (value) =>
-            value === watch('newPassword') || 'Mật khẩu xác nhận không khớp'
+          validate: (value) => value === watch('newPassword') || 'Mật khẩu xác nhận không khớp'
         })}
         error={errors.confirmPassword?.message}
         name='confirmPassword'

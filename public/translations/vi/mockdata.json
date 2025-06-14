@@ -1,28 +1,4 @@
 {
-  "storeInfo": {
-    "address": "55 Dân Chủ, Bình Thọ, Tp. Thủ Đức",
-    "hotline": "Hotline: 1900 1919",
-    "openingHours": "Mở cửa từ: 08:00 → 20:00"
-  },
-  "categories": {
-    "food": "Thức ăn",
-    "beds": "Giường ngủ",
-    "cleaning": "Dụng cụ vệ sinh",
-    "accessories": "Phụ kiện"
-  },
-  "helps": {
-    "support": "Hỗ trợ",
-    "terms": "Điều khoản",
-    "policy": "Chính sách",
-    "career": "Tuyển dụng"
-  },
-  "services": {
-    "hotel": "Khách sạn",
-    "spa": "Spa và tỉa lông",
-    "medical": "Khám bệnh",
-    "sterilization": "Triệt sản",
-    "homeCare": "Chăm sóc tại nhà"
-  },
   "products": {
     "product1": "Hạt mèo cho mọi lứa tuổi catsrang",
     "product2": "Thức ăn cho mèo Royal Canin",

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Button from '~/components/common/Button'
-import FloatingInput from '~/components/utils/FloatingInput'
+import FloatingLabel from '~/components/utils/FloatingLabel'
 
 const CARD_TYPES = {
   VISA: {
@@ -218,10 +218,7 @@ const PaymentForm = ({ onClose, onSave }) => {
       return { isValid: false, message: 'Tháng không hợp lệ' }
     }
 
-    if (
-      yearNum < currentYear ||
-      (yearNum === currentYear && monthNum < currentMonth)
-    ) {
+    if (yearNum < currentYear || (yearNum === currentYear && monthNum < currentMonth)) {
       return { isValid: false, message: 'Thẻ đã hết hạn' }
     }
 
@@ -285,16 +282,14 @@ const PaymentForm = ({ onClose, onSave }) => {
     const cardValidation = validateCardNumber(formData.cardNumber)
     if (!formData.cardNumber.trim() || !cardValidation.isValid) {
       newErrors.cardNumber = true
-      newErrorMessages.cardNumber =
-        cardValidation.message || 'Vui lòng nhập số thẻ'
+      newErrorMessages.cardNumber = cardValidation.message || 'Vui lòng nhập số thẻ'
     }
 
     // Validate ngày hết hạn
     const expiryValidation = validateExpiry(formData.expiry)
     if (!formData.expiry.trim() || !expiryValidation.isValid) {
       newErrors.expiry = true
-      newErrorMessages.expiry =
-        expiryValidation.message || 'Vui lòng nhập ngày hết hạn'
+      newErrorMessages.expiry = expiryValidation.message || 'Vui lòng nhập ngày hết hạn'
     }
 
     // Validate CVV
@@ -350,7 +345,7 @@ const PaymentForm = ({ onClose, onSave }) => {
 
       <form onSubmit={handleSubmit} className='space-y-4'>
         <div className='space-y-1'>
-          <FloatingInput
+          <FloatingLabel
             label='Số thẻ'
             name='cardNumber'
             value={formData.cardNumber}
@@ -370,7 +365,7 @@ const PaymentForm = ({ onClose, onSave }) => {
 
         <div className='grid grid-cols-2 gap-4'>
           <div className='space-y-1'>
-            <FloatingInput
+            <FloatingLabel
               label='Ngày hết hạn (MM/YY)'
               name='expiry'
               value={formData.expiry}
@@ -384,7 +379,7 @@ const PaymentForm = ({ onClose, onSave }) => {
           </div>
 
           <div className='space-y-1'>
-            <FloatingInput
+            <FloatingLabel
               label='Mã CVV'
               name='cvv'
               value={formData.cvv}
@@ -399,7 +394,7 @@ const PaymentForm = ({ onClose, onSave }) => {
         </div>
 
         <div className='space-y-1'>
-          <FloatingInput
+          <FloatingLabel
             label='Họ và tên chủ thẻ'
             name='cardHolder'
             value={formData.cardHolder}
@@ -413,7 +408,7 @@ const PaymentForm = ({ onClose, onSave }) => {
         </div>
 
         <div className='space-y-1'>
-          <FloatingInput
+          <FloatingLabel
             label='Địa chỉ'
             name='address'
             value={formData.address}
@@ -427,7 +422,7 @@ const PaymentForm = ({ onClose, onSave }) => {
         </div>
 
         <div className='space-y-1'>
-          <FloatingInput
+          <FloatingLabel
             label='Mã bưu chính'
             name='postalCode'
             value={formData.postalCode}

@@ -3,17 +3,15 @@ import { configureStore } from '@reduxjs/toolkit'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import userReducer from '~/redux/user/userSlice'
-import languageReducer from '~/redux/languages/languageSlice'
 
 const reducers = combineReducers({
-  user: userReducer,
-  language: languageReducer
+  user: userReducer
 })
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user', 'language'], // only navigation will be persisted
+  whitelist: ['user'], // only navigation will be persisted
   blacklist: [''] // navigation will not be persisted
 }
 

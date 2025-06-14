@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { formatCurrency } from '~/utils/formatters'
+// import { formatCurrency } from '~/utils/formatters'
 import useEmblaCarousel from 'embla-carousel-react'
 
 export default function RelatedProducts({ products = [] }) {
@@ -166,11 +166,11 @@ export default function RelatedProducts({ products = [] }) {
                     {/* Price */}
                     <div className='flex items-center gap-2'>
                       <span className='text-lg font-bold text-purple-600'>
-                        {formatCurrency(minPrice)}
+                        {/* {formatCurrency(minPrice)} */}
                       </span>
                       {originalPrice && originalPrice > minPrice && (
                         <span className='text-sm text-gray-500 line-through'>
-                          {formatCurrency(originalPrice)}
+                          {/* {formatCurrency(originalPrice)} */}
                         </span>
                       )}
                     </div>

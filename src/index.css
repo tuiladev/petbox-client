@@ -3,6 +3,7 @@
 @import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
 @import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
 @import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css');
+
 @import 'tailwindcss';
 
 /* =================== 1. Tailwind Variables =================== */
@@ -34,6 +35,10 @@
   --animate-zoomIn: zoomIn 1s ease-in-out forwards;
   --animate-slideInRight: slideInRight 1s ease-in-out forwards;
   --animate-slideOutRight: slideOutRight 0.5s ease-in-out forwards;
+  --animate-slideUpAndFade: slideUpAndFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slideRightAndFade: slideRightAndFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slideDownAndFade: slideDownAndFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slideLeftAndFade: slideLeftAndFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* =================== 2. Base Styles =================== */
@@ -52,8 +57,14 @@ html {
   display: none;
 }
 
-body {
-  @apply font-primary text-base-content text-base leading-none font-medium;
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
+@layer base {
+  body {
+    @apply font-primary text-base-content text-base leading-none font-medium;
+  }
 }
 
 /* =================== 3. Layout Components =================== */
@@ -62,36 +73,23 @@ body {
 }
 
 /* =================== 4. Typography System =================== */
-.title-xs {
-  @apply font-secondary text-sm leading-normal font-semibold;
+.title-base {
+  @apply font-secondary text-[1.15rem] leading-[1.25] font-semibold;
 }
-
-.title-sm {
-  @apply font-secondary text-base leading-normal font-semibold;
-}
-
-.title-md {
-  @apply font-secondary text-lg leading-tight font-semibold;
-}
-
 .title-lg {
-  @apply font-secondary text-xl leading-tight font-semibold;
+  @apply font-secondary text-[1.44rem] leading-[1.15] font-semibold;
 }
-
 .title-xl {
-  @apply font-secondary text-[1.375rem] leading-tight font-semibold;
+  @apply font-secondary text-[1.15rem] leading-[1.15] font-bold sm:text-[1.728rem];
 }
-
 .title-2xl {
-  @apply font-secondary text-[1.625rem] leading-tight font-semibold md:text-3xl;
+  @apply font-secondary text-[1.44rem] leading-[1.15] font-bold sm:text-[2.074rem];
 }
-
 .title-3xl {
-  @apply font-secondary text-3xl leading-tight font-semibold md:text-4xl;
+  @apply font-secondary text-[1.728rem] leading-[1.15] font-bold sm:text-[2.488rem];
 }
-
 .title-4xl {
-  @apply font-secondary text-4xl leading-tight font-bold md:text-5xl;
+  @apply font-secondary text-[2.074rem] leading-[1.15] font-bold sm:text-[2.986rem];
 }
 
 /* =================== 5. Animations =================== */
@@ -198,5 +196,49 @@ body {
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes slideUpAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRightAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDownAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeftAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

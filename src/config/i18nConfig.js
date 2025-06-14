@@ -4,7 +4,7 @@ import Backend from 'i18next-http-backend'
 
 // Khởi tạo i18next với HTTP backend để load file JSON
 i18n
-  // Sử dụng backend để load file dịch qua HTTP
+  // Lazy load file dịch từ public/translation
   .use(Backend)
   // Kết nối i18next với React
   .use(initReactI18next)
@@ -36,11 +36,6 @@ i18n
     // Cấu hình interpolation (chèn biến vào chuỗi)
     interpolation: {
       escapeValue: false
-    },
-
-    // Kích hoạt Suspense khi load file dịch
-    react: {
-      useSuspense: true
     }
   })
 

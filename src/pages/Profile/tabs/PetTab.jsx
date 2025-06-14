@@ -31,7 +31,7 @@ const PetTab = ({ user }) => {
                 className='mr-4 h-18 w-18 rounded-full object-cover'
               />
               <div>
-                <h3 className='title-xl mb-2 text-sky-600'>{pet.name}</h3>
+                <h3 className='title-lg mb-2 text-sky-600'>{pet.name}</h3>
                 <p className='text-sm text-gray-600'>Giống: {pet.species}</p>
                 <p className='text-sm text-gray-600'>{pet.color}</p>
               </div>
@@ -41,12 +41,7 @@ const PetTab = ({ user }) => {
       ) : (
         <p className='text-center text-gray-500'>Bạn chưa có thú cưng nào</p>
       )}
-      <Button
-        children={<span>+ Thêm thú cưng</span>}
-        variant='filled'
-        size='md'
-        type='button'
-      />
+      <Button children={<span>+ Thêm thú cưng</span>} variant='filled' size='md' type='button' />
     </div>
   )
 }

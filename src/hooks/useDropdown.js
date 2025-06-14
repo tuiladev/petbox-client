@@ -87,9 +87,7 @@ const useDropdown = ({ openMode = 'click', hoverDelay = 200 }) => {
   const getTriggerProps = () => {
     return {
       ref: triggerRef,
-      ...(openMode === 'click' || openMode === 'both'
-        ? { onClick: handleToggle }
-        : {}),
+      ...(openMode === 'click' || openMode === 'both' ? { onClick: handleToggle } : {}),
       ...(openMode === 'hover' || openMode === 'both'
         ? {
             onMouseEnter: handleMouseEnter,

@@ -1,7 +1,9 @@
-/* eslint-disable react/no-children-prop */
-import { useNavigate } from 'react-router-dom'
+// Libaries
 import { useState, useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
+// Components
 import Button from '~/components/common/Button'
 import GoToTopButton from '~/components/utils/GoToTopButton'
 import Logo from '~/components/common/Logo'
@@ -14,13 +16,19 @@ import Notifications from './Notifications'
 import CartView from './CartView'
 import UserTools from './UserTools'
 
+// Hooks
 import useDropdown from '~/hooks/useDropdown'
 import { useSelector } from 'react-redux'
 import { selectCurrentUser } from '~/redux/user/userSlice'
 
 const Header = ({ className = '' }) => {
+  // Translation
+  const { t } = useTranslation('header')
+
+  // Auth check
   const user = useSelector(selectCurrentUser)
   const isAuthenticated = !!user
+  
   const [overlayVisible, setOverlayVisible] = useState(false)
   const [isSticky, setIsSticky] = useState(false)
   const navigate = useNavigate()
@@ -115,7 +123,7 @@ const Header = ({ className = '' }) => {
             <MobileMenu dropdownState={mobileMenuState} className='block md:hidden' />
 
             {/* User Menu Utility */}
-            <ul className='col-start-2 row-end-1 ml-auto flex gap-x-6 self-stretch md:ml-0 lg:gap-x-7'>
+            <ul className='col-start-2 row-end-1 ml-auto flex gap-x-6 md:ml-0 lg:gap-x-7'>
               {/* Tạo MenuTrigger riêng cho từng menu */}
               <li className='order-last hidden md:order-first md:block'>
                 <MenuTrigger dropdownState={mainMenuState} />
@@ -128,15 +136,13 @@ const Header = ({ className = '' }) => {
               {!isAuthenticated && (
                 <Button
                   variant='filled'
-                  children={
-                    <>
-                      <span className='hidden md:inline'>Đăng Nhập</span>
-                      <i className='fi fi-rr-arrow-right-to-bracket inline-block -translate-x-1 translate-y-0.5 text-lg md:ml-3'></i>
-                    </>
-                  }
-                  className='rounded-full max-md:aspect-square max-md:h-12 max-md:w-12 max-md:p-0!'
+                  size='md'
                   onClick={() => navigate('/login')}
-                />
+                  className='max-sm:aspect-square'
+                  iconRight='fi fi-rr-user text-lg translate-y-0.5'
+                >
+                  <span className='mr-1 hidden md:block'>{t('navigation.login')}</span>
+                </Button>
               )}
               {isAuthenticated && (
                 <>

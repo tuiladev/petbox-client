@@ -1,4 +1,32 @@
 {
   "welcome": "Chào mừng đến với PetBox",
-  "login": "Đăng nhập"
+  "login": "Đăng nhập",
+  "contact": "Liên hệ",
+  "follow": "Theo dõi",
+  "workingHour": "Mở cửa từ 09:00 - 21:00",
+  "hotline": "Khẩn cấp: 1900 8198",
+  "category": "Danh mục",
+  "service": "Dịch vụ",
+  "categories": {
+    "food": "Thức ăn",
+    "beds": "Giường ngủ",
+    "cleaning": "Dụng cụ vệ sinh",
+    "accessories": "Phụ kiện"
+  },
+  "helps": {
+    "support": "Hỗ trợ",
+    "terms": "Điều khoản",
+    "policy": "Chính sách",
+    "career": "Tuyển dụng"
+  },
+  "services": {
+    "hotel": "Khách sạn",
+    "spa": "Spa và tỉa lông",
+    "medical": "Khám bệnh",
+    "sterilization": "Triệt sản",
+    "homeCare": "Chăm sóc tại nhà"
+  },
+  "date": {
+    "month": "Tháng"
+  }
 }

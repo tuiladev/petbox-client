@@ -32,7 +32,7 @@ const MenuList = ({ isMobile = false, title, items }) => {
         className={`flex items-center justify-between border-l-4 px-6 py-3 md:mb-6 md:p-0 md:px-0 ${isMobile ? 'cursor-pointer' : 'border-none'} ${isOpen ? 'border-primary' : 'border-l-transparent'}`}
         onClick={isMobile ? toggleAccordion : undefined}
       >
-        <p className='title-xl text-primary capitalize'>{title}</p>
+        <p className='title-lg text-primary capitalize'>{title}</p>
         {isMobile && (
           <i
             className={`fi transition-color flex aspect-square h-10 w-10 items-center justify-center rounded-sm text-xs duration-500 ${!isOpen ? 'fi-rr-minus text-primary bg-blue-50' : 'fi-rr-plus bg-primary text-white'}`}

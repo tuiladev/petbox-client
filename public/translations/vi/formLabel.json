@@ -1,5 +1,7 @@
 {
-  "phoneNumber": "Số điện thoại",
+  "phone": "Số điện thoại",
+  "email": "Email",
+  "emailForInvoice": "Hoá đơn mua hàng sẽ được gửi đến email này",
   "password": "Mật khẩu",
   "confirmPassword": "Xác nhận mật khẩu",
   "fullName": "Họ và tên",
@@ -8,9 +10,13 @@
   "male": "Nam",
   "female": "Nữ",
   "other": "Khác",
-  "sendVerification": "Gửi Mã Xác Thực",
+  "sendVerification": "Gửi mã xác thực",
   "continue": "Tiếp tục",
   "back": "Quay lại",
-  "or": "HOẶC",
-  "otp": "Mã Xác Thực"
+  "or": "Hoặc",
+  "otp": "Mã xác thực",
+  "agreeTo": "Bằng việc đăng ký, bạn đã đồng ý với",
+  "termOfUse": "Điều khoản sử dụng",
+  "privacyPolicy": "Chính sách bảo mật của The Pet's Box",
+  "and": "và"
 }

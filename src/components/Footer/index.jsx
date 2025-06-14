@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { getHelps, getStoreInfo, getSocials } from '~/config/siteConfig'
+import { helps, storeInfo, socials } from '~/config/siteConfig'
 import { getCategories, getServices } from '~/data/mockdata'
 import IconLink from '~/components/common/IconLink'
 import Logo from '~/components/common/Logo'
 
 const FooterCol = ({ title = '', list }) => {
+  const { t } = useTranslation('footer')
   return (
     <div className='w-full'>
-      <h3 className='title-xl relative mb-10 capitalize'>
+      <h3 className='title-lg relative mb-10 capitalize'>
         {title}
         <span className='bg-secondary absolute top-full left-0 mt-3 h-1 w-8 rounded-full'></span>
       </h3>
@@ -16,7 +17,7 @@ const FooterCol = ({ title = '', list }) => {
         {list.map((item, index) => (
           <li key={index} className=''>
             <Link className="relative py-1 transition-all duration-300 ease-in-out after:absolute after:top-full after:left-0 after:h-0.5 after:w-0 after:bg-white after:transition-all after:duration-300 after:ease-in-out after:content-[''] hover:after:w-full">
-              {item.text}
+              {t(`common:${item.text}`)}
             </Link>
           </li>
         ))}
@@ -26,12 +27,9 @@ const FooterCol = ({ title = '', list }) => {
 }
 
 const Footer = () => {
-  const { t } = useTranslation('footer')
+  const { t } = useTranslation(['common', 'footer'])
   const categories = getCategories()
   const services = getServices()
-  const storeInfo = getStoreInfo()
-  const socials = getSocials()
-  const helps = getHelps()
   return (
     <footer className='bg-primary text-white shadow-lg'>
       <div className='l-container'>
@@ -39,10 +37,10 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className='col-span-1 w-9/10 md:max-lg:col-span-3'>
             <Logo type='dark' className='mb-4' />
-            <p className='mb-8 leading-relaxed text-gray-200'>{t('description')}</p>
+            <p className='mb-8 leading-relaxed'>{t('footer:description')}</p>
 
             <div className='mt-6'>
-              <h3 className='title-md mb-3'>{t('followUs')}</h3>
+              <h3 className='title-base mb-3'>{t('common:follow')}</h3>
               {/* Social Media */}
               <div className='flex items-center gap-x-4'>
                 {socials.map((social, index) => (
@@ -59,9 +57,9 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <FooterCol title={t('products')} list={categories} />
-          <FooterCol title={t('services')} list={services} />
-          <FooterCol title={t('contact')} list={storeInfo} />
+          <FooterCol title={t('common:category')} list={categories} />
+          <FooterCol title={t('common:service')} list={services} />
+          <FooterCol title={t('common:contact')} list={storeInfo} />
         </div>
       </div>
 
@@ -69,12 +67,12 @@ const Footer = () => {
       <div className='border-t border-gray-50 text-white'>
         <div className='l-container mx-auto flex flex-col items-center justify-between gap-y-2 py-6! md:flex-row'>
           <p>
-            {t('copyright')} {new Date().getFullYear()} The Pet&apos;s Box
+            {t('footer:copyright')} {new Date().getFullYear()} The Pet&apos;s Box
           </p>
           <ul className='flex flex-wrap justify-center gap-x-6'>
             {helps.map((item, index) => (
               <Link key={index} href={item.url}>
-                {item.text}
+                {t(`common:${item.text}`)}
               </Link>
             ))}
           </ul>

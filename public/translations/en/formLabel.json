@@ -1,5 +1,7 @@
 {
-  "phoneNumber": "Phone number",
+  "phone": "Phone number",
+  "email": "Email address",
+  "emailForInvoice": "To recive your invoice",
   "password": "Password",
   "confirmPassword": "Confirm password",
   "fullName": "Full name",
@@ -12,5 +14,9 @@
   "continue": "Continue",
   "back": "Back",
   "or": "OR",
-  "otp": "Verification code"
+  "otp": "Verification code",
+  "agreeTo": "By registering, you agree to",
+  "termOfUse": "Terms of use",
+  "privacyPolicy": "Privacy policy",
+  "and": "and"
 }

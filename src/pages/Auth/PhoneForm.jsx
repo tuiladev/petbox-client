@@ -3,31 +3,26 @@ import React from 'react'
 import { useNavigate, useLocation } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
 // Redux & hooks
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  selectRegistrationData,
-  updateRegistrationData,
-  requestOtpAPI
-} from '~/redux/user/userSlice'
+import { useDispatch } from 'react-redux'
+import { updateRegistrationData, requestOtpAPI } from '~/redux/user/userSlice'
 
 // Components
 import Button from '~/components/common/Button'
-import FloatingInput from '~/components/utils/FloatingInput'
+import FloatingLabel from '~/components/utils/FloatingLabel'
 import SocialLogin from '~/components/Auth/SocialLogin'
 
 // Utils
-import { PHONE_RULE, PHONE_RULE_MESSAGE } from '~/utils/validators'
-import { formatPhoneNumber, normalizePhoneNumber } from '~/utils/formatters'
-import { toast } from 'react-toastify'
+import { PHONE_RULE } from '~/utils/validators'
+import { formatPhoneNumber } from '~/utils/formatters'
 
 const PhoneForm = () => {
   const { t } = useTranslation(['auth', 'formLabel', 'validationMessage'])
   const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const formData = useSelector(selectRegistrationData)
 
   const isResetPassword = location.pathname.startsWith('/reset-password')
 
@@ -37,25 +32,44 @@ const PhoneForm = () => {
     setValue,
     formState: { errors, isSubmitting }
   } = useForm({
-    defaultValues: { phoneNumber: formData.phoneNumber || '' },
-    mode: 'onBlur'
+    mode: 'onChange'
   })
 
-  const onBlurFormat = (e) => {
-    const formatted = formatPhoneNumber(e.target.value)
-    setValue('phoneNumber', formatted, { shouldValidate: true })
+  // Handler phone input
+  const handlePhoneInput = (e) => {
+    let value = e.target.value
+    let lastChar = value.slice(-1)
+    // Check if last type is a character
+    if (lastChar && !/\d/.test(lastChar)) {
+      setValue('phone', value.slice(0, -1))
+      return
+    }
+    // Limit input length
+    if (value.length > 17) {
+      setValue('phone', value.slice(0, 17))
+      return
+    }
+    // Format phone number for better UI
+    if (value.length >= 9) {
+      value = value.slice(0, 17)
+      setValue('phone', formatPhoneNumber(value), { shouldValidate: true })
+    }
   }
 
   const onSubmit = async (data) => {
-    const normalized = normalizePhoneNumber(data.phoneNumber)
+    const phone = `+${data.phone.replace(/\D/g, '')}`
+    if (phone.length != 12) {
+      toast.error(t('validationMessage:invalidAuthInfo'))
+      return
+    }
     const payload = {
-      phoneNumber: normalized,
+      phone: phone,
       actionType: isResetPassword ? 'reset-password' : 'register'
     }
 
     dispatch(requestOtpAPI(payload)).then((res) => {
       if (!res.error) {
-        dispatch(updateRegistrationData({ phoneNumber: normalized }))
+        dispatch(updateRegistrationData({ phone: phone }))
         navigate(isResetPassword ? '/reset-password/verify-otp' : '/register/verify-otp')
       }
     })
@@ -63,24 +77,31 @@ const PhoneForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <FloatingInput
+      <form onSubmit={handleSubmit(onSubmit)} className='space-y-4' noValidate>
+        <FloatingLabel
           type='text'
-          id='phoneNumber'
-          {...register('phoneNumber', {
-            required: t('validationMessage:required'),
-            validate: (value) => PHONE_RULE.test(normalizePhoneNumber(value)) || PHONE_RULE_MESSAGE,
-            onBlur: onBlurFormat
-          })}
-          label={t('formLabel:phoneNumber')}
+          name='phone'
+          label={t('formLabel:phone')}
+          size='md'
           variant='outlined'
-          inputStyle='w-full'
-          error={errors.phoneNumber?.message}
+          error={errors?.phone?.message}
+          {...register('phone', {
+            required: 'required',
+            validate: (value) => {
+              let cleaned = value.replace(/\D/g, '')
+              if (cleaned.length >= 11) {
+                return PHONE_RULE.test(cleaned) || 'invalidPhone'
+              }
+              return true
+            }
+          })}
+          onChange={handlePhoneInput}
         />
 
         <Button
           type='submit'
-          className='mt-6 w-full rounded-full bg-cyan-600! text-white'
+          size='md'
+          className='interceptor-loading !min-h-13 w-full !bg-cyan-600 hover:!border-cyan-500 hover:!bg-cyan-500'
           disabled={isSubmitting}
         >
           {isSubmitting ? t('auth:register.processing') : t('formLabel:sendVerification')}
@@ -89,24 +110,24 @@ const PhoneForm = () => {
 
       {!isResetPassword && (
         <>
-          <div className='relative mt-10 mb-8'>
+          <div className='relative'>
             <hr className='border-gray-300' />
-            <span className='absolute inset-x-0 top-1/2 mx-auto w-max -translate-y-1/2 bg-white px-3 text-sm text-gray-500'>
+            <span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform bg-white px-3 text-sm text-gray-500'>
               {t('formLabel:or')}
             </span>
           </div>
-          <SocialLogin isRegistered={false} />
+          <SocialLogin />
         </>
       )}
 
-      <div className='mt-6 text-center'>
+      <div className='mt-14 text-center'>
         <p className='text-gray-600'>
           {!isResetPassword && t('auth:register.hasAccount')}{' '}
           {isResetPassword && t('auth:resetPassword.backToLogin')}{' '}
           <button
             type='button'
             onClick={() => navigate('/login')}
-            className='cursor-pointer text-cyan-600'
+            className='cursor-pointer text-cyan-600 hover:text-cyan-700'
           >
             {t('auth:login.button')}
           </button>
