@@ -35,6 +35,16 @@ const PasswordForm = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  // useForm set up
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+  } = useForm({
+    defaultValues: ''
+  })
+
   // State and constants
   const [isPasswordTouched, setIsPasswordTouched] = useState(false)
   const isResetPassword = location.pathname.startsWith('/reset-password')
@@ -66,16 +76,6 @@ const PasswordForm = () => {
   const handlePasswordFocus = () => {
     setIsPasswordTouched(true)
   }
-
-  // useForm set up
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors }
-  } = useForm({
-    defaultValues: ''
-  })
 
   // Handler on submit
   const onSubmit = async (data) => {

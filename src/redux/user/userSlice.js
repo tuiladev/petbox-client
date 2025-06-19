@@ -12,7 +12,7 @@ const initialState = {
       email: '',
       fullName: '',
       birthDate: '',
-      isVerified: false,
+      isVerified: true,
       tries: 0
     }
   }

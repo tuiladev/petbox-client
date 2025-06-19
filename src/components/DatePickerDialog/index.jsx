@@ -1,22 +1,29 @@
-import React, { useState, useEffect } from 'react'
+// Libaries
+import { useState, useEffect } from 'react'
 import * as Popover from '@radix-ui/react-popover'
 import Calendar from 'react-calendar'
-import './style.css'
 import { useTranslation } from 'react-i18next'
 
+// Custom style
+import './style.css'
+
 export default function DatePickerDialog({ selectedDate, onSelect, trigger, locale }) {
+  // Translation
   const { i18n, t } = useTranslation('common')
   const lang = locale || (i18n.language === 'vi' ? 'vi' : 'en-US')
 
+  // Calendar and popover state
   const [open, setOpen] = useState(false)
   const [view, setView] = useState('month')
 
+  // Disabel auto focus on prev button calendar by default
   useEffect(() => {
     if (open) {
       setTimeout(() => document.activeElement?.blur(), 0)
     }
   }, [open])
 
+  // Update Floating feild value
   const handleDateSelect = (date) => {
     onSelect(date)
     setOpen(false)

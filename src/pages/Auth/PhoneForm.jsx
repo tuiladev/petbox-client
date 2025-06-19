@@ -67,12 +67,15 @@ const PhoneForm = () => {
       actionType: isResetPassword ? 'reset-password' : 'register'
     }
 
-    dispatch(requestOtpAPI(payload)).then((res) => {
-      if (!res.error) {
-        dispatch(updateRegistrationData({ phone: phone }))
-        navigate(isResetPassword ? '/reset-password/verify-otp' : '/register/verify-otp')
-      }
-    })
+    // dispatch(requestOtpAPI(payload)).then((res) => {
+    //   if (!res.error) {
+    //     dispatch(updateRegistrationData({ phone: phone }))
+    //     navigate(isResetPassword ? '/reset-password/verify-otp' : '/register/verify-otp')
+    //   }
+    // })
+
+    dispatch(updateRegistrationData({ phone: phone }))
+    navigate(isResetPassword ? '/reset-password/verify-otp' : '/register/verify-otp')
   }
 
   return (

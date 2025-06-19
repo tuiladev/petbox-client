@@ -81,7 +81,7 @@ const OtpForm = () => {
       code: otp.join('')
     }
     // Call api
-    dispatch(verifyOtpAPI(data))
+    // dispatch(verifyOtpAPI(data))
     setIsSubmitting(false)
   }
 

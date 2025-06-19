@@ -9,7 +9,6 @@ import Button from '~/components/common/Button'
 import UserInput from '~/components/Profile/UserInput'
 
 // Validate message
-import { FEILD_REQUIRED_RULE_MESSAGE } from '~/utils/validators'
 import { updateUserAPI } from '~/redux/user/userSlice'
 
 const PersonalInfoForm = ({ user }) => {
@@ -60,7 +59,7 @@ const PersonalInfoForm = ({ user }) => {
       <UserInput
         label='Họ và tên'
         register={register('fullName', {
-          required: FEILD_REQUIRED_RULE_MESSAGE
+          required: 'required'
         })}
         error={errors.fullName?.message}
       />

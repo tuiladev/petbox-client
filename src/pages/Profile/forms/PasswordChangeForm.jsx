@@ -7,11 +7,7 @@ import Button from '~/components/common/Button'
 import UserInput from '~/components/Profile/UserInput'
 
 // Validate message
-import {
-  FEILD_REQUIRED_RULE_MESSAGE,
-  PASSWORD_RULE,
-  PASSWORD_RULE_MESSAGE
-} from '~/utils/validators'
+import { PASSWORD_RULE } from '~/utils/validators'
 import { updateUserAPI } from '~/redux/user/userSlice'
 import { toast } from 'react-toastify'
 
@@ -52,10 +48,9 @@ const PasswordChangeForm = () => {
         label='Mật khẩu cũ'
         type='password'
         register={register('currentPassword', {
-          required: FEILD_REQUIRED_RULE_MESSAGE,
+          required: 'required',
           pattern: {
-            value: PASSWORD_RULE,
-            message: 'Mật khẩu không hợp lệ!'
+            value: PASSWORD_RULE
           }
         })}
         error={errors.currentPassword?.message}
@@ -67,10 +62,9 @@ const PasswordChangeForm = () => {
         label='Mật khẩu mới'
         type='password'
         register={register('newPassword', {
-          required: FEILD_REQUIRED_RULE_MESSAGE,
+          required: 'required',
           pattern: {
-            value: PASSWORD_RULE,
-            message: PASSWORD_RULE_MESSAGE
+            value: PASSWORD_RULE
           }
         })}
         error={errors.newPassword?.message}
@@ -82,7 +76,7 @@ const PasswordChangeForm = () => {
         label='Xác nhận mật khẩu'
         type='password'
         register={register('confirmPassword', {
-          required: FEILD_REQUIRED_RULE_MESSAGE,
+          required: 'required',
           validate: (value) => value === watch('newPassword') || 'Mật khẩu xác nhận không khớp'
         })}
         error={errors.confirmPassword?.message}

@@ -82,7 +82,14 @@ export default function UserForm() {
 
   /* ---------- On Submit ---------- */
   const onSubmit = async (data) => {
-    const registerData = { ...data, password: formData.password }
+    const birthDate = parseDate(data.birthDate)
+    const registerData = {
+      fullName: data.fullName,
+      email: data.email,
+      birthDate: birthDate,
+      phone: formData.phone,
+      password: formData.password
+    }
     try {
       await dispatch(registerUserAPI(registerData)).unwrap()
       await dispatch(

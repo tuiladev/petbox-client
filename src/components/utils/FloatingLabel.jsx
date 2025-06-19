@@ -9,7 +9,7 @@ const VARIANT = {
     input:
       'rounded-full border border-gray-300 bg-white min-h-14 pl-4 pr-13 px-6 focus:border-cyan-600 focus:ring-0 outline-none',
     label:
-      'absolute block z-10 origin-left top-1/2 left-4 -translate-y-1/2 cursor-text px-2 text-gray-500 transition-all duration-200 peer-focus:top-0 peer-focus:left-4 peer-focus:bg-white peer-focus:text-sm peer-focus:font-semibold peer-focus:text-cyan-600 peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:left-4 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:bg-white peer-[&:not(:placeholder-shown)]:font-semibold'
+      'absolute block z-10 origin-left top-1/2 left-4 -translate-y-1/2 cursor-text px-2 text-gray-500 transition-all duration-200 peer-focus:top-0 peer-focus:left-4 peer-focus:bg-white peer-focus:text-sm peer-focus:font-semibold peer-focus:text-cyan-600 peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:left-4 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:bg-white peer-[&:not(:placeholder-shown)]:font-semibold will-change-[color,font-weight]'
   }
 }
 
