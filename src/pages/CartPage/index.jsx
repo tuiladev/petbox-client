@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react'
 import Button from '~/components/common/Button'
-import { formatCurrency } from '~/utils/formatters'
+// import { formatCurrency } from '~/utils/formatters'
 
 // Constants
 const PRODUCT_VARIANTS = ['MEMO G6', 'MEMO G6+GĂNG TAY+ĐEN', 'GĂNG TAY']
@@ -49,8 +49,8 @@ const VariantSelector = ({ selectedVariant, onVariantChange, productId }) => (
 // Price Display Component
 const PriceDisplay = ({ originalPrice, salePrice, className = '' }) => (
   <div className={`space-y-1 ${className}`}>
-    <p className='text-xs text-gray-400 line-through'>{formatCurrency(originalPrice)}</p>
-    <p className='font-medium text-gray-900'>{formatCurrency(salePrice)}</p>
+    {/* <p className='text-xs text-gray-400 line-through'>{formatCurrency(originalPrice)}</p> */}
+    {/* <p className='font-medium text-gray-900'>{formatCurrency(salePrice)}</p> */}
   </div>
 )
 
@@ -129,7 +129,7 @@ const CartItem = ({ product, onQuantityUpdate, onVariantUpdate, onProductRemove 
         </div>
 
         {/* Quantity Control Section */}
-        <div className='col-span-2 flex-center'>
+        <div className='flex-center col-span-2'>
           <QuantityControl
             quantity={product.quantity}
             onQuantityChange={onQuantityUpdate}
@@ -140,7 +140,7 @@ const CartItem = ({ product, onQuantityUpdate, onVariantUpdate, onProductRemove 
         {/* Total Price Section */}
         <div className='col-span-2 text-center'>
           <div className='text-lg font-semibold text-orange-600'>
-            {formatCurrency(totalItemPrice)}
+            {/* {formatCurrency(totalItemPrice)} */}
           </div>
         </div>
 
@@ -207,7 +207,7 @@ const OrderSummary = ({ totalItemCount, totalAmount, onCheckoutClick }) => (
     <div className='flex items-center justify-between'>
       <div className='mr-6 flex-1 text-right'>
         <div className='mb-2 text-sm text-gray-600'>Tổng cộng ({totalItemCount} sản phẩm)</div>
-        <div className='text-3xl font-bold text-orange-600'>{formatCurrency(totalAmount)}</div>
+        {/* <div className='text-3xl font-bold text-orange-600'>{formatCurrency(totalAmount)}</div> */}
       </div>
       <Button
         variant='filled'
