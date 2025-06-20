@@ -1,0 +1,36 @@
+{
+  "REQUEST_INVALID": "Invalid request format or parameters",
+  "REQUEST_EXCEED_ALLOWED": "Request limit exceeded. Please try again later",
+
+  "TOKEN_INVALID": "Invalid or malformed authentication token",
+  "TOKEN_EXPIRED": "Authentication token has expired. Please login again",
+
+  "OTP_INVALID": "Invalid verification code. Please check and try again",
+  "OTP_EXPIRED": "Verification code has expired. Please request a new one",
+
+  "USER_NOT_FOUND": "User account not found",
+  "USER_INVALID_CREDENTIALS": "Invalid email or password",
+  "USER_UNAUTHORIZED": "Authentication required to access this resource",
+  "USER_FORBIDDEN": "You don't have permission to perform this action",
+  "USER_ALREADY_EXISTS": "An account with this email already exists",
+
+  "PRODUCT_NOT_FOUND": "Product not found or no longer available",
+  "PRODUCT_OUT_OF_STOCK": "This product is currently out of stock",
+  "PRODUCT_INVALID_PRICE": "Invalid product price format",
+
+  "ORDER_NOT_FOUND": "Order not found or doesn't belong to you",
+  "ORDER_INVALID_STATUS": "Invalid order status for this operation",
+  "ORDER_PAYMENT_FAILED": "Payment processing failed. Please try again",
+
+  "VALIDATION_INVALID_INPUT": "Invalid input data provided",
+  "VALIDATION_MISSING_FIELD": "Required field is missing",
+  "VALIDATION_FORMAT_ERROR": "Invalid data format",
+  "VALIDATION_PATTERN_MISMATCH": "Input doesn't match required pattern",
+  "VALIDATION_LENGTH_INVALID": "Input length is invalid",
+  "VALIDATION_RANGE_INVALID": "Value is outside the allowed range",
+  "VALIDATION_TYPE_INVALID": "Invalid data type",
+  "VALIDATION_ENUM_INVALID": "Value is not in the allowed list",
+
+  "SYSTEM_INTERNAL_ERROR": "Internal server error. Please try again later",
+  "SYSTEM_SERVICE_UNAVAILABLE": "Service temporarily unavailable. Please try again"
+}

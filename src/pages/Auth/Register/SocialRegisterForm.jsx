@@ -11,12 +11,10 @@ import useDocumentTitle from '~/hooks/useDocumentTitle'
 // Components
 import FormContainer from '~/components/Auth/FormContainer'
 import StepBar from '~/components/common/StepBar'
-import PhoneForm from '../PhoneForm'
 import OtpForm from '../OtpForm'
-import PasswordForm from '../PasswordForm'
 import UserForm from './UserForm'
 
-const RegisterForm = () => {
+const SocialRegisterForm = () => {
   const { t } = useTranslation('auth')
   const navigate = useNavigate()
   const location = useLocation()
@@ -24,17 +22,14 @@ const RegisterForm = () => {
 
   // Map routes to step index
   const pathToStep = {
-    '/register': 0,
-    '/register/verify-otp': 1,
-    '/register/set-password': 2,
-    '/register/user-info': 3
+    '/register-social/update-info': 0,
+    '/register-social/verify-otp': 1
   }
 
   // Step bar items
   const steps = [
-    { name: t('register.steps.verifyOtp'), step: 1 },
-    { name: t('register.steps.createPassword'), step: 2 },
-    { name: t('register.steps.updateInfo'), step: 3 }
+    { name: t('register.steps.updateInfo'), step: 0 },
+    { name: t('register.steps.verifyOtp'), step: 1 }
   ]
 
   // Redirect logged in user
@@ -47,25 +42,16 @@ const RegisterForm = () => {
   const currentStep = pathToStep[location.pathname] ?? 0
 
   // Set document title based on step
-  const titles = [
-    t('register.title'),
-    t('register.enterOtp'),
-    t('register.createPassword'),
-    t('register.steps.updateInfo')
-  ]
+  const titles = [t('register.steps.updateInfo'), t('register.enterOtp')]
   useDocumentTitle(titles[currentStep])
 
   // Determine which form component to render
   const renderForm = () => {
     switch (currentStep) {
       case 0:
-        return <PhoneForm />
+        return <UserForm />
       case 1:
         return <OtpForm />
-      case 2:
-        return <PasswordForm />
-      case 3:
-        return <UserForm />
       default:
         return null
     }
@@ -87,4 +73,4 @@ const RegisterForm = () => {
   )
 }
 
-export default RegisterForm
+export default SocialRegisterForm

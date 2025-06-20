@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
 import { selectRegistrationData } from '~/redux/user/userSlice'
-import { requestOtpAPI, verifyOtpAPI } from '~/redux/user/userSlice'
+import { requestOtpAPI, verifyOtpAPI, registerUserAPI } from '~/redux/user/userSlice'
 
 // Components
 import Button from '~/components/common/Button'
@@ -22,6 +22,7 @@ const OtpForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const isResetPassword = location.pathname.startsWith('/reset-password')
+  const isSocialRegister = location.pathname.startsWith('register-social')
   const formData = useSelector(selectRegistrationData)
 
   // Form state
@@ -29,12 +30,34 @@ const OtpForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const inputRefs = [useRef(), useRef(), useRef(), useRef()]
 
-  // Navigate handling
+  // Handler navigate when verified
   useEffect(() => {
-    // Check if already verify phone number
-    if (formData.isVerified)
-      navigate(isResetPassword ? '/reset-password/new-password' : '/register/set-password')
-    else if (!formData.phone) navigate('/register')
+    if (!formData.phone) {
+      navigate('/register')
+      return
+    }
+
+    if (!formData.isVerified) return
+
+    if (isSocialRegister) {
+      const { fullName, email, birthDate, key } = formData
+      const payload = {
+        fullName,
+        email,
+        birthDate,
+        key,
+        type: 'social'
+      }
+      dispatch(registerUserAPI(payload))
+        .unwrap()
+        .then(() => navigate('/'))
+        .catch(() => {
+          navigate('/register')
+        })
+      return
+    }
+
+    navigate(isResetPassword ? '/reset-password/new-password' : '/register/set-password')
   }, [formData.isVerified])
 
   // Countdown timer for OTP resend
@@ -52,10 +75,13 @@ const OtpForm = () => {
 
   // Next input focus
   const handleInputChange = (index, value) => {
+    const numericValue = value.replace(/[^0-9]/g, '').slice(0, 1)
+
     const newOtp = [...otp]
-    newOtp[index] = value
+    newOtp[index] = numericValue
     setOtp(newOtp)
-    if (value !== '' && index < 3) {
+
+    if (numericValue !== '' && index < 3) {
       inputRefs[index + 1].current.focus()
     }
   }
@@ -81,7 +107,7 @@ const OtpForm = () => {
       code: otp.join('')
     }
     // Call api
-    // dispatch(verifyOtpAPI(data))
+    dispatch(verifyOtpAPI(data))
     setIsSubmitting(false)
   }
 

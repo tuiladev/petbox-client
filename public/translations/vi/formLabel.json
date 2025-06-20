@@ -2,6 +2,8 @@
   "phone": "Số điện thoại",
   "email": "Email",
   "emailForInvoice": "Hoá đơn mua hàng sẽ được gửi đến email này",
+  "phoneAlreadyExists": "Số điện thoại đã được sử dụng",
+  "phoneReviceOTP": "Mã xác thực sẽ được gửi qua số điện thoại này",
   "password": "Mật khẩu",
   "confirmPassword": "Xác nhận mật khẩu",
   "fullName": "Họ và tên",

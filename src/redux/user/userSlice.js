@@ -12,8 +12,9 @@ const initialState = {
       email: '',
       fullName: '',
       birthDate: '',
-      isVerified: true,
-      tries: 0
+      isVerified: false,
+      tries: 0,
+      key: ''
     }
   }
 }
@@ -30,8 +31,15 @@ export const loginUserAPI = createAsyncThunk('user/loginUserAPI', async (data) =
   return response.data
 })
 
-export const socialLoginAPI = createAsyncThunk('user/socialLogin', async (data) => {
+export const socialLoginAPI = createAsyncThunk('user/socialLogin', async (data, thunkAPI) => {
   const response = await authorizedAxiosInstance.post('/users/social-login', data)
+  if (response.status === 202)
+    return thunkAPI.rejectWithValue({
+      pending: true,
+      key: response.data.key,
+      fullName: response.data.name,
+      email: response.data.email
+    })
   return response.data
 })
 
@@ -77,6 +85,10 @@ export const userSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
+    builder.addCase(registerUserAPI.fulfilled, (state, action) => {
+      const user = action.payload
+      state.currentUser = user
+    })
     builder.addCase(loginUserAPI.fulfilled, (state, action) => {
       const user = action.payload
       state.currentUser = user
@@ -85,18 +97,19 @@ export const userSlice = createSlice({
       const user = action.payload
       state.currentUser = user
     })
+    builder.addCase(socialLoginAPI.rejected, (state, action) => {
+      if (action.payload?.pending) {
+        state.registration.fullName = action.payload.fullName
+        state.registration.email = action.payload.email
+        state.registration.key = action.payload.key
+      }
+    })
     builder.addCase(logoutUserAPI.fulfilled, (state) => {
       state.currentUser = null
     })
     builder.addCase(updateUserAPI.fulfilled, (state, action) => {
       const user = action.payload
       state.currentUser = user
-      toast.success('Đã cập nhật thông tin!')
-    })
-    builder.addCase(registerUserAPI.fulfilled, (state, action) => {
-      state.currentUser = action.payload
-      state.registration.isSubmitting = false
-      state.registration.isComplete = true
     })
     builder.addCase(requestOtpAPI.fulfilled, (state, action) => {
       state.registration.formData.tries = action.payload.counter

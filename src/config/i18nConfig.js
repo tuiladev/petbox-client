@@ -21,9 +21,10 @@ i18n
       'footer',
       'formLabel',
       'mockdata',
-      'validationMessage',
+      'validation',
       'header',
-      'product'
+      'product',
+      'error'
     ],
     // Namespace mặc định khi gọi t('key') không chỉ định namespace
     defaultNS: 'common',

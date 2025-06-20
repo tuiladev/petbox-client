@@ -48,7 +48,7 @@ const PasswordChangeForm = () => {
         label='Mật khẩu cũ'
         type='password'
         register={register('currentPassword', {
-          required: 'required',
+          required: 'required.default',
           pattern: {
             value: PASSWORD_RULE
           }
@@ -62,7 +62,7 @@ const PasswordChangeForm = () => {
         label='Mật khẩu mới'
         type='password'
         register={register('newPassword', {
-          required: 'required',
+          required: 'required.default',
           pattern: {
             value: PASSWORD_RULE
           }
@@ -76,7 +76,7 @@ const PasswordChangeForm = () => {
         label='Xác nhận mật khẩu'
         type='password'
         register={register('confirmPassword', {
-          required: 'required',
+          required: 'required.default',
           validate: (value) => value === watch('newPassword') || 'Mật khẩu xác nhận không khớp'
         })}
         error={errors.confirmPassword?.message}

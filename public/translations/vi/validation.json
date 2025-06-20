@@ -1,0 +1,24 @@
+{
+  "passwordMismatch": "Mật khẩu không trùng khớp",
+  "enterFullOtp": "Vui lòng nhập đủ 4 chữ số",
+  "minPasswordLength": "Tối thiểu 8 ký tự",
+  "atLeastOneUpperCase": "Tối thiểu 1 ký tự in hoa và in thường",
+  "atLeastOneNumber": "Tối thiểu 1 chữ số",
+  "atLeastOneSpecialChar": "Tối thiểu 1 ký tự đặc biệt",
+
+  "invalid": {
+    "authInfo": "Thông tin không hợp lệ, vui lòng nhập lại",
+    "phone": "Vui lòng nhập số điện thoại đúng",
+    "email": "Email không hợp lệ",
+    "birthDate": "Nhập đúng ngày sinh theo mẫu bạn nhé (19/05/1890)",
+    "name": "Họ tên không hợp lệ"
+  },
+
+  "required": {
+    "default": "Vui lòng nhập trường này",
+    "name": "Họ và tên không được bỏ trống",
+    "phone": "Số điện thoại không được bỏ trống",
+    "email": "Email không được bỏ trống",
+    "birthDate": "Ngày sinh không được bỏ trống"
+  }
+}

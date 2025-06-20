@@ -12,7 +12,9 @@ import {
   selectRegistrationData,
   registerUserAPI,
   resetRegistration,
-  loginUserAPI
+  loginUserAPI,
+  socialLoginAPI,
+  requestOtpAPI
 } from '~/redux/user/userSlice'
 
 // Components
@@ -27,12 +29,13 @@ import { formatDate, parseDate, maskDateInput } from '~/utils/formatters'
 // MAIN COMPONENT
 export default function UserForm() {
   // Import translation file
-  const { t } = useTranslation(['auth', 'formLabel', 'validationMessage'])
+  const { t } = useTranslation(['auth', 'formLabel', 'validation'])
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   // Determine which fields to show
+  const isSocialRegister = location.pathname.startsWith('register-social')
   const formData = useSelector(selectRegistrationData)
   const hasEmail = Boolean(formData.email)
   const hasPhone = Boolean(formData.phone)
@@ -47,9 +50,9 @@ export default function UserForm() {
   } = useForm({
     mode: 'onTouched',
     defaultValues: {
-      fullName: '',
-      email: '',
-      phone: '',
+      fullName: formData.fullName || '',
+      email: formData.email || '',
+      phone: formData.phone || '',
       birthDate: ''
     }
   })
@@ -62,16 +65,24 @@ export default function UserForm() {
     return null
   }, [touchedFields.email, emailValue])
 
+  /* ---------- Phone helper ---------- */
+  const phoneValue = useWatch({ control, name: 'phone' })
+  const phoneMessage = { msg: t('formLabel:phoneReviceOTP'), kind: 'info' }
+  const phoneHelper = useMemo(() => {
+    if (touchedFields.phone && phoneValue === '') return phoneMessage
+    return null
+  }, [touchedFields.phone, phoneValue])
+
   /* ---------- On Errors ---------- */
   const onError = (formErrors) => {
     const msgMap = {
-      fullName: t('validationMessage:requiredName'),
-      birthDate: t('validationMessage:requiredBirthDate'),
-      email: t('validationMessage:requiredEmail'),
-      phone: t('validationMessage:requiredPhone')
+      fullName: t('validation:required.name'),
+      birthDate: t('validation:required.birthDate'),
+      email: t('validation:required.email'),
+      phone: t('validation:required.phone')
     }
     for (const key of Object.keys(formErrors)) {
-      if (formErrors[key]?.type === 'required') {
+      if (formErrors[key]?.type === 'required.default') {
         toast.error(msgMap[key])
         setFocus(key)
         return
@@ -82,27 +93,40 @@ export default function UserForm() {
 
   /* ---------- On Submit ---------- */
   const onSubmit = async (data) => {
-    const birthDate = parseDate(data.birthDate)
-    const registerData = {
-      fullName: data.fullName,
-      email: data.email,
-      birthDate: birthDate,
-      phone: formData.phone,
-      password: formData.password
-    }
+    const { fullName, email, birthDate, phone } = data
     try {
-      await dispatch(registerUserAPI(registerData)).unwrap()
-      await dispatch(
-        loginUserAPI({
-          phone: formData.phone,
+      // Normal register with phone number
+      if (!isSocialRegister) {
+        const registerData = {
+          fullName,
+          email,
+          birthDate: parseDate(birthDate),
           password: formData.password
+        }
+        await dispatch(registerUserAPI(registerData)).unwrap()
+        dispatch(resetRegistration())
+        return navigate('/')
+      }
+
+      // Social register
+      const payload = {
+        phone,
+        actionType: 'register'
+      }
+      dispatch(requestOtpAPI(payload))
+        .unwrap()
+        .then(() => {
+          dispatch(updateRegistrationData(data))
+          navigate('/social-register/verify-otp')
         })
-      ).unwrap()
-      dispatch(resetRegistration())
-      navigate('/')
+        .catch(() => {
+          phoneHelper = { msg: t('formLabel:phoneAlreadyExists'), kind: 'error' }
+        })
     } catch {
-      dispatch(resetRegistration())
-      navigate('/register')
+      if (!socialLoginAPI) {
+        dispatch(resetRegistration())
+        navigate('/register')
+      }
     }
   }
 
@@ -120,7 +144,7 @@ export default function UserForm() {
             required: true,
             pattern: {
               value: NAME_RULE,
-              message: 'invalidName'
+              message: 'invalid.name'
             }
           })}
           autoFocus
@@ -137,7 +161,7 @@ export default function UserForm() {
             error={errors?.email?.message}
             {...register('email', {
               required: true,
-              pattern: { value: EMAIL_RULE, message: t('formLabel:invalidEmail') }
+              pattern: { value: EMAIL_RULE, message: t('formLabel:invalid.email') }
             })}
           />
         )}
@@ -149,10 +173,11 @@ export default function UserForm() {
             label={t('formLabel:phone')}
             size='md'
             variant='outlined'
+            helper={phoneHelper}
             error={errors?.phone?.message}
             {...register('phone', {
               required: true,
-              pattern: { value: PHONE_RULE, message: t('validationMessage:invalidPhone') }
+              pattern: { value: PHONE_RULE, message: t('validation:invalid.phone') }
             })}
           />
         )}
@@ -165,9 +190,9 @@ export default function UserForm() {
             required: true,
             validate: (value) => {
               const date = dayjs(value, 'DD/MM/YYYY', true)
-              if (!date.isValid()) return 'invalidBirthDate'
+              if (!date.isValid()) return 'invalid.birthDate'
               const age = dayjs().diff(date, 'year')
-              if (age < 16 || age >= 100) return 'invalidBirthDate'
+              if (age < 16 || age >= 100) return 'invalid.birthDate'
               return true
             }
           }}

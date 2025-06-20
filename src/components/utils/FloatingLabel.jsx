@@ -46,7 +46,7 @@ const HELPER_MAP = {
 
 // === HELPER TEXT COMPONENT ===
 function HelperText({ message, kind = 'default' }) {
-  const { t } = useTranslation('validationMessage')
+  const { t } = useTranslation('validation')
   if (!message) return null
   const cfg = HELPER_MAP[kind] || HELPER_MAP.default
   return (
@@ -73,7 +73,7 @@ const FloatingLabel = forwardRef(
     ref
   ) => {
     const [showPwd, setShowPwd] = useState(false)
-    const hasError = error && error !== 'required'
+    const hasError = error && error !== 'required.default'
 
     // ===== CLASS COMPOSITION =====
     const v = VARIANT[variant] || {}

@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 import { refreshTokenAPI } from '~/redux/user/userService'
 import { logoutUserAPI } from '~/redux/user/userSlice'
 import { interceptorLoadingElements } from '~/utils/formatters'
+import { t } from 'i18next'
 import { env } from '~/config/enviroment'
 
 // Use inject technical import redux store in axios
@@ -48,12 +49,6 @@ authorizedAxiosInstance.interceptors.response.use(
   (error) => {
     interceptorLoadingElements(false)
 
-    // Handle status codes that are not 2xx
-    let errorMessage = error?.message
-    if (error.response?.data?.message) {
-      errorMessage = error.response.data?.message
-    }
-
     // Case 1: Handle status code: 401 and refresh token
     // false to not show message (force logout)
     if (error.response?.status === 401) axiosReduxStore.dispatch(logoutUserAPI(false))
@@ -83,9 +78,22 @@ authorizedAxiosInstance.interceptors.response.use(
       })
     }
 
-    if (error.response?.status !== 410) {
-      // Throw error via toast except 410 GONE refresh token
-      toast.error(errorMessage)
+    // Extract error data
+    const errorData = error?.response?.data
+    const errorMessage = errorData?.errorCode || errorData?.message || error?.message
+
+    // Handle field validation errors
+    if (errorData?.fields && Array.isArray(errorData.fields)) {
+      errorData.fields.forEach((fieldError) => {
+        const fieldErrorMessage = fieldError.errorCode
+        toast.error(t('error:' + fieldErrorMessage))
+      })
+      return
+    }
+
+    // Handle general errors (skip 410)
+    if (error?.response?.status !== 410) {
+      toast.error(t('error:' + errorMessage))
     }
     return Promise.reject(error)
   }

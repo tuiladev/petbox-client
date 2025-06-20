@@ -1,0 +1,24 @@
+{
+  "passwordMismatch": "Passwords do not match",
+  "enterFullOtp": "Please enter all 4 digits",
+  "minPasswordLength": "Minimum 8 characters",
+  "atLeastOneUpperCase": "At least 1 uppercase letter and 1 lowercase letter",
+  "atLeastOneNumber": "At least 1 number",
+  "atLeastOneSpecialChar": "At least 1 special character",
+
+  "invalid": {
+    "authInfo": "Invalid info, please re type",
+    "phone": "Invalid phone number format",
+    "email": "Invalid email address",
+    "birthDate": "Invalid birth date format (dd/mm/yyyy)",
+    "name": "Your name is invalid"
+  },
+
+  "required": {
+    "default": "This field is required",
+    "name": "Please enter your full name",
+    "phone": "Please enter your phone number",
+    "email": "Please enter your email address",
+    "birthDate": "Please enter your birth date"
+  }
+}

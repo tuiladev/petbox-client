@@ -29,7 +29,7 @@ const PasswordForm = () => {
   }, [formData.isVerified])
 
   // Translation file
-  const { t } = useTranslation(['auth', 'formLabel', 'validationMessage'])
+  const { t } = useTranslation(['auth', 'formLabel', 'validation'])
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -52,22 +52,22 @@ const PasswordForm = () => {
   const passwordConditions = [
     {
       condition: password.length >= 8,
-      label: t('validationMessage:minPasswordLength'),
+      label: t('validation:minPasswordLength'),
       icon: password.length >= 8 ? 'fi fi-rr-check' : 'fi fi-rr-cross-small'
     },
     {
       condition: /(?=.*[a-z])(?=.*[A-Z])/.test(password),
-      label: t('validationMessage:atLeastOneUpperCase'),
+      label: t('validation:atLeastOneUpperCase'),
       icon: /[A-Z]/.test(password) ? 'fi fi-rr-check' : 'fi fi-rr-cross-small'
     },
     {
       condition: /\d/.test(password),
-      label: t('validationMessage:atLeastOneNumber'),
+      label: t('validation:atLeastOneNumber'),
       icon: /\d/.test(password) ? 'fi fi-rr-check' : 'fi fi-rr-cross-small'
     },
     {
       condition: /[\W_]/.test(password),
-      label: t('validationMessage:atLeastOneSpecialChar'),
+      label: t('validation:atLeastOneSpecialChar'),
       icon: /[\W_]/.test(password) ? 'fi fi-rr-check' : 'fi fi-rr-cross-small'
     }
   ]
@@ -107,7 +107,7 @@ const PasswordForm = () => {
           variant='outlined'
           error={errors?.password?.message}
           {...register('password', {
-            required: 'required',
+            required: 'required.default',
             pattern: {
               value: PASSWORD_RULE
             }
@@ -124,7 +124,7 @@ const PasswordForm = () => {
           variant='outlined'
           error={errors?.confirmPassword?.message}
           {...register('confirmPassword', {
-            required: 'required',
+            required: 'required.default',
             validate: (value) => value === password || 'passwordMismatch'
           })}
         />

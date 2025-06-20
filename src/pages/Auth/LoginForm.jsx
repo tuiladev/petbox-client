@@ -22,7 +22,7 @@ import { formatPhoneNumber } from '~/utils/formatters'
 
 const LoginForm = () => {
   // Translations
-  const { t } = useTranslation(['auth', 'formLabel', 'validationMessage'])
+  const { t } = useTranslation(['auth', 'formLabel', 'validation'])
 
   useDocumentTitle(t('auth:login.title'))
   const dispatch = useDispatch()
@@ -43,7 +43,7 @@ const LoginForm = () => {
     setValue,
     formState: { errors }
   } = useForm({
-    mode: 'onChange'
+    mode: 'onSubmit'
   })
 
   // Handler phone input
@@ -71,7 +71,7 @@ const LoginForm = () => {
   const submitLogin = (data) => {
     const phone = `+${data.phone.replace(/\D/g, '')}`
     if (phone.length != 12) {
-      toast.error(t('validationMessage:invalidAuthInfo'))
+      toast.error(t('validation:invalid.authInfo'))
       return
     }
     const password = data.password
@@ -94,11 +94,11 @@ const LoginForm = () => {
           variant='outlined'
           error={errors?.phone?.message}
           {...register('phone', {
-            required: 'required',
+            required: 'required.default',
             validate: (value) => {
               let cleaned = value.replace(/\D/g, '')
               if (cleaned.length >= 11) {
-                return PHONE_RULE.test(cleaned) || 'invalidPhone'
+                return PHONE_RULE.test(cleaned) || 'invalid.phone'
               }
               return true
             }
@@ -114,7 +114,7 @@ const LoginForm = () => {
           variant='outlined'
           error={errors?.password?.message}
           {...register('password', {
-            required: 'required',
+            required: 'required.default',
             minLength: {
               value: 8,
               message: 'minPasswordLength'

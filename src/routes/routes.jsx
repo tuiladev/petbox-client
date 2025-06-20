@@ -17,6 +17,7 @@ const NotFound = lazy(() => import('~/pages/NotFound'))
 const Profile = lazy(() => import('~/pages/Profile/_id'))
 const LoginForm = lazy(() => import('~/pages/Auth/LoginForm'))
 const RegisterForm = lazy(() => import('~/pages/Auth/Register/RegisterForm'))
+const SocialRegisterForm = lazy(() => import('~/pages/Auth/Register/SocialRegisterForm'))
 const ResetPasswordForm = lazy(() => import('~/pages/Auth/ResetPasswordForm'))
 const AccountVerify = lazy(() => import('~/components/Auth/AccountVerify'))
 const CartPage = lazy(() => import('~/pages/CartPage'))
@@ -38,6 +39,7 @@ export const routes = [
     children: [
       { path: 'login', element: <LoginForm /> },
       { path: 'register/*', element: <RegisterForm /> },
+      { path: 'register-social/*', element: <SocialRegisterForm /> },
       { path: 'reset-password/*', element: <ResetPasswordForm /> },
       { path: 'verify-account', element: <AccountVerify /> }
     ]

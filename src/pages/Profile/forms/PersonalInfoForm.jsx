@@ -59,7 +59,7 @@ const PersonalInfoForm = ({ user }) => {
       <UserInput
         label='Họ và tên'
         register={register('fullName', {
-          required: 'required'
+          required: 'required.default'
         })}
         error={errors.fullName?.message}
       />

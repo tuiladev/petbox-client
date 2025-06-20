@@ -19,7 +19,7 @@ import { PHONE_RULE } from '~/utils/validators'
 import { formatPhoneNumber } from '~/utils/formatters'
 
 const PhoneForm = () => {
-  const { t } = useTranslation(['auth', 'formLabel', 'validationMessage'])
+  const { t } = useTranslation(['auth', 'formLabel', 'validation'])
   const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -59,7 +59,7 @@ const PhoneForm = () => {
   const onSubmit = async (data) => {
     const phone = `+${data.phone.replace(/\D/g, '')}`
     if (phone.length != 12) {
-      toast.error(t('validationMessage:invalidAuthInfo'))
+      toast.error(t('validation:invalid.authInfo'))
       return
     }
     const payload = {
@@ -67,15 +67,12 @@ const PhoneForm = () => {
       actionType: isResetPassword ? 'reset-password' : 'register'
     }
 
-    // dispatch(requestOtpAPI(payload)).then((res) => {
-    //   if (!res.error) {
-    //     dispatch(updateRegistrationData({ phone: phone }))
-    //     navigate(isResetPassword ? '/reset-password/verify-otp' : '/register/verify-otp')
-    //   }
-    // })
-
-    dispatch(updateRegistrationData({ phone: phone }))
-    navigate(isResetPassword ? '/reset-password/verify-otp' : '/register/verify-otp')
+    dispatch(requestOtpAPI(payload)).then((res) => {
+      if (!res.error) {
+        dispatch(updateRegistrationData({ phone: phone }))
+        navigate(isResetPassword ? '/reset-password/verify-otp' : '/register/verify-otp')
+      }
+    })
   }
 
   return (
@@ -89,11 +86,11 @@ const PhoneForm = () => {
           variant='outlined'
           error={errors?.phone?.message}
           {...register('phone', {
-            required: 'required',
+            required: 'required.default',
             validate: (value) => {
               let cleaned = value.replace(/\D/g, '')
               if (cleaned.length >= 11) {
-                return PHONE_RULE.test(cleaned) || 'invalidPhone'
+                return PHONE_RULE.test(cleaned) || 'invalid.phone'
               }
               return true
             }

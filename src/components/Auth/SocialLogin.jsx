@@ -18,11 +18,13 @@ const SocialLogin = ({ isRegistered }) => {
         provider: 'google',
         ...codeResponse
       }
-      dispatch(socialLoginAPI(data)).then((res) => {
-        if (!res.error) {
+      dispatch(socialLoginAPI(data))
+        .then(() => {
           navigate('/')
-        }
-      })
+        })
+        .catch(() => {
+          navigate('/register-social/update-info')
+        })
     }
   })
 
@@ -37,7 +39,7 @@ const SocialLogin = ({ isRegistered }) => {
       <button
         type='button'
         onClick={() => googleLogin()}
-        className={`group min-h-13 flex-center w-1/2 cursor-pointer rounded-full px-4 py-2 outline-1 outline-gray-300 transition-all duration-300 ease-in-out hover:bg-sky-50 hover:outline-sky-500`}
+        className={`group flex-center min-h-13 w-1/2 cursor-pointer rounded-full px-4 py-2 outline-1 outline-gray-300 transition-all duration-300 ease-in-out hover:bg-sky-50 hover:outline-sky-500`}
       >
         <img
           src='https://img.icons8.com/color/48/google-logo.png'
@@ -51,7 +53,7 @@ const SocialLogin = ({ isRegistered }) => {
       <button
         type='button'
         onClick={() => zaloLogin()}
-        className={`group min-h-13 flex-center w-1/2 cursor-pointer rounded-full px-2 py-2 outline-1 outline-gray-300 transition-all duration-300 ease-in-out hover:bg-sky-50 hover:outline-sky-500`}
+        className={`group flex-center min-h-13 w-1/2 cursor-pointer rounded-full px-2 py-2 outline-1 outline-gray-300 transition-all duration-300 ease-in-out hover:bg-sky-50 hover:outline-sky-500`}
       >
         <img src={images.zalo_icon} alt='zalo-logo' className='size-7' />
         <span className={`${isRegistered ? 'hidden' : 'pl-2 group-hover:text-sky-600'}`}>Zalo</span>

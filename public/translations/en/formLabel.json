@@ -1,6 +1,8 @@
 {
   "phone": "Phone number",
   "email": "Email address",
+  "phoneAlreadyExists": "Phone number is already exists!",
+  "phoneReviceOTP": "This phone number will recive an OTP code",
   "emailForInvoice": "To recive your invoice",
   "password": "Password",
   "confirmPassword": "Confirm password",

@@ -1,0 +1,36 @@
+{
+  "REQUEST_INVALID": "Yêu cầu không hợp lệ hoặc thiếu thông tin",
+  "REQUEST_EXCEED_ALLOWED": "Bạn đã vượt quá giới hạn yêu cầu. Vui lòng thử lại sau",
+
+  "TOKEN_INVALID": "Phiên đăng nhập không hợp lệ",
+  "TOKEN_EXPIRED": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại",
+
+  "OTP_INVALID": "Mã xác thực không đúng. Vui lòng kiểm tra lại",
+  "OTP_EXPIRED": "Mã xác thực đã hết hạn. Vui lòng lấy mã mới",
+
+  "USER_NOT_FOUND": "Tài khoản không tồn tại",
+  "USER_INVALID_CREDENTIALS": "Số điện thoại hoặc mật khẩu không đúng",
+  "USER_UNAUTHORIZED": "Bạn cần đăng nhập để truy cập",
+  "USER_FORBIDDEN": "Bạn không có quyền thực hiện thao tác này",
+  "USER_ALREADY_EXISTS": "Email/Số điện thoại đã được sử dụng",
+
+  "PRODUCT_NOT_FOUND": "Không tìm thấy sản phẩm hoặc sản phẩm đã ngừng bán",
+  "PRODUCT_OUT_OF_STOCK": "Sản phẩm này hiện đã hết hàng",
+  "PRODUCT_INVALID_PRICE": "Giá sản phẩm không hợp lệ",
+
+  "ORDER_NOT_FOUND": "Không tìm thấy đơn hàng này",
+  "ORDER_INVALID_STATUS": "Trạng thái đơn hàng không phù hợp cho thao tác này",
+  "ORDER_PAYMENT_FAILED": "Thanh toán thất bại. Vui lòng thử lại",
+
+  "VALIDATION_INVALID_INPUT": "Dữ liệu nhập vào không hợp lệ",
+  "VALIDATION_MISSING_FIELD": "Vui lòng điền đầy đủ thông tin bắt buộc",
+  "VALIDATION_FORMAT_ERROR": "Định dạng dữ liệu không đúng",
+  "VALIDATION_PATTERN_MISMATCH": "Dữ liệu không đúng định dạng yêu cầu",
+  "VALIDATION_LENGTH_INVALID": "Độ dài không hợp lệ",
+  "VALIDATION_RANGE_INVALID": "Giá trị nằm ngoài phạm vi cho phép",
+  "VALIDATION_TYPE_INVALID": "Loại dữ liệu không đúng",
+  "VALIDATION_ENUM_INVALID": "Giá trị không nằm trong danh sách cho phép",
+
+  "SYSTEM_INTERNAL_ERROR": "Có lỗi xảy ra. Vui lòng thử lại sau",
+  "SYSTEM_SERVICE_UNAVAILABLE": "Dịch vụ tạm thời không khả dụng. Vui lòng thử lại sau"
+}
