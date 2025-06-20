@@ -22,14 +22,14 @@ const SocialRegisterForm = () => {
 
   // Map routes to step index
   const pathToStep = {
-    '/register-social/update-info': 0,
-    '/register-social/verify-otp': 1
+    '/register-social/update-info': 1,
+    '/register-social/verify-otp': 2
   }
 
   // Step bar items
   const steps = [
-    { name: t('register.steps.updateInfo'), step: 0 },
-    { name: t('register.steps.verifyOtp'), step: 1 }
+    { name: t('register.steps.updateInfo'), step: 1 },
+    { name: t('register.steps.verifyOtp'), step: 2 }
   ]
 
   // Redirect logged in user
@@ -39,18 +39,18 @@ const SocialRegisterForm = () => {
     }
   }, [currentUser, navigate])
 
-  const currentStep = pathToStep[location.pathname] ?? 0
+  const currentStep = pathToStep[location.pathname] ?? 1
 
   // Set document title based on step
-  const titles = [t('register.steps.updateInfo'), t('register.enterOtp')]
+  const titles = ['', t('register.steps.updateInfo'), t('register.enterOtp')]
   useDocumentTitle(titles[currentStep])
 
   // Determine which form component to render
   const renderForm = () => {
     switch (currentStep) {
-      case 0:
-        return <UserForm />
       case 1:
+        return <UserForm />
+      case 2:
         return <OtpForm />
       default:
         return null

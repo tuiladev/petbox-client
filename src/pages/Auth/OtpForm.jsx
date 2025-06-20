@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
-import { selectRegistrationData } from '~/redux/user/userSlice'
+import { resetRegistration, selectRegistrationData } from '~/redux/user/userSlice'
 import { requestOtpAPI, verifyOtpAPI, registerUserAPI } from '~/redux/user/userSlice'
 
 // Components
@@ -22,7 +22,7 @@ const OtpForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const isResetPassword = location.pathname.startsWith('/reset-password')
-  const isSocialRegister = location.pathname.startsWith('register-social')
+  const isSocialRegister = location.pathname.startsWith('/register-social')
   const formData = useSelector(selectRegistrationData)
 
   // Form state
@@ -53,6 +53,9 @@ const OtpForm = () => {
         .then(() => navigate('/'))
         .catch(() => {
           navigate('/register')
+        })
+        .finally(() => {
+          dispatch(resetRegistration())
         })
       return
     }

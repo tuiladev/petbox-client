@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import authorizedAxiosInstance from '~/middleware/axiosInstance'
+import { data } from 'react-router-dom'
 
 const initialState = {
   currentUser: null,
@@ -60,9 +61,17 @@ export const updateUserAPI = createAsyncThunk('user/updateUserAPI', async (data)
   return response.data
 })
 
-export const requestOtpAPI = createAsyncThunk('user/requestOtpAPI', async (data) => {
-  const response = await authorizedAxiosInstance.post('/users/request-otp', data)
-  return response.data
+export const requestOtpAPI = createAsyncThunk('user/requestOtpAPI', async (data, thunkAPI) => {
+  try {
+    const response = await authorizedAxiosInstance.post('/users/request-otp', data)
+    return response.data
+  } catch (error) {
+    return thunkAPI.rejectWithValue({
+      errorCode: error.response?.data?.errorCode,
+      message: error.response?.data?.message,
+      statusCode: error.response?.status
+    })
+  }
 })
 
 export const verifyOtpAPI = createAsyncThunk('user/verifyOtpAPI', async (data) => {
@@ -99,9 +108,9 @@ export const userSlice = createSlice({
     })
     builder.addCase(socialLoginAPI.rejected, (state, action) => {
       if (action.payload?.pending) {
-        state.registration.fullName = action.payload.fullName
-        state.registration.email = action.payload.email
-        state.registration.key = action.payload.key
+        state.registration.formData.fullName = action.payload.fullName
+        state.registration.formData.email = action.payload.email
+        state.registration.formData.key = action.payload.key
       }
     })
     builder.addCase(logoutUserAPI.fulfilled, (state) => {

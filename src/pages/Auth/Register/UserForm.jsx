@@ -1,5 +1,5 @@
 // Libraries
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useForm, Controller, useWatch } from 'react-hook-form'
@@ -10,11 +10,12 @@ import dayjs from 'dayjs'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   selectRegistrationData,
+  updateRegistrationData,
   registerUserAPI,
   resetRegistration,
-  loginUserAPI,
   socialLoginAPI,
-  requestOtpAPI
+  requestOtpAPI,
+  updateUserAPI
 } from '~/redux/user/userSlice'
 
 // Components
@@ -24,7 +25,7 @@ import DatePickerDialog from '~/components/DatePickerDialog'
 import { EMAIL_RULE, NAME_RULE, PHONE_RULE } from '~/utils/validators'
 
 // Utils
-import { formatDate, parseDate, maskDateInput } from '~/utils/formatters'
+import { formatDate, formatPhoneNumber, parseDate, maskDateInput } from '~/utils/formatters'
 
 // MAIN COMPONENT
 export default function UserForm() {
@@ -35,7 +36,7 @@ export default function UserForm() {
   const dispatch = useDispatch()
 
   // Determine which fields to show
-  const isSocialRegister = location.pathname.startsWith('register-social')
+  const isSocialRegister = location.pathname.startsWith('/register-social')
   const formData = useSelector(selectRegistrationData)
   const hasEmail = Boolean(formData.email)
   const hasPhone = Boolean(formData.phone)
@@ -45,6 +46,7 @@ export default function UserForm() {
     control,
     register,
     setFocus,
+    setValue,
     handleSubmit,
     formState: { errors, isSubmitting, touchedFields }
   } = useForm({
@@ -67,11 +69,35 @@ export default function UserForm() {
 
   /* ---------- Phone helper ---------- */
   const phoneValue = useWatch({ control, name: 'phone' })
-  const phoneMessage = { msg: t('formLabel:phoneReviceOTP'), kind: 'info' }
+  const [isExists, setIsExists] = useState(false)
   const phoneHelper = useMemo(() => {
-    if (touchedFields.phone && phoneValue === '') return phoneMessage
+    if (touchedFields.phone && isExists)
+      return { msg: t('formLabel:phoneAlreadyExists'), kind: 'error' }
+    if (touchedFields.phone && phoneValue === '')
+      return { msg: t('formLabel:phoneReviceOTP'), kind: 'info' }
     return null
-  }, [touchedFields.phone, phoneValue])
+  }, [touchedFields.phone, phoneValue, isExists])
+
+  // Handler phone input
+  const handlePhoneInput = (e) => {
+    let value = e.target.value
+    let lastChar = value.slice(-1)
+    // Check if last type is a character
+    if (lastChar && !/\d/.test(lastChar)) {
+      setValue('phone', value.slice(0, -1))
+      return
+    }
+    // Limit input length
+    if (value.length > 17) {
+      setValue('phone', value.slice(0, 17))
+      return
+    }
+    // Format phone number for better UI
+    if (value.length >= 9) {
+      value = value.slice(0, 17)
+      setValue('phone', formatPhoneNumber(value), { shouldValidate: true })
+    }
+  }
 
   /* ---------- On Errors ---------- */
   const onError = (formErrors) => {
@@ -93,41 +119,49 @@ export default function UserForm() {
 
   /* ---------- On Submit ---------- */
   const onSubmit = async (data) => {
+    data.phone = `+${data.phone.replace(/\D/g, '')}`
+    data.birthDate = parseDate(data.birthDate)
     const { fullName, email, birthDate, phone } = data
-    try {
-      // Normal register with phone number
-      if (!isSocialRegister) {
-        const registerData = {
-          fullName,
-          email,
-          birthDate: parseDate(birthDate),
-          password: formData.password
-        }
-        await dispatch(registerUserAPI(registerData)).unwrap()
-        dispatch(resetRegistration())
-        return navigate('/')
-      }
 
-      // Social register
-      const payload = {
-        phone,
-        actionType: 'register'
+    // Normal register with phone number
+    if (!isSocialRegister) {
+      const registerData = {
+        fullName,
+        email,
+        birthDate,
+        password: formData.password,
+        type: 'normal'
       }
-      dispatch(requestOtpAPI(payload))
+      await dispatch(registerUserAPI(registerData))
         .unwrap()
         .then(() => {
-          dispatch(updateRegistrationData(data))
-          navigate('/social-register/verify-otp')
+          navigate('/')
         })
         .catch(() => {
-          phoneHelper = { msg: t('formLabel:phoneAlreadyExists'), kind: 'error' }
+          dispatch(resetRegistration())
+          navigate('/register')
         })
-    } catch {
-      if (!socialLoginAPI) {
-        dispatch(resetRegistration())
-        navigate('/register')
-      }
     }
+
+    // Social register
+    const payload = {
+      phone,
+      actionType: 'register'
+    }
+    dispatch(requestOtpAPI(payload))
+      .unwrap()
+      .then((res) => {
+        console.log(res)
+        dispatch(updateRegistrationData({ ...data, type: 'social' }))
+        navigate('/register-social/verify-otp')
+      })
+      .catch((error) => {
+        if (error.errorCode === 'USER_ALREADY_EXISTS') setIsExists(true)
+        if (error.errorCode === 'TOKEN_EXPIRED') {
+          dispatch(resetRegistration())
+          navigate('/register')
+        }
+      })
   }
 
   return (
@@ -173,12 +207,19 @@ export default function UserForm() {
             label={t('formLabel:phone')}
             size='md'
             variant='outlined'
-            helper={phoneHelper}
             error={errors?.phone?.message}
+            helper={phoneHelper}
             {...register('phone', {
-              required: true,
-              pattern: { value: PHONE_RULE, message: t('validation:invalid.phone') }
+              required: 'required.default',
+              validate: (value) => {
+                let cleaned = value.replace(/\D/g, '')
+                if (cleaned.length >= 11) {
+                  return PHONE_RULE.test(cleaned) || 'invalid.phone'
+                }
+                return true
+              }
             })}
+            onChange={handlePhoneInput}
           />
         )}
 

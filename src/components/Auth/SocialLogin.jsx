@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router'
 import { images } from '~/assets'
 import { socialLoginAPI } from '~/redux/user/userSlice'
 import { ZaloProvider } from '~/middleware/zaloProvider'
+import { env } from '~/config/enviroment'
 
 const SocialLogin = ({ isRegistered }) => {
   const dispatch = useDispatch()
@@ -12,17 +13,18 @@ const SocialLogin = ({ isRegistered }) => {
   // Use Google Login
   const googleLogin = useGoogleLogin({
     flow: 'auth-code',
-    redirect_uri: 'https://petbox-client.vercel.app',
+    redirect_uri: env.VITE_GOOGLE_REDIRECT_URL,
     onSuccess: (codeResponse) => {
       const data = {
         provider: 'google',
         ...codeResponse
       }
       dispatch(socialLoginAPI(data))
+        .unwrap()
         .then(() => {
           navigate('/')
         })
-        .catch(() => {
+        .catch((err) => {
           navigate('/register-social/update-info')
         })
     }
