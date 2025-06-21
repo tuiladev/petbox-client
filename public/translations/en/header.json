@@ -5,7 +5,24 @@
     "allProducts": "All Products",
     "blog": "Blog",
     "notFound": "Not Found",
-    "login": "Login"
+    "login": "Login",
+    "menu": "Menu"
+  },
+  "searchBar": {
+    "suggest": "Suggest keyword",
+    "history": "Search history",
+    "hot": "Hot keyword",
+    "newArrival": "New arrival product",
+    "notFound": "No result found!",
+    "clearAll": "Clear search history",
+    "viewAll": "View all"
+  },
+  "mainMenu": {
+    "news": "News",
+    "specialDiscount": "Discount 10% for online schedule",
+    "product": "Products",
+    "service": "Services",
+    "makeAppointment": "Take it"
   },
   "userMenu": {
     "account": "Account",
@@ -22,10 +39,28 @@
   "profileMenu": {
     "personalInfo": "Personal Info",
     "address": "Addresses",
-    "payment": "Payment Methods",
+    "payment": "Payments",
     "pets": "Pets",
     "notifications": "Notifications",
     "membership": "Membership",
-    "orders": "Orders"
+    "orders": "Orders",
+    "cart": "Cart",
+    "favorites": "Favorites"
+  },
+  "categories": {
+    "food": "Food",
+    "beds": "Bed",
+    "cleaning": "Cleaning",
+    "accessories": "Accessories"
+  },
+  "services": {
+    "hotel": "Pet hotel",
+    "spa": "Spa & washing",
+    "medical": "Medical",
+    "sterilization": "Sterilization",
+    "homeCare": "Home care"
+  },
+  "notificaiton": {
+    "title": "Notifications"
   }
 }

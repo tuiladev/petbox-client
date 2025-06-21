@@ -6,8 +6,10 @@ import Button from '~/components/common/Button'
 import Modal from '~/components/common/Modal'
 import TabHeading from './TabHeading'
 import AddressEditForm from '../forms/AddressEditForm'
+import { useTranslation } from 'react-i18next'
 
 const AddressTab = ({ user }) => {
+  const { t } = useTranslation('profile')
   const { isOpen, openModal, closeModal } = useModal()
   const [selectedAddress, setSelectedAddress] = useState(null)
   const [addresses, setAddresses] = useState(
@@ -74,7 +76,7 @@ const AddressTab = ({ user }) => {
 
   return (
     <div className='space-y-8'>
-      <TabHeading title='Địa chỉ giao hàng' />
+      <TabHeading title='address' />
       {addresses.length > 0 ? (
         <div className='grid grid-cols-3 gap-4'>
           {[...addresses]
@@ -96,7 +98,7 @@ const AddressTab = ({ user }) => {
         <p className='text-center text-gray-500'>Bạn chưa có địa chỉ giao hàng nào</p>
       )}
       <Button onClick={handleAddNewAddress} variant='filled' size='md' type='button'>
-        + Thêm địa chỉ
+        + {t('action.addAddress')}
       </Button>
 
       <Modal isOpen={isOpen}>
@@ -126,6 +128,7 @@ const getAddressTypeIcon = (type) => {
 }
 
 const AddressCard = ({ address, onUpdate, onDelete, onSetDefault }) => {
+  const { t } = useTranslation('profile')
   const handleCardClick = () => {
     onUpdate && onUpdate(address)
   }
@@ -149,7 +152,7 @@ const AddressCard = ({ address, onUpdate, onDelete, onSetDefault }) => {
             }}
             className='text-primary cursor-pointer'
           >
-            Cập nhật
+            {t('action.update')}
           </button>
           {!address.isDefault && (
             <button
@@ -159,7 +162,7 @@ const AddressCard = ({ address, onUpdate, onDelete, onSetDefault }) => {
               }}
               className='cursor-pointer text-red-500'
             >
-              Xóa
+              {t('action.remove')}
             </button>
           )}
         </div>
@@ -185,10 +188,12 @@ const AddressCard = ({ address, onUpdate, onDelete, onSetDefault }) => {
               }}
               className='text-primary cursor-pointer text-sm'
             >
-              Đặt làm mặc định
+              {t('action.setDefault')}
             </button>
           )}
-          {address.isDefault && <span className='text-sm font-bold text-amber-600'>Mặc định</span>}
+          {address.isDefault && (
+            <span className='text-sm font-bold text-amber-600'>{t('action.isDefault')}</span>
+          )}
         </div>
       </div>
     </div>

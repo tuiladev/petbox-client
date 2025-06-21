@@ -14,8 +14,11 @@ import ProfileTab from './tabs/ProfileTab'
 
 // Another component
 import Sidebar from '~/components/Profile/Sidebar'
+import { useTranslation } from 'react-i18next'
 
 const Profile = () => {
+  const { t } = useTranslation('common')
+
   // Defaul route to profile tab
   const navigate = useNavigate()
   const { tabName = 'profile' } = useParams()
@@ -55,7 +58,9 @@ const Profile = () => {
 
   return (
     <div className='l-container pt-12! pb-24!'>
-      <h2 className='title-lg mb-6 ml-14 text-gray-800'>Chào mừng, {user.fullName}</h2>
+      <h2 className='title-lg mb-6 ml-14 text-gray-800'>
+        {t('welcome')}, {user.fullName}
+      </h2>
       <div className='flex gap-8'>
         <Sidebar
           activeTab={activeMenuItem}

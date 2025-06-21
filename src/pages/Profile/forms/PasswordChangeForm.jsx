@@ -10,8 +10,10 @@ import UserInput from '~/components/Profile/UserInput'
 import { PASSWORD_RULE } from '~/utils/validators'
 import { updateUserAPI } from '~/redux/user/userSlice'
 import { toast } from 'react-toastify'
+import { useTranslation } from 'react-i18next'
 
 const PasswordChangeForm = () => {
+  const { t } = useTranslation('formLabel')
   const dispatch = useDispatch()
   const {
     register,
@@ -45,7 +47,7 @@ const PasswordChangeForm = () => {
       }}
     >
       <UserInput
-        label='Mật khẩu cũ'
+        label={t('oldPassword')}
         type='password'
         register={register('currentPassword', {
           required: 'required.default',
@@ -59,7 +61,7 @@ const PasswordChangeForm = () => {
       />
 
       <UserInput
-        label='Mật khẩu mới'
+        label={t('newPassword')}
         type='password'
         register={register('newPassword', {
           required: 'required.default',
@@ -73,7 +75,7 @@ const PasswordChangeForm = () => {
       />
 
       <UserInput
-        label='Xác nhận mật khẩu'
+        label={t('confirmPassword')}
         type='password'
         register={register('confirmPassword', {
           required: 'required.default',
@@ -85,7 +87,7 @@ const PasswordChangeForm = () => {
       />
 
       <Button
-        children={<span>Đặt Lại Mật Khẩu</span>}
+        children={<span>{t('resetPassword')}</span>}
         variant='filled'
         size='md'
         disabled={!isDirty}

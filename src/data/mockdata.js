@@ -45,31 +45,6 @@ export const getProducts = () => [
 ]
 
 /**
- * Danh mục
- */
-export const getCategories = () => [
-  { icon: 'fi fi-rr-fish', text: t('categories.food'), url: '/category/cat-food' },
-  { icon: 'fi fi-rr-sleeping-cat', text: t('categories.beds'), url: '/category/dog-food' },
-  { icon: 'fi fi-rr-cat-head', text: t('categories.cleaning'), url: '/category/cleaning' },
-  { icon: 'fi fi-rr-cat-space', text: t('categories.accessories'), url: '/category/toys' }
-]
-
-/**
- * Dịch vụ
- */
-export const getServices = () => [
-  { icon: 'fi fi-rr-dorm-room', text: t('services.hotel'), url: '/services/hotel' },
-  { icon: 'fi fi-rr-cat-dog', text: t('services.spa'), url: '/services/spa' },
-  { icon: 'fi fi-rr-doctor', text: t('services.medical'), url: '/services/medical' },
-  {
-    icon: 'fi fi-rr-venus-mars',
-    text: t('services.sterilization'),
-    url: '/services/sterilization'
-  },
-  { icon: 'fi fi-rr-paw-heart', text: t('services.homeCare'), url: '/services/home-care' }
-]
-
-/**
  * Bài viết
  */
 export const getPosts = () => [

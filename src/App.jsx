@@ -12,8 +12,10 @@ const router = createBrowserRouter(routes)
 // Utils
 import PageLoadingSpinner from '~/components/utils/PageLoadingSpinner'
 import { env } from './config/enviroment'
+import { useSyncLanguage } from '~/hooks/useSyncLanguage'
 
 function App() {
+  useSyncLanguage()
   return (
     <GoogleOAuthProvider clientId={env.GOOGLE_CLIENT_ID}>
       <ToastContainer

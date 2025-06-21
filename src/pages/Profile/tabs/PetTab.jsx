@@ -1,8 +1,10 @@
 /* eslint-disable react/no-children-prop */
+import { useTranslation } from 'react-i18next'
 import TabHeading from './TabHeading'
 import Button from '~/components/common/Button'
 
 const PetTab = ({ user }) => {
+  const { t } = useTranslation('profile')
   // Sử dụng thú cưng từ user nếu có, nếu không thì dùng dữ liệu mẫu
   const pets = user?.pets || [
     {
@@ -17,7 +19,7 @@ const PetTab = ({ user }) => {
 
   return (
     <div className='space-y-8'>
-      <TabHeading title='Danh sách thú cưng' />
+      <TabHeading title='petList' />
       {pets.length > 0 ? (
         <div className='grid grid-cols-3'>
           {pets.map((pet) => (
@@ -39,9 +41,9 @@ const PetTab = ({ user }) => {
           ))}
         </div>
       ) : (
-        <p className='text-center text-gray-500'>Bạn chưa có thú cưng nào</p>
+        <p className='text-center text-gray-500'>{t('emptyPet')}</p>
       )}
-      <Button children={<span>+ Thêm thú cưng</span>} variant='filled' size='md' type='button' />
+      <Button children={<span>+ {t('action.addPet')}</span>} variant='filled' size='md' type='button' />
     </div>
   )
 }

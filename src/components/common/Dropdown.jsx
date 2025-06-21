@@ -62,7 +62,7 @@ export const DropdownContent = ({
   return (
     <div
       {...contentProps}
-      className={`absolute ${getSize()} ${getPosition()} origin-top rounded-sm bg-white shadow-lg transition-all duration-300 ${className} ${effectClass}`}
+      className={`absolute ${getSize()} ${getPosition()} origin-top rounded-sm bg-white shadow-lg transition-all duration-200 ${className} ${effectClass}`}
     >
       {children}
     </div>

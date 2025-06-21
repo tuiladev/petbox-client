@@ -24,7 +24,8 @@ i18n
       'validation',
       'header',
       'product',
-      'error'
+      'error',
+      'profile'
     ],
     // Namespace mặc định khi gọi t('key') không chỉ định namespace
     defaultNS: 'common',

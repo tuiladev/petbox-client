@@ -1,10 +1,11 @@
-import { storeInfo, socials } from '~/config/siteConfig'
+import { getStoreInfo, socials } from '~/config/siteConfig'
 import IconLink from '~/components/common/IconLink.jsx'
 import LanguageSwitcher from '../utils/LanguageSwitcher'
 import { useTranslation } from 'react-i18next'
 
 const Topbar = ({ className = '', showOnMobile = false }) => {
   const { t } = useTranslation('common')
+  const storeInfo = getStoreInfo()
   return (
     <div className={`bg-primary ${showOnMobile ? 'block' : 'hidden sm:block'} ${className}`}>
       <div className='l-container flex flex-wrap items-center justify-center gap-y-4 py-2! text-white md:justify-between'>

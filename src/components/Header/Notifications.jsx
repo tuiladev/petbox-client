@@ -5,11 +5,13 @@ import Dropdown from '~/components/common/Dropdown'
 import NotificationItem from '~/components/common/NotificationItem'
 import EmptyNotification from '~/components/common/EmptyNotification'
 import useDropdown from '~/hooks/useDropdown'
+import { useTranslation } from 'react-i18next'
 
 const Notifications = () => {
+  const { t } = useTranslation('header')
   const notifications = getNotifications()
   const [notificationsList, setNotificationsList] = useState(notifications)
-  const dropdownState = useDropdown({ openMode: 'click' })
+  const dropdownState = useDropdown({ openMode: 'hover' })
 
   const unreadCount = notificationsList.filter((notif) => !notif.isRead).length
 
@@ -49,7 +51,9 @@ const Notifications = () => {
         contentProps={dropdownState.getContentProps()}
         isOpen={dropdownState.isOpen}
       >
-        <div className='title-lg text-primary border-b border-gray-200 p-4'>Thông báo</div>
+        <div className='title-lg text-primary border-b border-gray-200 p-4'>
+          {t('notificaiton.title')}
+        </div>
 
         {notificationsList && notificationsList.length > 0 ? (
           <ul>
@@ -69,7 +73,7 @@ const Notifications = () => {
           to='/notifications'
           className='text-primary group block border-t border-gray-200 p-4 text-center transition-colors duration-300 hover:bg-gray-50'
         >
-          Xem tất cả{' '}
+          {t('searchBar.viewAll')}{' '}
           <i className='fi fi-rr-arrow-right pointer-events-none inline-block -translate-x-5 translate-y-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100'></i>
         </Link>
       </Dropdown.Content>

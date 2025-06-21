@@ -5,7 +5,24 @@
     "allProducts": "Tất cả sản phẩm",
     "blog": "Blog",
     "notFound": "Không tìm thấy",
-    "login": "Đăng nhập"
+    "login": "Đăng nhập",
+    "menu": "Góc của sen"
+  },
+  "searchBar": {
+    "suggest": "Gợi ý tìm kiếm",
+    "history": "Lịch sử tìm kiếm",
+    "hot": "Từ khoá nổi bật",
+    "newArrival": "Hàng mới - Giá tốt",
+    "notFound": "Không tìm thấy kết quả",
+    "clearAll": "Xoá tất cả",
+    "viewAll": "Xem tất cả"
+  },
+  "mainMenu": {
+    "news": "Tin mới cập nhật",
+    "specialDiscount": "Ưu đãi 10% khi đặt trước",
+    "product": "Sản phẩm",
+    "service": "Dịch vụ",
+    "makeAppointment": "Đặt lịch"
   },
   "userMenu": {
     "account": "Tài khoản",
@@ -22,10 +39,28 @@
   "profileMenu": {
     "personalInfo": "Thông tin cá nhân",
     "address": "Địa chỉ",
-    "payment": "Phương thức thanh toán",
+    "payment": "Thanh toán",
     "pets": "Thú cưng",
     "notifications": "Thông báo",
     "membership": "Thành viên",
-    "orders": "Đơn hàng"
+    "orders": "Đơn hàng",
+    "cart": "Giỏ hàng",
+    "favorites": "Yêu thích"
+  },
+  "categories": {
+    "food": "Thức ăn",
+    "beds": "Giường ngủ",
+    "cleaning": "Dụng cụ vệ sinh",
+    "accessories": "Phụ kiện"
+  },
+  "services": {
+    "hotel": "Khách sạn",
+    "spa": "Spa và tắm rửa",
+    "medical": "Khám bệnh",
+    "sterilization": "Triệt sản",
+    "homeCare": "Chăm sóc tại nhà"
+  },
+  "notificaiton": {
+    "title": "Thông báo"
   }
 }

@@ -56,3 +56,30 @@ export const getProfileMenu = () => [
   { id: 'cart', label: tHeaderMenu('profileMenu.cart'), icon: 'fi fi-rr-shopping-cart' },
   { id: 'favorites', label: tHeaderMenu('profileMenu.favorites'), icon: 'fi fi-rr-heart' }
 ]
+
+export const getCategories = () => [
+  { icon: 'fi fi-rr-fish', text: tHeaderMenu('categories.food'), url: '/category/cat-food' },
+  {
+    icon: 'fi fi-rr-sleeping-cat',
+    text: tHeaderMenu('categories.beds'),
+    url: '/category/dog-food'
+  },
+  {
+    icon: 'fi fi-rr-cat-head',
+    text: tHeaderMenu('categories.cleaning'),
+    url: '/category/cleaning'
+  },
+  { icon: 'fi fi-rr-cat-space', text: tHeaderMenu('categories.accessories'), url: '/category/toys' }
+]
+
+export const getServices = () => [
+  { icon: 'fi fi-rr-dorm-room', text: tHeaderMenu('services.hotel'), url: '/services/hotel' },
+  { icon: 'fi fi-rr-cat-dog', text: tHeaderMenu('services.spa'), url: '/services/spa' },
+  { icon: 'fi fi-rr-doctor', text: tHeaderMenu('services.medical'), url: '/services/medical' },
+  {
+    icon: 'fi fi-rr-venus-mars',
+    text: tHeaderMenu('services.sterilization'),
+    url: '/services/sterilization'
+  },
+  { icon: 'fi fi-rr-paw-heart', text: tHeaderMenu('services.homeCare'), url: '/services/home-care' }
+]

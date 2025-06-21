@@ -4,6 +4,9 @@
   "emailForInvoice": "Hoá đơn mua hàng sẽ được gửi đến email này",
   "phoneAlreadyExists": "Số điện thoại đã được sử dụng",
   "phoneReviceOTP": "Mã xác thực sẽ được gửi qua số điện thoại này",
+  "oldPassword": "Mật khẩu cũ",
+  "newPassword": "Mật khẩu mới",
+  "resetPassword": "Đặt lại mật khẩu",
   "password": "Mật khẩu",
   "confirmPassword": "Xác nhận mật khẩu",
   "fullName": "Họ và tên",
@@ -20,5 +23,6 @@
   "agreeTo": "Bằng việc đăng ký, bạn đã đồng ý với",
   "termOfUse": "Điều khoản sử dụng",
   "privacyPolicy": "Chính sách bảo mật của The Pet's Box",
-  "and": "và"
+  "and": "và",
+  "saveChange": "Lưu thay đổi"
 }

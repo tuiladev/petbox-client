@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import authorizedAxiosInstance from '~/middleware/axiosInstance'
-import { data } from 'react-router-dom'
 
 const initialState = {
   currentUser: null,
+  locale: 'vi',
   // Step state for registration process
   registration: {
     formData: {
@@ -57,8 +57,13 @@ export const logoutUserAPI = createAsyncThunk(
 )
 
 export const updateUserAPI = createAsyncThunk('user/updateUserAPI', async (data) => {
-  const response = await authorizedAxiosInstance.put('/users/update', data)
-  return response.data
+  try {
+    const response = await authorizedAxiosInstance.put('/users/update', data)
+    toast.success('Cập nhật thành công!')
+    return response.data
+  } catch (error) {
+    return error
+  }
 })
 
 export const requestOtpAPI = createAsyncThunk('user/requestOtpAPI', async (data, thunkAPI) => {
@@ -91,6 +96,9 @@ export const userSlice = createSlice({
     },
     resetRegistration: (state) => {
       state.registration.formData = initialState.registration.formData
+    },
+    updateLocale: (state, action) => {
+      state.locale = action.payload
     }
   },
   extraReducers: (builder) => {
@@ -129,9 +137,10 @@ export const userSlice = createSlice({
   }
 })
 
-export const { updateRegistrationData, resetRegistration } = userSlice.actions
+export const { updateRegistrationData, resetRegistration, updateLocale } = userSlice.actions
 
 export const selectRegistrationData = (state) => state.user.registration.formData
 export const selectCurrentUser = (state) => state.user.currentUser
+export const selectCurrentLanguage = (state) => state.user.locale
 
 export default userSlice.reducer

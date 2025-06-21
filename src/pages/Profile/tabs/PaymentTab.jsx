@@ -5,9 +5,11 @@ import Button from '~/components/common/Button'
 import TabHeading from './TabHeading'
 import PaymentForm from '../forms/PaymentForm'
 import useModal from '~/hooks/useModal'
+import { useTranslation } from 'react-i18next'
 
 // Component con hiển thị thẻ thanh toán
 const PaymentCard = ({ method, onDelete, onSetDefault }) => {
+  const { t } = useTranslation('profile')
   const renderCardLogo = () => {
     switch (method.type) {
       case 'Mastercard':
@@ -41,7 +43,7 @@ const PaymentCard = ({ method, onDelete, onSetDefault }) => {
             onClick={() => onDelete && onDelete(method.id)}
             className='cursor-pointer opacity-0 transition-all duration-300 group-hover:text-red-500 group-hover:opacity-100'
           >
-            Xóa
+            {t('action.remove')}
           </button>
         )}
       </div>
@@ -53,13 +55,13 @@ const PaymentCard = ({ method, onDelete, onSetDefault }) => {
       </div>
       <p className='tracking-widest'>{formatCardNumber(method.identifier)}</p>
       {method.isDefault ? (
-        <span className='text-sm font-bold text-amber-600'>Mặc định</span>
+        <span className='text-sm font-bold text-amber-600'> {t('action.isDefault')}</span>
       ) : (
         <button
           onClick={() => onSetDefault && onSetDefault(method.id)}
           className='text-primary cursor-pointer text-sm'
         >
-          Đặt làm mặc định
+           {t('action.setDefault')}
         </button>
       )}
     </div>
@@ -67,6 +69,7 @@ const PaymentCard = ({ method, onDelete, onSetDefault }) => {
 }
 
 const PaymentTab = ({ user }) => {
+  const {t} = useTranslation('profile')
   const { isOpen, openModal, closeModal } = useModal()
   const [paymentMethods, setPaymentMethods] = React.useState(
     user?.paymentMethods || [
@@ -127,7 +130,7 @@ const PaymentTab = ({ user }) => {
 
   return (
     <div className='space-y-8'>
-      <TabHeading title='Phương Thức Thanh Toán' />
+      <TabHeading title='payment' />
       {paymentMethods.length > 0 ? (
         <div className='grid grid-cols-3 gap-4'>
           {[...paymentMethods]
@@ -148,7 +151,7 @@ const PaymentTab = ({ user }) => {
         <p className='text-center text-gray-500'>Bạn chưa có phương thức thanh toán nào</p>
       )}
       <Button onClick={openModal} variant='filled' size='md' type='button'>
-        + Thêm thẻ/ví
+        + {t('action.addPayment')}
       </Button>
 
       {/* Modal thêm thẻ */}

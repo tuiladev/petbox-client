@@ -10,8 +10,10 @@ import UserInput from '~/components/Profile/UserInput'
 
 // Validate message
 import { updateUserAPI } from '~/redux/user/userSlice'
+import { useTranslation } from 'react-i18next'
 
 const PersonalInfoForm = ({ user }) => {
+  const { t } = useTranslation('formLabel')
   const dispatch = useDispatch()
 
   // Default value for form
@@ -57,19 +59,19 @@ const PersonalInfoForm = ({ user }) => {
       }}
     >
       <UserInput
-        label='Họ và tên'
+        label={t('fullName')}
         register={register('fullName', {
           required: 'required.default'
         })}
         error={errors.fullName?.message}
       />
 
-      <UserInput label='Email' register={register('email')} disabled={true} />
+      <UserInput label={t('email')} register={register('email')} disabled={true} />
 
-      <UserInput label='Số điện thoại' register={register('phone')} disabled={true} />
+      <UserInput label={t('phone')} register={register('phone')} disabled={true} />
 
       <Button
-        children={<span>Lưu Thay Đổi</span>}
+        children={<span>{t('saveChange')}</span>}
         variant='filled'
         size='md'
         disabled={!isDirty || !isValid}

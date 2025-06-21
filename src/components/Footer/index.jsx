@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { helps, storeInfo, socials } from '~/config/siteConfig'
-import { getCategories, getServices } from '~/data/mockdata'
+import { helps, socials, getStoreInfo } from '~/config/siteConfig'
+import { getCategories, getServices } from '~/config/menuConfig'
 import IconLink from '~/components/common/IconLink'
 import Logo from '~/components/common/Logo'
 
 const FooterCol = ({ title = '', list }) => {
-  const { t } = useTranslation('footer')
   return (
     <div className='w-full'>
       <h3 className='title-lg relative mb-10 capitalize'>
@@ -17,7 +16,7 @@ const FooterCol = ({ title = '', list }) => {
         {list.map((item, index) => (
           <li key={index} className=''>
             <Link className="relative py-1 transition-all duration-300 ease-in-out after:absolute after:top-full after:left-0 after:h-0.5 after:w-0 after:bg-white after:transition-all after:duration-300 after:ease-in-out after:content-[''] hover:after:w-full">
-              {t(`common:${item.text}`)}
+              {item.text}
             </Link>
           </li>
         ))}
@@ -30,6 +29,7 @@ const Footer = () => {
   const { t } = useTranslation(['common', 'footer'])
   const categories = getCategories()
   const services = getServices()
+  const storeInfo = getStoreInfo()
   return (
     <footer className='bg-primary text-white shadow-lg'>
       <div className='l-container'>

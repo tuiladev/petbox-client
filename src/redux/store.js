@@ -11,7 +11,7 @@ const reducers = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user'], // only navigation will be persisted
+  whitelist: ['user', 'product'], // only navigation will be persisted
   blacklist: [''] // navigation will not be persisted
 }
 

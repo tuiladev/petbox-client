@@ -1,12 +1,16 @@
-export const storeInfo = [
+import i18n from 'i18next'
+
+const tCommon = (key) => i18n.t(`common:${key}`)
+
+export const getStoreInfo = () => [
   {
     icon: 'fi fi-rr-phone-call',
-    text: 'hotline',
+    text: tCommon('hotline'),
     url: 'tel: +19008198'
   },
   {
     icon: 'fi fi-rr-clock',
-    text: 'workingHour'
+    text: tCommon('workingHour')
   }
 ]
 

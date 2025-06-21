@@ -3,27 +3,31 @@ import { useTranslation } from 'react-i18next'
 import Dropdown from '~/components/common/Dropdown'
 import useDropdown from '~/hooks/useDropdown'
 import PageLoadingSpinner from './PageLoadingSpinner'
+import { useDispatch } from 'react-redux'
+import { updateLocale, selectCurrentLanguage } from '~/redux/user/userSlice'
 
 // Define the language options
 const languages = {
-  en: {
-    flag: 'https://img.icons8.com/color/48/great-britain.png',
-    name: 'English'
-  },
   vi: {
     flag: 'https://img.icons8.com/color/48/vietnam.png',
     name: 'Tiếng Việt'
+  },
+  en: {
+    flag: 'https://img.icons8.com/color/48/great-britain.png',
+    name: 'English'
   }
 }
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation()
+  const dispatch = useDispatch()
   const { isOpen, setIsOpen, getTriggerProps, getContentProps } = useDropdown({ openMode: 'click' })
   const [isLoading, setIsLoading] = useState(false)
 
   const handleLanguageChange = (lang) => {
     // Don't change if equal current language
     if (lang === i18n.language) return
+    dispatch(updateLocale(lang))
 
     // Close dropdown & show spinner
     setIsOpen(false)

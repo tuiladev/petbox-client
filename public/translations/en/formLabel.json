@@ -4,6 +4,9 @@
   "phoneAlreadyExists": "Phone number is already exists!",
   "phoneReviceOTP": "This phone number will recive an OTP code",
   "emailForInvoice": "To recive your invoice",
+  "oldPassword": "Old password",
+  "newPassword": "New password",
+  "resetPassword": "Reset password",
   "password": "Password",
   "confirmPassword": "Confirm password",
   "fullName": "Full name",
@@ -20,5 +23,6 @@
   "agreeTo": "By registering, you agree to",
   "termOfUse": "Terms of use",
   "privacyPolicy": "Privacy policy",
-  "and": "and"
+  "and": "and",
+  "saveChange": "Save changes"
 }

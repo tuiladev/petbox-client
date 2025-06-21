@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 import { refreshTokenAPI } from '~/redux/user/userService'
 import { logoutUserAPI } from '~/redux/user/userSlice'
 import { interceptorLoadingElements } from '~/utils/formatters'
-import { t } from 'i18next'
+import i18n from '~/config/i18nConfig'
 import { env } from '~/config/enviroment'
 
 // Use inject technical import redux store in axios
@@ -86,14 +86,14 @@ authorizedAxiosInstance.interceptors.response.use(
     if (errorData?.fields && Array.isArray(errorData.fields)) {
       errorData.fields.forEach((fieldError) => {
         const fieldErrorMessage = fieldError.errorCode
-        toast.error(t('error:' + fieldErrorMessage))
+        toast.error(i18n.t('error:' + fieldErrorMessage))
       })
       return
     }
 
     // Handle general errors (skip 410)
     if (error?.response?.status !== 410) {
-      toast.error(t('error:' + errorMessage))
+      toast.error(i18n.t('error:' + errorMessage))
     }
     return Promise.reject(error)
   }

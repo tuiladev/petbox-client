@@ -1,0 +1,18 @@
+{
+  "tab": {
+    "personalInfo": "Hồ sơ cá nhân",
+    "petList": "Danh sách thú cưng",
+    "emptyPet": "Bạn chưa có thú cưng nào",
+    "address": "Địa chỉ giao hàng",
+    "payment": "Phương thức thanh toán"
+  },
+  "action": {
+    "addPet": "Thêm thú cưng",
+    "addAddress": "Thêm địa chỉ",
+    "addPayment": "Thêm thẻ/ví",
+    "remove": "Xoá",
+    "update": "Cập nhật",
+    "isDefault": "Mặc định",
+    "setDefault": "Đặt làm mặc định"
+  }
+}

@@ -13,5 +13,10 @@ export const env = {
 
   // Zalo Auth
   ZALO_APP_ID: import.meta.env.VITE_ZALO_APP_ID,
-  ZALO_CALLBACK_URL: import.meta.env.VITE_ZALO_CALLBACK_URL
+  ZALO_CALLBACK_URL: import.meta.env.VITE_ZALO_CALLBACK_URL,
+
+  // Cloudinary
+  CLOUDINARY_UPLOAD_PRESET: import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET,
+  CLOUDINARY_CLOUD_NAME: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_URL: import.meta.env.VITE_CLOUDINARY_URL
 }

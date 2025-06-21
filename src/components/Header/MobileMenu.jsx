@@ -5,13 +5,14 @@ import { selectCurrentUser } from '~/redux/user/userSlice'
 import { useNavigate } from 'react-router-dom'
 import Button from '~/components/common/Button'
 import { DropdownContent } from '~/components/common/Dropdown'
-import { storeInfo } from '~/config/siteConfig'
+import { getStoreInfo } from '~/config/siteConfig'
 import Logo from '~/components/common/Logo'
 import { MenuItem } from './MenuList'
 import { UserCard } from './UserTools'
 import { MainMenuContent } from './MainMenu'
 
 const MobileMenu = ({ dropdownState, className = '' }) => {
+  const storeInfo = getStoreInfo()
   const user = useSelector(selectCurrentUser)
   const isAuthenticated = !!user
   const [hasInteracted, setHasInteracted] = useState(false)

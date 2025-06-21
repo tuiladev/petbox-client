@@ -1,0 +1,18 @@
+{
+  "tab": {
+    "personalInfo": "Personal Infomation",
+    "petList": "Your pets",
+    "emptyPet": "You don't have any pet",
+    "address": "Delivery address",
+     "payment": "Payment method"
+  },
+  "action": {
+    "addPet": "Add pet",
+    "addAddress": "Add address",
+    "addPayment": "Add card/wallet",
+    "remove": "Remove",
+    "update": "Update",
+    "isDefault": "Default",
+    "setDefault": "Set to default"
+  }
+}
